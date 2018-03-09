@@ -2,6 +2,7 @@ package com.tsystems.javaschoolshop.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,8 +19,9 @@ public class Order extends Generic {
     @Column(name = "address", nullable = false, length = 100)
     private String address;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "date_order", nullable = false)
-    private String dateOrder;
+    private Date dateOrder;
 
     @Column(name = "phone", nullable = false)
     private String phone;
@@ -38,7 +40,7 @@ public class Order extends Generic {
     public Order() {
     }
 
-    public Order(User user, String orderStatus, String address, String dateOrder, String phone, String payment, String delivery, int orderPrice) {
+    public Order(User user, String orderStatus, String address, Date dateOrder, String phone, String payment, String delivery, int orderPrice) {
         this.user = user;
         this.orderStatus = orderStatus;
         this.address = address;
@@ -73,11 +75,11 @@ public class Order extends Generic {
         this.address = address;
     }
 
-    public String getDateOrder() {
+    public Date getDateOrder() {
         return dateOrder;
     }
 
-    public void setDateOrder(String dateOrder) {
+    public void setDateOrder(Date dateOrder) {
         this.dateOrder = dateOrder;
     }
 

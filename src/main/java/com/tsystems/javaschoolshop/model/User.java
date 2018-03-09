@@ -2,6 +2,7 @@ package com.tsystems.javaschoolshop.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,8 +18,9 @@ public class User extends Generic {
     @Column(name = "role", nullable = false)
     private String role;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "birthday", nullable = false)
-    private String birthday;
+    private Date birthday;
 
     @Column(name = "email", nullable = false, unique = true, length = 45)
     private String email;
@@ -35,7 +37,7 @@ public class User extends Generic {
     public User() {
     }
 
-    public User(String nameUser, String lastNameUser, String role, String birthday, String email, String phone, String password) {
+    public User(String nameUser, String lastNameUser, String role, Date birthday, String email, String phone, String password) {
         this.nameUser = nameUser;
         this.lastNameUser = lastNameUser;
         this.role = role;
@@ -69,11 +71,11 @@ public class User extends Generic {
         this.role = role;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
