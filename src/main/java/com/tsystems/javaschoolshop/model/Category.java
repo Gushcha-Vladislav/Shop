@@ -1,6 +1,8 @@
 package com.tsystems.javaschoolshop.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "categories", schema = "webshopdb")
@@ -9,7 +11,7 @@ public class Category extends Generic {
     @Column(name = "hierarchy_number", nullable = false)
     private String hierarchyNumber;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_parent")
     private Category parent;
 
@@ -18,6 +20,9 @@ public class Category extends Generic {
 
     @Column(name = "status", nullable = false)
     private boolean status;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent", cascade = CascadeType.ALL)
+    List<Category> children = new ArrayList<>();
 
     public Category() {
     }
@@ -59,5 +64,13 @@ public class Category extends Generic {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public List<Category> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Category> children) {
+        this.children = children;
     }
 }

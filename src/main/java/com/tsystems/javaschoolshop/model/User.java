@@ -1,8 +1,8 @@
 package com.tsystems.javaschoolshop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users", schema = "webshopdb")
@@ -28,6 +28,9 @@ public class User extends Generic {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Address> addresses = new ArrayList<>();
 
     public User() {
     }
@@ -96,5 +99,13 @@ public class User extends Generic {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }

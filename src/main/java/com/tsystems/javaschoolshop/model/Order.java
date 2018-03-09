@@ -1,12 +1,14 @@
 package com.tsystems.javaschoolshop.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders", schema = "webshopdb")
 public class Order extends Generic {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user", nullable = false)
     private User user;
 
@@ -31,6 +33,8 @@ public class Order extends Generic {
     @Column(name = "order_price", nullable = false)
     private int orderPrice;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    List<OrdersProducts> products = new ArrayList<>();
     public Order() {
     }
 
@@ -107,5 +111,13 @@ public class Order extends Generic {
 
     public void setOrderPrice(int orderPrice) {
         this.orderPrice = orderPrice;
+    }
+
+    public List<OrdersProducts> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<OrdersProducts> products) {
+        this.products = products;
     }
 }

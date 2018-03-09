@@ -6,11 +6,11 @@ import javax.persistence.*;
 @Table(name = "orders_products", schema = "webshopdb")
 public class OrdersProducts extends Generic {
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_order", nullable = false)
     private Order order;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_product", nullable = false)
     private Product product;
 

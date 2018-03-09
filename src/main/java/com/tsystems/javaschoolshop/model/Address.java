@@ -6,27 +6,27 @@ import javax.persistence.*;
 @Table(name = "addresses", schema = "webshopdb")
 public class Address extends Generic {
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user", nullable = false)
     private User user;
 
     @Column(name = "city", nullable = false, length = 45)
-    private String city = "";
+    private String city ;
 
     @Column(name = "country", nullable = false, length = 45)
-    private String country = "";
+    private String country;
 
     @Column(name = "postcode", length = 10)
-    private String postcode = "";
+    private String postcode;
 
     @Column(name = "street", nullable = false, length = 45)
-    private String street = "";
+    private String street;
 
     @Column(name = "house", nullable = false, length = 5)
-    private String house = "";
+    private String house;
 
     @Column(name = "apartment", length = 5)
-    private String apartment = "";
+    private String apartment;
 
     @Column(name = "is_default", nullable = false)
     private boolean isDefault;

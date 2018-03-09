@@ -9,7 +9,7 @@ public class Product extends Generic {
     @Column(name = "name_product", nullable = false, length = 20)
     private String nameProduct;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_category", nullable = false)
     private Category category;
 
