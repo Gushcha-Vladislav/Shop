@@ -1,0 +1,53 @@
+.menu {
+    margin: 7px -15px
+}
+
+.menu > div > a {
+    line-height: 20px
+}
+
+.menu > div {
+    padding-top: 2px;
+    text-align: center;
+}
+
+.menu > div > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    color: #9d9d9d;
+}
+
+.menu > div > a:focus, .menu > div > a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.menu > div.disabled > a {
+    color: #777;
+    text-align: center;
+}
+
+.menu > div.disabled > a:focus, .menu > div.disabled > a:hover {
+    color: #777;
+    text-decoration: none;
+    cursor: not-allowed;
+    background-color: transparent
+}
+
+.menu-icon {
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+@media (max-width: 660px) {
+    .menu-icon {
+        display: block;
+        margin-left: 40%;
+    }
+}
+
+a {
+    cursor: pointer;
+}
