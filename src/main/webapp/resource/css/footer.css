@@ -1,0 +1,15 @@
+.social-menu > a{
+    color:white;
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-top: 10px;
+    height: 30px;
+}
+
+.information a{
+    color:white;
+}
+.information > a{
+    color:white;
+    display: inline-block;
+}
