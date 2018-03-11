@@ -10,11 +10,10 @@
     <label for="logInEmail" class="cols-sm-2 control-label">Your email</label>
     <div class="cols-sm-10">
         <div class="input-group">
-            <span class="input-group-addon">
-                <i class="fa fa-envelope fa" aria-hidden="true"></i>
-            </span>
+            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
             <input type="text" class="form-control" name="email" id="logInEmail"
-                   placeholder="Enter your Name"/>
+                   placeholder="Enter your Email" required maxlength="45"
+                   pattern="[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}"/>
         </div>
     </div>
 </div>
@@ -26,7 +25,7 @@
                 <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
             </span>
             <input type="password" class="form-control" name="password"
-                   id="logInPassword" placeholder="Enter your password"/>
+                   id="logInPassword" placeholder="Enter your Password"/>
         </div>
     </div>
 </div>
