@@ -5,6 +5,7 @@ import com.tsystems.javaschoolshop.dao.api.UserDao;
 import com.tsystems.javaschoolshop.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.Query;
 import java.util.List;
 
@@ -20,5 +21,13 @@ public class UserDaoImpl extends GenericDao implements UserDao {
         List<User> result = (List<User>) query.getResultList();
         if (result.isEmpty()) return null;
         else return result.get(0);
+    }
+
+    @Override
+    @Transactional
+    public User saveUser(User user) {
+        User result = em.merge(user);
+        em.flush();
+        return result;
     }
 }
