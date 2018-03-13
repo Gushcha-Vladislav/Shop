@@ -7,7 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<link rel="stylesheet" href="../../resource/css/input.css" >
+<link rel="stylesheet" href="../../resource/css/input.css" >
 <c:import url="head.jsp"/>
 <div class="container-fluid">
     <div class="row">
@@ -20,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <%--//категории--%>
+            <%--категории--%>
         </div>
         <div class="col-sm-8">
             <div class="row">

@@ -111,3 +111,7 @@ input:invalid {
 input:valid {
     border-color: green;
 }
+
+input.basket {
+    width: 100px;
+}
