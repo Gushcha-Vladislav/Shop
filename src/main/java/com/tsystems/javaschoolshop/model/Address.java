@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 public class Address extends Generic {
 
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user")
     private User user;
@@ -36,17 +37,16 @@ public class Address extends Generic {
     private String street;
 
     @NotNull
-    @Pattern(regexp = "")
     @Column(name = "house")
     private String house;
 
-    @Pattern(regexp = "")
+
     @Column(name = "apartment")
     private String apartment;
 
     @NotNull
     @Column(name = "is_default")
-    private boolean isDefault;
+    private boolean isDefault=true;
 
     public Address() {
     }

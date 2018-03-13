@@ -1,6 +1,7 @@
 package com.tsystems.javaschoolshop.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "products", schema = "webshopdb")
@@ -13,6 +14,7 @@ public class Product extends Generic {
     @JoinColumn(name = "id_category", nullable = false)
     private Category category;
 
+    @OrderBy
     @Column(name = "price", nullable = false)
     private int price;
 
@@ -28,6 +30,7 @@ public class Product extends Generic {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @Min(0)
     @Column(name = "quantity_in_stock", nullable = false)
     private int quantityInStock;
 

@@ -33,7 +33,7 @@ public class User extends Generic {
     private Date birthday;
 
     @NotNull
-    @Pattern(regexp = "")
+    @Pattern(regexp = "[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\\.)+[a-z]{2,6}")
     @Column(name = "email", unique = true)
     private String email;
 
