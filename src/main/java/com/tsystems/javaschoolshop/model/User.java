@@ -1,6 +1,11 @@
 package com.tsystems.javaschoolshop.model;
 
+import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,38 +14,45 @@ import java.util.List;
 @Table(name = "users", schema = "webshopdb")
 public class User extends Generic {
 
-    @Column(name = "name_user", nullable = false, length = 20)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Address> addresses = new ArrayList<>();
+
+    @NotNull
+    @Column(name = "name_user", length = 20)
     private String nameUser;
 
     @Column(name = "last_name_user", length = 20)
     private String lastNameUser;
 
-    @Column(name = "role", nullable = false)
+    @Column(name = "role")
     private String role;
 
+    @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(name = "birthday", nullable = false)
+    @Column(name = "birthday")
     private Date birthday;
 
-    @Column(name = "email", nullable = false, unique = true, length = 45)
+    @NotNull
+    @Pattern(regexp = "")
+    @Column(name = "email", unique = true)
     private String email;
 
+    @NotNull
+    @Size(min = 11, max = 20)
     @Column(name = "phone", unique = true, length = 20)
     private String phone;
 
-    @Column(name = "password", nullable = false)
+    @NotNull
+    @Column(name = "password")
     private String password;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Address> addresses = new ArrayList<>();
 
     public User() {
     }
 
-    public User(String nameUser, String lastNameUser, String role, Date birthday, String email, String phone, String password) {
+    public User(String nameUser, String lastNameUser, Date birthday, String email, String phone, String password) {
         this.nameUser = nameUser;
         this.lastNameUser = lastNameUser;
-        this.role = role;
+        this.role = UserRoleEnum.ROLE_USER.name();
         this.birthday = birthday;
         this.email = email;
         this.phone = phone;

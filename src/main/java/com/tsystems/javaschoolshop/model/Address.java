@@ -1,34 +1,51 @@
 package com.tsystems.javaschoolshop.model;
 
+import org.hibernate.annotations.SQLInsert;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "addresses", schema = "webshopdb")
 public class Address extends Generic {
 
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user", nullable = false)
+    @JoinColumn(name = "id_user")
     private User user;
 
-    @Column(name = "city", nullable = false, length = 45)
+    @NotNull
+    @Size(min=3, max=45)
+    @Column(name = "city")
     private String city ;
 
-    @Column(name = "country", nullable = false, length = 45)
+    @NotNull
+    @Size(min=3, max=45)
+    @Column(name = "country")
     private String country;
 
-    @Column(name = "postcode", length = 10)
+    @Size(min=6, max=10)
+    @Column(name = "postcode")
     private String postcode;
 
-    @Column(name = "street", nullable = false, length = 45)
+    @NotNull
+    @Size(min=3, max=45)
+    @Column(name = "street")
     private String street;
 
-    @Column(name = "house", nullable = false, length = 5)
+    @NotNull
+    @Pattern(regexp = "")
+    @Column(name = "house")
     private String house;
 
-    @Column(name = "apartment", length = 5)
+    @Pattern(regexp = "")
+    @Column(name = "apartment")
     private String apartment;
 
-    @Column(name = "is_default", nullable = false)
+    @NotNull
+    @Column(name = "is_default")
     private boolean isDefault;
 
     public Address() {
@@ -40,6 +57,7 @@ public class Address extends Generic {
         this.country = country;
         this.street = street;
         this.house = house;
+        this.isDefault=true;
     }
 
     public User getUser() {
