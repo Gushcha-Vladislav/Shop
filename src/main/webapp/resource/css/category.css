@@ -1,0 +1,11 @@
+.category > .panel > .panel-heading > .panel-title > a.btn-success, .category > a.btn-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    border-radius: 0px;
+    color: green;
+}
+
+.btn-block + .btn-block {
+
+    margin-top: 0px;
+}
