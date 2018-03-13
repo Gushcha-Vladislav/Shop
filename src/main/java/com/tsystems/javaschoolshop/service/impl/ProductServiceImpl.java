@@ -4,17 +4,19 @@ import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.service.api.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductDao productDao;
 
     @Autowired
-    ProductServiceImpl(ProductDao productDao){
-        this.productDao=productDao;
+    ProductServiceImpl(ProductDao productDao) {
+        this.productDao = productDao;
     }
 
     @Override

@@ -3,10 +3,12 @@ package com.tsystems.javaschoolshop.dao.impl;
 import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.CategoryDao;
 import com.tsystems.javaschoolshop.model.Category;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import java.util.List;
 
+@Repository
 public class CategoryDaoImpl extends GenericDao implements CategoryDao {
 
     @Override

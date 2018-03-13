@@ -3,10 +3,12 @@ package com.tsystems.javaschoolshop.dao.impl;
 import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import java.util.List;
 
+@Repository
 public class ProductDaoImpl extends GenericDao implements ProductDao {
 
     @Override
