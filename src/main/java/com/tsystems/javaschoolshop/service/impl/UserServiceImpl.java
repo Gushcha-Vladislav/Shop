@@ -32,4 +32,10 @@ public class UserServiceImpl implements UserService {
     public User findUserFromSecurityContextHolder() {
         return findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
     }
+
+    @Override
+    public boolean isEmailFree(final String email) {
+        if (email == null || email.isEmpty()) return false;
+        return userDao.findUserByEmail(email) == null;
+    }
 }

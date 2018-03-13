@@ -9,4 +9,5 @@ public interface UserService {
 
     User findUserByEmail(String email);
     User findUserFromSecurityContextHolder();
+    boolean isEmailFree(String email);
 }
