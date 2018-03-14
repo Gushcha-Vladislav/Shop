@@ -1,23 +1,28 @@
 package com.tsystems.javaschoolshop.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "orders_products", schema = "webshopdb")
 public class OrdersProducts extends Generic {
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_order", nullable = false)
+    @JoinColumn(name = "id_order")
     private Order order;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_product", nullable = false)
     private Product product;
 
-    @Column(name = "amount", nullable = false)
+    @NotNull
+    @Column(name = "amount")
     private int amount;
 
-    @Column(name = "price_one", nullable = false)
+    @NotNull
+    @Column(name = "price_one")
     private int priceOne;
 
     public OrdersProducts() {
@@ -60,5 +65,11 @@ public class OrdersProducts extends Generic {
 
     public void setPriceOne(int priceOne) {
         this.priceOne = priceOne;
+    }
+
+    @Override
+    public String toString() {
+        return "{id = "+getId()+"; order ="+order.toString()+"; product = "+product.toString()+
+                "; amount = "+amount+"; price =  "+priceOne+"}";
     }
 }

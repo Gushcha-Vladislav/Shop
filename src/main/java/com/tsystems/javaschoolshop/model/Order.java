@@ -1,6 +1,8 @@
 package com.tsystems.javaschoolshop.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,30 +11,35 @@ import java.util.List;
 @Table(name = "orders", schema = "webshopdb")
 public class Order extends Generic {
 
+    @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user", nullable = false)
+    @JoinColumn(name = "id_user")
     private User user;
 
-    @Column(name = "status", nullable = false)
+    @NotNull
+    @Column(name = "status")
     private String orderStatus;
 
-    @Column(name = "address", nullable = false, length = 100)
+    @NotNull
+    @Size(max=100)
+    @Column(name = "address")
     private String address;
 
+    @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(name = "date_order", nullable = false)
+    @Column(name = "date_order")
     private Date dateOrder;
 
-    @Column(name = "phone", nullable = false)
-    private String phone;
-
-    @Column(name = "payment", nullable = false)
+    @NotNull
+    @Column(name = "payment")
     private String payment;
 
-    @Column(name = "delivery", nullable = false)
+    @NotNull
+    @Column(name = "delivery")
     private String delivery;
 
-    @Column(name = "order_price", nullable = false)
+    @NotNull
+    @Column(name = "order_price")
     private int orderPrice;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
@@ -40,12 +47,11 @@ public class Order extends Generic {
     public Order() {
     }
 
-    public Order(User user, String orderStatus, String address, Date dateOrder, String phone, String payment, String delivery, int orderPrice) {
+    public Order(User user, String orderStatus, String address, Date dateOrder, String payment, String delivery, int orderPrice) {
         this.user = user;
         this.orderStatus = orderStatus;
         this.address = address;
         this.dateOrder = dateOrder;
-        this.phone = phone;
         this.payment = payment;
         this.delivery = delivery;
         this.orderPrice = orderPrice;
@@ -83,13 +89,6 @@ public class Order extends Generic {
         this.dateOrder = dateOrder;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public String getPayment() {
         return payment;
@@ -121,5 +120,10 @@ public class Order extends Generic {
 
     public void setProducts(List<OrdersProducts> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "{id = "+getId()+"; user ="+user.toString()+"; date = "+dateOrder+"}";
     }
 }

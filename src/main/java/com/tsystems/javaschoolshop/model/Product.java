@@ -2,39 +2,53 @@ package com.tsystems.javaschoolshop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "products", schema = "webshopdb")
 public class Product extends Generic {
 
-    @Column(name = "name_product", nullable = false, length = 20)
+    @NotNull
+    @Size(min=3,max=20)
+    @Column(name = "name_product")
     private String nameProduct;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_category", nullable = false)
+    @JoinColumn(name = "id_category")
     private Category category;
 
+    @NotNull
     @OrderBy
-    @Column(name = "price", nullable = false)
+    @Column(name = "price")
     private int price;
 
-    @Column(name = "brand", length = 50)
+    @Size(min=3, max=50)
+    @Column(name = "brand")
     private String brand;
 
-    @Column(name = "property", nullable = false, length = 10)
+    @NotNull
+    @Size(max=10)
+    @Column(name = "property")
     private String property;
 
-    @Column(name = "image", nullable = false, length = 100)
+    @NotNull
+    @Size(max=100)
+    @Column(name = "image")
     private String image;
 
-    @Column(name = "description", nullable = false)
+    @NotNull
+    @Column(name = "description")
     private String description;
 
+    @NotNull
     @Min(0)
-    @Column(name = "quantity_in_stock", nullable = false)
+    @Column(name = "quantity_in_stock")
     private int quantityInStock;
 
-    @Column(name = "quantity_sold", nullable = false)
+    @NotNull
+    @Column(name = "quantity_sold")
     private int quantitySold;
 
     @Column(name = "status", nullable = false)
@@ -131,5 +145,11 @@ public class Product extends Generic {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "{id = "+getId()+"; name ="+nameProduct+"; category = "+category.toString()+
+                "; status = "+status+"}";
     }
 }

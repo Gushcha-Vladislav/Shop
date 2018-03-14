@@ -4,6 +4,7 @@ import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class User extends Generic {
     @Column(name = "role")
     private String role;
 
+    @Past
     @NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "birthday")
@@ -121,5 +123,10 @@ public class User extends Generic {
 
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    @Override
+    public String toString() {
+        return "{id = "+getId()+"; email ="+email+"; role = "+role+ "}";
     }
 }

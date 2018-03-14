@@ -1,6 +1,10 @@
 package com.tsystems.javaschoolshop.model;
 
+import org.hibernate.annotations.SQLInsert;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,14 +12,17 @@ import java.util.List;
 @Table(name = "categories", schema = "webshopdb")
 public class Category extends Generic {
 
-    @Column(name = "hierarchy_number", nullable = false)
+    @NotNull
+    @Column(name = "hierarchy_number")
     private String hierarchyNumber;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_parent")
     private Category parent;
 
-    @Column(name = "name_category", nullable = false, length = 20)
+    @NotNull
+    @Size(min=3, max=45)
+    @Column(name = "name_category")
     private String nameCategory;
 
     @Column(name = "status", nullable = false)
@@ -72,5 +79,12 @@ public class Category extends Generic {
 
     public void setChildren(List<Category> children) {
         this.children = children;
+    }
+
+    @Override
+    public String toString() {
+        String result="{id = "+getId()+"; name category = "+nameCategory;
+        if(parent!=null) result+="; parent = "+parent.toString();
+        return result+"status= "+status+"}";
     }
 }

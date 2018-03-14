@@ -1,10 +1,7 @@
 package com.tsystems.javaschoolshop.model;
 
-import org.hibernate.annotations.SQLInsert;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -18,21 +15,21 @@ public class Address extends Generic {
     private User user;
 
     @NotNull
-    @Size(min=3, max=45)
+    @Size(min = 3, max = 45)
     @Column(name = "city")
-    private String city ;
+    private String city;
 
     @NotNull
-    @Size(min=3, max=45)
+    @Size(min = 3, max = 45)
     @Column(name = "country")
     private String country;
 
-    @Size(min=6, max=10)
+    @Size(min = 6, max = 10)
     @Column(name = "postcode")
     private String postcode;
 
     @NotNull
-    @Size(min=3, max=45)
+    @Size(min = 3, max = 45)
     @Column(name = "street")
     private String street;
 
@@ -46,7 +43,7 @@ public class Address extends Generic {
 
     @NotNull
     @Column(name = "is_default")
-    private boolean isDefault=true;
+    private boolean isDefault = true;
 
     public Address() {
     }
@@ -57,7 +54,7 @@ public class Address extends Generic {
         this.country = country;
         this.street = street;
         this.house = house;
-        this.isDefault=true;
+        this.isDefault = true;
     }
 
     public User getUser() {
@@ -126,24 +123,10 @@ public class Address extends Generic {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        boolean countryExpr = country.length() != 0;
-        boolean cityExpr = city.length() != 0;
-        boolean postcodeExpr = postcode.length() != 0;
-        boolean streetExpr = street.length() != 0;
-        boolean houseExpr = house.length() != 0;
-        boolean apartmentExpr = apartment.length() != 0;
-
-        if (countryExpr) sb.append(country);
-        if (sb.length() > 0 && cityExpr) sb.append(", ");
-        if (cityExpr) sb.append(city);
-        if (sb.length() > 0 && postcodeExpr) sb.append(" ");
-        if (postcodeExpr) sb.append("(").append(postcode).append(")");
-        if (sb.length() > 0 && streetExpr) sb.append(", ");
-        if (streetExpr) sb.append(street);
-        if (streetExpr && houseExpr) sb.append(" ").append(house);
-        if (streetExpr && houseExpr && apartmentExpr) sb.append(", ").append(apartment);
-
-        return sb.toString();
+        String result=country+", "+city;
+        if (postcode.length() != 0) result+=" ( "+postcode+" )";
+        result+=", "+street+" "+house;
+        if (apartment.length() != 0) result+=", "+apartment;
+        return result;
     }
 }
