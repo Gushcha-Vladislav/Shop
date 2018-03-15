@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class BagProductDto implements Serializable {
 
+    private int id;
     private String nameProduct;
-    private int idProduct;
     private int amount;
     private int price;
     private String image;
@@ -13,12 +13,20 @@ public class BagProductDto implements Serializable {
     public BagProductDto() {
     }
 
-    public BagProductDto(String nameProduct, int idProduct, int amount, int price, String image) {
+    public BagProductDto(int id, String nameProduct, int amount, int price, String image) {
+        this.id = id;
         this.nameProduct = nameProduct;
-        this.idProduct = idProduct;
         this.amount = amount;
         this.price = price;
         this.image = image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNameProduct() {
@@ -27,14 +35,6 @@ public class BagProductDto implements Serializable {
 
     public void setNameProduct(String nameProduct) {
         this.nameProduct = nameProduct;
-    }
-
-    public int getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
     }
 
     public int getAmount() {
