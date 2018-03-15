@@ -36,11 +36,11 @@
                             class="menu-icon fas fa-user fa-lg"></i>Name<b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/account">Profile</a></li>
+                        <li><a href="">Profile</a></li>
                         <li class="divider"></li>
-                        <li><a href="/account/password">Update password</a></li>
-                        <li><a href="/account/addresses">Update addresses</a></li>
-                        <li><a href="/account/order">History orders</a></li>
+                        <li><a href="">Update password</a></li>
+                        <li><a href="">Update addresses</a></li>
+                        <li><a href="">History orders</a></li>
                         <li class="divider"></li>
                         <li><a href="/j_spring_security_logout">Log out</a></li>
                     </ul>
@@ -50,9 +50,9 @@
                             class="menu-icon fas fa-user fa-lg"></i>Имя<b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/account">Profile</a></li>
+                        <li><a href="">Profile</a></li>
                         <li class="divider"></li>
-                        <li><a href="/admin/order">Orders</a></li>
+                        <li><a href="">Orders</a></li>
                         <li><a href="#">Statistics</a></li>
                         <li class="divider"></li>
                         <li><a href="/j_spring_security_logout">Log out</a></li>
@@ -84,4 +84,5 @@
 
     </div>
     <c:import url="slider.jsp"/>
+    <br>
 </sec:authorize>
