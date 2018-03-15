@@ -28,7 +28,7 @@ public class CommonController {
 
     @Secured({"ROLE_USER","ROLE_ANONYMOUS"})
     @RequestMapping(value = {"/","/catalog"})
-    public ModelAndView test1() {
+    public ModelAndView showProductsList() {
         ModelAndView modelAndView=new ModelAndView("listProduct");
         modelAndView.addObject("products",productService.findAllProducts(false));
         modelAndView.addObject("categories",categoryService.findRootCategories());
