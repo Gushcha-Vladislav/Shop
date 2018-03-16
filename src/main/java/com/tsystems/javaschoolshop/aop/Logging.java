@@ -15,6 +15,7 @@ public class Logging {
             "within(com.tsystems.javaschoolshop.controller..*) ||" +
             "within(com.tsystems.javaschoolshop.dao..*)")
     public void witch()  {
+        // pointcut for log
     }
 
     @Before(value = "witch()")
