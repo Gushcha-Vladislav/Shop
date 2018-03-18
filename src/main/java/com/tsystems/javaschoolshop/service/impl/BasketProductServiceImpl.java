@@ -46,7 +46,7 @@ public class BasketProductServiceImpl implements BasketProductService {
     }
 
     @Override
-    public boolean deleteFromBasket(int id, List<BasketProductDto> basket) {
+    public boolean deleteFromBasketById(int id, List<BasketProductDto> basket) {
 
         for (BasketProductDto product : basket) {
             if (product.getId() == id) {
@@ -61,7 +61,7 @@ public class BasketProductServiceImpl implements BasketProductService {
     }
 
     @Override
-    public Integer countProductInBagById(int id, List<BasketProductDto> basket) {
+    public Integer countProductsInBagById(int id, List<BasketProductDto> basket) {
         for (BasketProductDto product : basket) {
             if (product.getId() == id) {
                 return product.getAmount();
@@ -80,7 +80,7 @@ public class BasketProductServiceImpl implements BasketProductService {
     }
 
     @Override
-    public Integer countProductInBag(List<BasketProductDto> basket) {
+    public Integer countProductsInBag(List<BasketProductDto> basket) {
         int count = 0;
         for (BasketProductDto product : basket) {
             count += product.getAmount();

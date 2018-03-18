@@ -5,8 +5,8 @@ import java.util.List;
 
 public interface BasketProductService {
     boolean addToBasket(BasketProductDto basketProductDto, List<BasketProductDto> basket);
-    boolean deleteFromBasket(int id, List<BasketProductDto> basket);
-    Integer countProductInBagById(int id, List<BasketProductDto> basket);
+    boolean deleteFromBasketById(int id, List<BasketProductDto> basket);
+    Integer countProductsInBagById(int id, List<BasketProductDto> basket);
     int totalPrice(List<BasketProductDto> basket);
-    Integer countProductInBag(List<BasketProductDto> basket);
+    Integer countProductsInBag(List<BasketProductDto> basket);
 }
