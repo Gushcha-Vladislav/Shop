@@ -13,7 +13,7 @@
             <div class="caption text-center">
                 <h5><a href="/catalog/${product.id}" >${product.nameProduct}</a></h5>
             </div>
-            <img class="img-responsive" src="../../resource/${product.image}"  alt="">
+            <img class="img-responsive" src="/resources/${product.image}"  alt="">
                 <div class="caption">
                     <p>Цена : ${product.price}</p>
                     <button class="btn btn-success" data-toggle="modal" type="modal" data-target="#addToCart">Pay</button>

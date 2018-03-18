@@ -16,13 +16,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="../../resource/image/banner1.jpg" alt="">
+                    <img src="/resources/image/banner1.jpg" alt="">
                 </div>
                 <div class="item">
-                    <img src="../../resource/image/banner2.jpg" alt="">
+                    <img src="/resources/image/banner2.jpg" alt="">
                 </div>
                 <div class="item">
-                    <img src="../../resource/image/banner3.jpg" alt="">
+                    <img src="/resources/image/banner3.jpg" alt="">
                 </div>
             </div>
             <a href="#carousel" class="left carousel-control icon-slider" data-slide="prev">

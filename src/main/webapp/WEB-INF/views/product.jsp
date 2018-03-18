@@ -29,7 +29,7 @@
                     <h4 class="nameProduct">${product.nameProduct}</h4>
                 </div>
                 <div class="col-sm-6">
-                    <img src="../../resource/${product.image}" alt="" class="img-responsive">
+                    <img src="/resources/${product.image}" alt="" class="img-responsive">
                 </div>
                 <div class="col-sm-6 row">
                     <div class="col-xs-12">Brand : ${product.brand}</div>

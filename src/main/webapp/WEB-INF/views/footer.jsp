@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<link rel="stylesheet" href="../../resource/css/footer.css" >
+<link rel="stylesheet" href="/resources/css/footer.css" >
 <footer>
     <div class="modal-footer container-fluid navbar navbar-inverse">
         <div class="row">

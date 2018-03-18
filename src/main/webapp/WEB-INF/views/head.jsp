@@ -12,11 +12,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../../resource/css/bootstrap.min.css" rel="stylesheet">
-    <script defer src="../../resource/js/fontawesome-all.min.js"></script>
-    <link href="../../resource/css/head.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href="/resources/css/head.css" rel="stylesheet">
+    <link href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/webjars/font-awesome/4.5.0/css/font-awesome.min.css"  rel="stylesheet"/>
+    <script src="/resources/js/fontawesome-all.min.js"></script>
+    <%--<link rel="stylesheet" href="/webjars/bootstrap">--%>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-static-top">

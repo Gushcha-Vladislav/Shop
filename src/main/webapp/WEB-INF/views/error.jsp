@@ -7,7 +7,6 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="../../resource/css/select.css" >
 <c:import url="head.jsp"/>
 <div class="container-fluid">
     <div class="row">

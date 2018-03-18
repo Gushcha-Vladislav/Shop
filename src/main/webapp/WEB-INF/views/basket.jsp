@@ -7,8 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<link rel="stylesheet" href="../../resource/css/basket.css" >
-<script src="../../resource/js/basket.js"></script>
+<<link rel="stylesheet" href="/resources/css/basket.css" >
+<script src="/resources/js/basket.js"></script>
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">

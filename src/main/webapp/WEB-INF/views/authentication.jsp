@@ -7,7 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="../../resource/css/input.css" >
+<link rel="stylesheet" href="/resources/css/input.css" >
 <c:import url="head.jsp"/>
 <div class="container-fluid">
     <div class="row">
@@ -51,7 +51,7 @@
                                                         <span class="input-group-addon">
                                                             <i class="fa fa-user fa" aria-hidden="true"></i>
                                                         </span>
-                                                <input type="text" class="form-control" name="name" id="name"
+                                                <input type="text" class="form-control" name="nameUser" id="name"
                                                        placeholder="Enter your Name" required maxlength="20"/>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                                         <span class="input-group-addon">
                                                             <i class="fa fa-users fa" aria-hidden="true"></i>
                                                         </span>
-                                                <input type="text" class="form-control" name="lastName"
+                                                <input type="text" class="form-control" name="lastNameUser"
                                                        id="username" placeholder="Enter your lastName"
                                                        maxlength="20"/>
                                             </div>
