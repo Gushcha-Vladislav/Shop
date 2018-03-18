@@ -7,6 +7,7 @@ import com.tsystems.javaschoolshop.service.api.BasketProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -72,9 +73,9 @@ public class BasketProductServiceImpl implements BasketProductService {
 
     @Override
     public int totalPrice(List<BasketProductDto> basket) {
-        int totalPrice=0;
+        int totalPrice = 0;
         for (BasketProductDto product : basket) {
-            totalPrice += product.getAmount()*product.getPrice();
+            totalPrice += product.getAmount() * product.getPrice();
         }
         return totalPrice;
     }
@@ -86,5 +87,16 @@ public class BasketProductServiceImpl implements BasketProductService {
             count += product.getAmount();
         }
         return count;
+    }
+
+    @Override
+    public boolean deleteFromBasket(List<BasketProductDto> basket) {
+        for (BasketProductDto product : basket) {
+            Product originalProduct = productDao.findProductById(product.getId());
+            originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
+            productDao.saveProduct(originalProduct);
+        }
+        basket = new ArrayList<>();
+        return true;
     }
 }
