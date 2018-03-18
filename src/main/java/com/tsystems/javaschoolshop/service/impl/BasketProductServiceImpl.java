@@ -59,4 +59,14 @@ public class BasketProductServiceImpl implements BasketProductService {
         }
         return true;
     }
+
+    @Override
+    public Integer countProductInBag(int id, List<BasketProductDto> basket) {
+        for (BasketProductDto product : basket) {
+            if (product.getId() == id) {
+                return product.getAmount();
+            }
+        }
+        return 0;
+    }
 }
