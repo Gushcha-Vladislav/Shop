@@ -29,7 +29,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findProductById(final int id) {
-        return productDao.findProductById(id);
+    public Product findProductById(int id, boolean adminMode) {
+        Product product = productDao.findProductById(id);
+        if (adminMode) return product;
+        else return product.isStatus() ? product : null;
+    }
+
+    @Override
+    public Product saveProduct(Product product) {
+        return productDao.saveProduct(product);
     }
 }

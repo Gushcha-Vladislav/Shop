@@ -7,5 +7,6 @@ import java.util.List;
 public interface ProductService {
 
     List<Product> findAllProducts(final boolean adminMode);
-    Product findProductById(final int id);
+    Product findProductById(int id, boolean adminMode);
+    Product saveProduct(Product product);
 }

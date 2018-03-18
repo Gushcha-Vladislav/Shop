@@ -7,4 +7,5 @@ public interface ProductDao {
 
     List<Product> findAllProducts();
     Product findProductById(final int id);
+    Product saveProduct(Product product);
 }
