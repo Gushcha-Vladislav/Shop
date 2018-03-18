@@ -78,4 +78,13 @@ public class BasketProductServiceImpl implements BasketProductService {
         }
         return totalPrice;
     }
+
+    @Override
+    public Integer countProductInBag(List<BasketProductDto> basket) {
+        int count = 0;
+        for (BasketProductDto product : basket) {
+            count += product.getAmount();
+        }
+        return count;
+    }
 }

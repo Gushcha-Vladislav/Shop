@@ -8,4 +8,5 @@ public interface BasketProductService {
     boolean deleteFromBasket(int id, List<BasketProductDto> basket);
     Integer countProductInBagById(int id, List<BasketProductDto> basket);
     int totalPrice(List<BasketProductDto> basket);
+    Integer countProductInBag(List<BasketProductDto> basket);
 }
