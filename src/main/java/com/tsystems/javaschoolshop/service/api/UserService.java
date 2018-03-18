@@ -8,6 +8,7 @@ import com.tsystems.javaschoolshop.model.User;
 public interface UserService {
 
     User findUserByEmail(String email);
+    void saveNewUser(User user, Address Address);
     User findUserFromSecurityContextHolder();
     boolean isEmailFree(String email);
 }

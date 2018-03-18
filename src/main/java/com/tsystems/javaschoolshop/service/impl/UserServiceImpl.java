@@ -1,6 +1,7 @@
 package com.tsystems.javaschoolshop.service.impl;
 
 import com.tsystems.javaschoolshop.dao.api.UserDao;
+import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,11 @@ public class UserServiceImpl implements UserService {
     public boolean isEmailFree(final String email) {
         if (email == null || email.isEmpty()) return false;
         return userDao.findUserByEmail(email) == null;
+    }
+
+    @Override
+    public void saveNewUser(User user, Address address) {
+        address.setUser(user);
+        user.getAddresses().add(address);
     }
 }
