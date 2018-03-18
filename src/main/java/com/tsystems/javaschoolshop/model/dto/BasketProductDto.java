@@ -2,7 +2,7 @@ package com.tsystems.javaschoolshop.model.dto;
 
 import java.io.Serializable;
 
-public class BagProductDto implements Serializable {
+public class BasketProductDto implements Serializable {
 
     private int id;
     private String nameProduct;
@@ -10,10 +10,10 @@ public class BagProductDto implements Serializable {
     private int price;
     private String image;
 
-    public BagProductDto() {
+    public BasketProductDto() {
     }
 
-    public BagProductDto(int id, String nameProduct, int amount, int price, String image) {
+    public BasketProductDto(int id, String nameProduct, int amount, int price, String image) {
         this.id = id;
         this.nameProduct = nameProduct;
         this.amount = amount;
