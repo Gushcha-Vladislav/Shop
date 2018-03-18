@@ -149,7 +149,21 @@ public class Product extends Generic {
 
     @Override
     public String toString() {
-        return "{id = "+getId()+"; name ="+nameProduct+"; category = "+category.toString()+
+        return "{id = "+this.getId()+"; name ="+nameProduct+"; category = "+category.toString()+
                 "; status = "+status+"}";
+    }
+
+    @Override
+    public int hashCode() {
+        return (int)(this.getId()/100);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Product)) return false;
+
+        Product tmp = (Product) obj;
+        return tmp.getId() == this.getId();
     }
 }
