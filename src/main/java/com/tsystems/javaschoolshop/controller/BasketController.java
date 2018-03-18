@@ -52,8 +52,7 @@ public class BasketController {
 
     @RequestMapping(value = "/count")
     @ResponseBody
-    public String countInBag(final HttpServletRequest request) {
-        Object bag = request.getSession().getAttribute("bag");
-        return new Long(basketProductService.countProductInBag((List<BasketProductDto>)bag)).toString();
+    public String countInBag() {
+        return basketProductService.countProductInBag(basketBean.getBasket()).toString();
     }
 }
