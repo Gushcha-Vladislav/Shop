@@ -22,25 +22,41 @@ public class BasketProductServiceImpl implements BasketProductService {
 
     @Override
     public boolean addToBasket(BasketProductDto basketProductDto, List<BasketProductDto> basket) {
+
         Product product = productDao.findProductById(basketProductDto.getId());
         boolean isFoundInBag = false;
         for (BasketProductDto basketProduct : basket) {
             if (basketProduct.getId() == basketProductDto.getId()) {
-                if(product.getQuantityInStock() <=basketProductDto.getAmount()-basketProduct.getAmount())
+                if (product.getQuantityInStock() <= basketProductDto.getAmount() - basketProduct.getAmount())
                     return false;
                 basketProduct.setAmount(basketProductDto.getAmount());
                 basketProduct.setPrice(basketProductDto.getPrice());
-                product.setQuantityInStock(product.getQuantityInStock()-basketProductDto.getAmount()+basketProduct.getAmount());
+                product.setQuantityInStock(product.getQuantityInStock() - basketProductDto.getAmount() + basketProduct.getAmount());
                 isFoundInBag = true;
                 break;
             }
         }
 
-        if (!isFoundInBag && product.getQuantityInStock() >=basketProductDto.getAmount()) {
+        if (!isFoundInBag && product.getQuantityInStock() >= basketProductDto.getAmount()) {
             basket.add(basketProductDto);
-            product.setQuantityInStock(product.getQuantityInStock()-basketProductDto.getAmount());
-        }else return false;
+            product.setQuantityInStock(product.getQuantityInStock() - basketProductDto.getAmount());
+        } else return false;
         productDao.saveProduct(product);
+        return true;
+    }
+
+    @Override
+    public boolean deleteFromBasket(int id, List<BasketProductDto> basket) {
+
+        for (BasketProductDto product : basket) {
+            if (product.getId() == id) {
+                Product originalProduct = productDao.findProductById(id);
+                originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
+                productDao.saveProduct(originalProduct);
+            }
+            basket.remove(product);
+            break;
+        }
         return true;
     }
 }
