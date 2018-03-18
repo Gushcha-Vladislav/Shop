@@ -15,7 +15,7 @@ public class Product extends Generic {
     private String nameProduct;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_category")
     private Category category;
 

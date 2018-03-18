@@ -43,7 +43,7 @@ public class Order extends Generic {
     private int orderPrice;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    List<OrdersProducts> products = new ArrayList<>();
+    private List<OrdersProducts> products = new ArrayList<>();
     public Order() {
     }
 

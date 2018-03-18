@@ -1,7 +1,5 @@
 package com.tsystems.javaschoolshop.model;
 
-import org.hibernate.annotations.SQLInsert;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,7 +27,7 @@ public class Category extends Generic {
     private boolean status;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent", cascade = CascadeType.ALL)
-    List<Category> children = new ArrayList<>();
+    private List<Category> children = new ArrayList<>();
 
     public Category() {
     }

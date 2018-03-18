@@ -1,6 +1,7 @@
 package com.tsystems.javaschoolshop.model;
 
 import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +17,7 @@ import java.util.List;
 public class User extends Generic {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Address> addresses = new ArrayList<>();
+    private List<Address> addresses = new ArrayList<>();
 
     @NotNull
     @Column(name = "name_user", length = 20)
@@ -30,6 +31,7 @@ public class User extends Generic {
 
     @Past
     @NotNull
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     @Column(name = "birthday")
     private Date birthday;
