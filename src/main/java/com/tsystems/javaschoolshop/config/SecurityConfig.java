@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    public void configureGlobalAuthentication(AuthenticationManagerBuilder authenticationMgr) throws Exception {
+    public void configureGlobalAuthentication(AuthenticationManagerBuilder authenticationMgr) {
         authenticationMgr.authenticationProvider(authProvider());
     }
 
