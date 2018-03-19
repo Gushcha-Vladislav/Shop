@@ -50,8 +50,7 @@ public class LoginController {
     public String signUp(@Valid Address address,@Valid User user, BindingResult result,
                         final HttpServletRequest request) {
         if (result.hasErrors()) {
-            String[] k = result.getSuppressedFields();
-            List<ObjectError> q=result.getAllErrors();
+            List<ObjectError> errorsValid=result.getAllErrors();
             return "signUp";
 
         }else{
