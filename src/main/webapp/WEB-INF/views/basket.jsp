@@ -17,7 +17,7 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                <c:forEach var="item" items="${bag}">
+                <c:forEach var="item" items="${basketBean}">
                     <div class="col-xs-12 thumbnail">
                         <div>${item.id}</div>
                         <div class="col-sm-5 col-xs-10"><a>${item.nameProduct}</a></div>
@@ -45,3 +45,4 @@
 </div>
 
 
+Изменять количество на складе от покупки

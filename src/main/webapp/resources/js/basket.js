@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    countInBasket();
+
     $('.minus').click(function () {
         var $input = $(this).parent().find('input');
         var count = parseInt($input.val()) - 1;
@@ -13,4 +15,5 @@ $(document).ready(function() {
         $input.change();
         return false;
     });
+    
 });
