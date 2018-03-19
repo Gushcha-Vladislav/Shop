@@ -5,14 +5,13 @@ import com.tsystems.javaschoolshop.model.dto.BasketProductDto;
 import com.tsystems.javaschoolshop.service.api.BasketProductService;
 import com.tsystems.javaschoolshop.session.BasketBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-
 
 @Controller
+@Secured({"ROLE_USER","ROLE_ANONYMOUS"})
 @RequestMapping(value = "/basket")
 public class BasketController {
 
@@ -24,35 +23,42 @@ public class BasketController {
         this.basketBean = basketBean;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String outView() {
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String basket() {
         return "basket";
     }
 
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public boolean addToBag( BasketProductDto basketProductDto,
+    public boolean addToBasketById( BasketProductDto basketProductDto,
                            final @PathVariable("id") int id) {
 
         basketProductDto.setId(id);
         return basketProductService.addToBasket(basketProductDto,basketBean.getBasket());
     }
 
-    @RequestMapping(value = "/delete/{id}")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public boolean deleteProduct(final @PathVariable("id") int id) {
-        return basketProductService.deleteFromBasket(id, basketBean.getBasket());
+    public boolean deleteProductsById(final @PathVariable("id") int id) {
+        return basketProductService.deleteFromBasketById(id, basketBean.getBasket());
     }
 
-    @RequestMapping(value = "/count/{id}")
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public String countProductInBag(final @PathVariable("id") int id) {
-        return basketProductService.countProductInBagById(id, basketBean.getBasket()).toString();
+    public boolean deleteProducts () {
+        return basketProductService.deleteFromBasket(basketBean.getBasket());
     }
 
-    @RequestMapping(value = "/count")
+    @RequestMapping(value = "/count/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public String countInBag() {
-        return basketProductService.countProductInBag(basketBean.getBasket()).toString();
+    public String countProductsInBagById(final @PathVariable("id") int id) {
+        return basketProductService.countProductsInBagById(id, basketBean.getBasket()).toString();
+    }
+
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    @ResponseBody
+    public String countProductsInBag() {
+        return basketProductService.countProductsInBag(basketBean.getBasket()).toString();
     }
 }
