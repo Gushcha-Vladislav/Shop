@@ -14,10 +14,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <link href="/resources/css/head.css" rel="stylesheet">
     <link href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="/webjars/font-awesome/4.5.0/css/font-awesome.min.css"  rel="stylesheet"/>
     <script src="/resources/js/fontawesome-all.min.js"></script>
+    <link href="/resources/css/head.css" rel="stylesheet">
+    <script src="/resources/js/head.js"></script>
     <%--<link rel="stylesheet" href="/webjars/bootstrap">--%>
 </head>
 <body>
@@ -65,9 +66,10 @@
                 <div class="col-xs-3 text-center">
                     <a href=""><i class="fab fa-amazon-pay fa-lg menu-icon fa-fw"></i>Order</a></div>
                 <div class="col-xs-3 text-center">
-                    <a data-toggle="modal" type="modal" data-target="#basketFoods"><i
-                            class="fas fa-shopping-basket fa-lg menu-icon fa-fw"></i>Basket<span
-                            class="badge" id="countItemInBag"></span></a>
+                    <a id ="buttonBasketProducts" data-toggle="modal" type="modal" data-target="#basketProducts">
+                        <i class="fas fa-shopping-basket fa-lg menu-icon fa-fw"></i>Basket
+                        <span class="badge" id="countProductInBasket"></span>
+                    </a>
                 </div>
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPER_ADMIN')">
@@ -82,7 +84,7 @@
     </div>
 </div>
 <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ANONYMOUS')">
-    <div class="modal fade" id="basketFoods">
+    <div class="modal fade" id="basketProducts">
 
     </div>
     <c:import url="slider.jsp"/>
