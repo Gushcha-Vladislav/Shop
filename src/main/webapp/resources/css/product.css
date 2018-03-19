@@ -1,0 +1,57 @@
+.item-amount {
+    color: black;
+    font-size: 18px;
+}
+
+.item-amount h4 {
+    color: black;
+    font-size: 18px;
+    letter-spacing: 1px;
+    cursor: default;
+}
+
+.amount-button .amount-number {
+    border: 1px solid black;
+    width: 130px;
+    height: 39px;
+    text-align: center;
+    padding-top: 8px;
+    cursor: default;
+
+}
+
+.amount-button {
+    display: flex;
+}
+
+.amount-button .button-less {
+    border: 1px solid black;
+    border-right: none;
+    width: 47.5px;
+    transition: all ease-in-out 0.3s;
+    background-color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.amount-button .button-more {
+    border: 1px solid black;
+    border-left: none;
+    width: 47.5px;
+    transition: all ease-in-out 0.3s;
+    background-color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.amount-button .button-less:hover, .button-more:hover {
+    color: white;
+    background-color: black;
+}
+
+.pay {
+    margin-bottom: 10px;
+}
+#totalPrice{
+    display:inline;
+}
