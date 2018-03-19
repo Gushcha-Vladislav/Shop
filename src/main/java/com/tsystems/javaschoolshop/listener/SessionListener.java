@@ -44,6 +44,7 @@ public class SessionListener implements ServletContextListener, HttpSessionListe
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
+        //don't need config
     }
 
 }
