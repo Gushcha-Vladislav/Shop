@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class BasketProductDto implements Serializable {
 
-    private int id;
+    private Integer id;
     private String nameProduct;
-    private int amount;
-    private int price;
+    private Integer amount;
+    private Integer price;
     private String image;
 
     public BasketProductDto() {
@@ -59,5 +59,15 @@ public class BasketProductDto implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        String result = "{";
+        if (id != null) {
+            result += "id = " + id + "; ";
+        }
+        result += "name = " + nameProduct + "; price = " + price + ";amount = " + amount + "}";
+        return result;
     }
 }
