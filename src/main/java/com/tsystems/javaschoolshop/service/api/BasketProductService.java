@@ -1,5 +1,6 @@
 package com.tsystems.javaschoolshop.service.api;
 
+import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.model.dto.BasketProductDto;
 import java.util.List;
 
@@ -10,4 +11,5 @@ public interface BasketProductService {
     int totalPrice(List<BasketProductDto> basket);
     Integer countProductsInBag(List<BasketProductDto> basket);
     boolean deleteFromBasket(List<BasketProductDto> basket);
+    BasketProductDto createBagProductFromProduct(Product product);
 }

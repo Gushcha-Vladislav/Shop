@@ -99,4 +99,9 @@ public class BasketProductServiceImpl implements BasketProductService {
         basket = new ArrayList<>();
         return true;
     }
+    @Override
+    public  BasketProductDto createBagProductFromProduct(Product product) {
+        return new BasketProductDto (product.getId(),product.getNameProduct(), 1,
+                product.getPrice(), product.getImage());
+    }
 }
