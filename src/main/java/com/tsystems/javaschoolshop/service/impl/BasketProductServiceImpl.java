@@ -54,8 +54,8 @@ public class BasketProductServiceImpl implements BasketProductService {
                 Product originalProduct = productDao.findProductById(id);
                 originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
                 productDao.saveProduct(originalProduct);
+                basket.remove(product);
             }
-            basket.remove(product);
             break;
         }
         return true;
@@ -90,18 +90,25 @@ public class BasketProductServiceImpl implements BasketProductService {
     }
 
     @Override
-    public boolean deleteFromBasket(List<BasketProductDto> basket) {
+    public List<BasketProductDto> deleteFromBasket(List<BasketProductDto> basket) {
         for (BasketProductDto product : basket) {
             Product originalProduct = productDao.findProductById(product.getId());
             originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
             productDao.saveProduct(originalProduct);
         }
-        basket = new ArrayList<>();
-        return true;
+
+        return new ArrayList<>();
     }
     @Override
     public  BasketProductDto createBagProductFromProduct(Product product) {
         return new BasketProductDto (product.getId(),product.getNameProduct(), 1,
                 product.getPrice(), product.getImage());
     }
+
+    @Override
+    public Product convertBasketProductDtoToProduct(BasketProductDto basketProductDto) {
+        if (basketProductDto == null) return null;
+        return productDao.findProductById(basketProductDto.getId());
+    }
+
 }

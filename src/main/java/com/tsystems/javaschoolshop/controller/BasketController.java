@@ -47,7 +47,8 @@ public class BasketController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public boolean deleteProducts () {
-        return basketProductService.deleteFromBasket(basketBean.getBasket());
+        basketBean.setBasket(basketProductService.deleteFromBasket(basketBean.getBasket()));
+        return true;
     }
 
     @RequestMapping(value = "/count/{id}", method = RequestMethod.GET)
