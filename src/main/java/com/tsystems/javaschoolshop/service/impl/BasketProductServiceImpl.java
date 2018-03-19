@@ -55,8 +55,8 @@ public class BasketProductServiceImpl implements BasketProductService {
                 originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
                 productDao.saveProduct(originalProduct);
                 basket.remove(product);
+                break;
             }
-            break;
         }
         return true;
     }
