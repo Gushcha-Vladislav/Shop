@@ -22,7 +22,7 @@ public class Product extends Generic {
     @NotNull
     @OrderBy
     @Column(name = "price")
-    private int price;
+    private Integer price;
 
     @Size(min=3, max=50)
     @Column(name = "brand")
@@ -45,14 +45,14 @@ public class Product extends Generic {
     @NotNull
     @Min(0)
     @Column(name = "quantity_in_stock")
-    private int quantityInStock;
+    private Integer quantityInStock;
 
     @NotNull
     @Column(name = "quantity_sold")
-    private int quantitySold;
+    private Integer quantitySold;
 
     @Column(name = "status", nullable = false)
-    private boolean status;
+    private boolean status=true;
 
     public Product() {
     }
@@ -149,13 +149,22 @@ public class Product extends Generic {
 
     @Override
     public String toString() {
-        return "{id = "+this.getId()+"; name ="+nameProduct+"; category = "+category.toString()+
-                "; status = "+status+"}";
+        final StringBuilder sb = new StringBuilder("Product{");
+        sb.append("id=").append(getId()).append('\'');
+        sb.append(", nameProduct='").append(nameProduct).append('\'');
+        sb.append(", category=").append(category.toString());
+        sb.append(", price=").append(price);
+        sb.append(", brand='").append(brand).append('\'');
+        sb.append(", property='").append(property).append('\'');
+        sb.append(", quantityInStock=").append(quantityInStock);
+        sb.append(", status=").append(status);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override
     public int hashCode() {
-        return (int)(this.getId()/100);
+        return this.getId()/100;
     }
 
     @Override

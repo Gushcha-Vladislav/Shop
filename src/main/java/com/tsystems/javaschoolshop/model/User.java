@@ -129,6 +129,13 @@ public class User extends Generic {
 
     @Override
     public String toString() {
-        return "{id = "+getId()+"; email ="+email+"; role = "+role+ "}";
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("id=").append(getId()).append('\'');
+        sb.append(", nameUser='").append(nameUser).append('\'');
+        sb.append(", lastNameUser='").append(lastNameUser).append('\'');
+        sb.append(", birthday=").append(birthday.toString());
+        sb.append(", email='").append(email).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

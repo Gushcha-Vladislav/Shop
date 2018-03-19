@@ -121,10 +121,16 @@ public class Address extends Generic {
 
     @Override
     public String toString() {
-        String result=country+", "+city;
-        if (postcode.length() != 0) result+=" ( "+postcode+" )";
-        result+=", "+street+" "+house;
-        if (apartment.length() != 0) result+=", "+apartment;
-        return result;
+        final StringBuilder sb = new StringBuilder("Address{");
+        sb.append("id=").append(getId()).append('\'');
+        sb.append(", user=").append(user.toString());
+        sb.append(", city='").append(city).append('\'');
+        sb.append(", country='").append(country).append('\'');
+        sb.append(", postcode='").append(postcode).append('\'');
+        sb.append(", street='").append(street).append('\'');
+        sb.append(", house='").append(house).append('\'');
+        sb.append(", apartment='").append(apartment).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

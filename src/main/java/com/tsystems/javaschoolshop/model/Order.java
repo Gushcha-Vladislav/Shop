@@ -40,7 +40,7 @@ public class Order extends Generic {
 
     @NotNull
     @Column(name = "order_price")
-    private int orderPrice;
+    private Integer orderPrice;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<OrdersProducts> products = new ArrayList<>();
@@ -124,6 +124,16 @@ public class Order extends Generic {
 
     @Override
     public String toString() {
-        return "{id = "+getId()+"; user ="+user.toString()+"; date = "+dateOrder+"}";
+        final StringBuilder sb = new StringBuilder("Order{");
+        sb.append("id=").append(getId()).append('\'');
+        sb.append(", user=").append(user.toString());
+        sb.append(", orderStatus='").append(orderStatus).append('\'');
+        sb.append(", address='").append(address).append('\'');
+        sb.append(", dateOrder=").append(dateOrder);
+        sb.append(", payment='").append(payment).append('\'');
+        sb.append(", delivery='").append(delivery).append('\'');
+        sb.append(", orderPrice=").append(orderPrice);
+        sb.append('}');
+        return sb.toString();
     }
 }

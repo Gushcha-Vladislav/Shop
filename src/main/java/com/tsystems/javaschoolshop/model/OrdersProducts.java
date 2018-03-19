@@ -69,7 +69,13 @@ public class OrdersProducts extends Generic {
 
     @Override
     public String toString() {
-        return "{id = "+getId()+"; order ="+order.toString()+"; product = "+product.toString()+
-                "; amount = "+amount+"; price =  "+priceOne+"}";
+        final StringBuilder sb = new StringBuilder("OrdersProducts{");
+        sb.append("id=").append(getId()).append('\'');
+        sb.append(", order=").append(order.toString());
+        sb.append(", product=").append(product.toString());
+        sb.append(", amount=").append(amount);
+        sb.append(", priceOne=").append(priceOne);
+        sb.append('}');
+        return sb.toString();
     }
 }

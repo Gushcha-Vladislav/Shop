@@ -19,12 +19,12 @@ public class Category extends Generic {
     private Category parent;
 
     @NotNull
-    @Size(min=3, max=45)
+    @Size(min = 3, max = 45)
     @Column(name = "name_category")
     private String nameCategory;
 
     @Column(name = "status", nullable = false)
-    private boolean status;
+    private boolean status = true;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Category> children = new ArrayList<>();
@@ -81,8 +81,13 @@ public class Category extends Generic {
 
     @Override
     public String toString() {
-        String result="{id = "+getId()+"; name category = "+nameCategory;
-        if(parent!=null) result+="; parent = "+parent.toString();
-        return result+"status= "+status+"}";
+        final StringBuilder sb = new StringBuilder("Category{");
+        sb.append("id=").append(getId()).append('\'');
+        sb.append(", hierarchyNumber='").append(hierarchyNumber).append('\'');
+        sb.append(", parent=").append(parent.toString());
+        sb.append(", nameCategory='").append(nameCategory).append('\'');
+        sb.append(", status=").append(status);
+        sb.append('}');
+        return sb.toString();
     }
 }
