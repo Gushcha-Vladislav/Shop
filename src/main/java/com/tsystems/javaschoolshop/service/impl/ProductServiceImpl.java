@@ -39,4 +39,9 @@ public class ProductServiceImpl implements ProductService {
     public Product saveProduct(Product product) {
         return productDao.saveProduct(product);
     }
+
+    @Override
+    public Integer getQuantityProductInStickById(int id) {
+        return productDao.findProductById(id).getQuantityInStock();
+    }
 }
