@@ -21,6 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@Secured({"ROLE_ANONYMOUS"})
 @RequestMapping(value = "/")
 public class LoginController {
 
@@ -33,21 +34,19 @@ public class LoginController {
         this.userDetailsService=userDetailsService;
     }
 
-    @Secured({"ROLE_ANONYMOUS"})
     @RequestMapping(value = "/login")
     public String login() {
         return "login";
     }
 
-    @Secured({"ROLE_ANONYMOUS"})
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public String signUp(User user, Address address) {
         return "signUp";
     }
 
-    @Secured({"ROLE_ANONYMOUS"})
+
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public String signUp(@Valid Address address,@Valid User user, BindingResult result,
+    public String signUp( Address address, User user, BindingResult result,
                         final HttpServletRequest request) {
         if (result.hasErrors()) {
             List<ObjectError> errorsValid=result.getAllErrors();
@@ -55,7 +54,9 @@ public class LoginController {
 
         }else{
             if (!userService.isEmailFree(user.getEmail())) return "/signUp";
-            userService.saveNewUser(user,address);
+            address.setUser(user);
+            user.getAddresses().add(address);
+            userService.saveNewUser(user);
             authenticateUserAndSetSession(address.getUser().getEmail(), request);
         }
         return "redirect:/catalog";

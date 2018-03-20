@@ -25,9 +25,8 @@ public class UserDaoImpl extends GenericDao implements UserDao {
 
     @Override
     @Transactional
-    public User saveUser(User user) {
-        User result = em.merge(user);
+    public void saveUser(User user) {
+        em.merge(user);
         em.flush();
-        return result;
     }
 }
