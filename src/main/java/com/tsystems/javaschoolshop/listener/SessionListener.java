@@ -4,6 +4,7 @@ package com.tsystems.javaschoolshop.listener;
 import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.model.dto.BasketProductDto;
 import com.tsystems.javaschoolshop.service.api.ProductService;
+import com.tsystems.javaschoolshop.session.BasketBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -19,6 +20,9 @@ public class SessionListener implements ServletContextListener, HttpSessionListe
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private BasketBean basketBean;
+
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
         httpSessionEvent.getSession().setMaxInactiveInterval(60*60*2);
@@ -26,14 +30,13 @@ public class SessionListener implements ServletContextListener, HttpSessionListe
 
     @Override
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
-        List<BasketProductDto> bag = (List<BasketProductDto>) httpSessionEvent.getSession().getAttribute("bag");
         if (httpSessionEvent.getSession().getAttribute("SPRING_SECURITY_SAVED_REQUEST") != null) return;
-        for (BasketProductDto productDto : bag) {
+        for (BasketProductDto productDto : basketBean.getBasket()) {
             Product product = productService.findProductById(productDto.getId(), true);
             product.setQuantityInStock(product.getQuantityInStock()+productDto.getAmount());
             productService.saveProduct(product);
         }
-        bag.clear();
+        basketBean.getBasket().clear();
     }
 
     @Override
