@@ -117,7 +117,7 @@ public class BasketProductServiceMockTest {
         BasketProductDto result = basketProductService.createBagProductFromProduct(productP1);
         //check
         Assert.assertNotNull(result);
-        Assert.assertEquals(productP1.getId(), result.getId());
+        Assert.assertEquals(new Long(productP1.getId()), new Long(result.getId()));
         Assert.assertEquals(productP1.getNameProduct(), result.getNameProduct());
         Assert.assertEquals(productP1.getPrice(), result.getPrice());
         Assert.assertEquals(productP1.getImage(), result.getImage());
