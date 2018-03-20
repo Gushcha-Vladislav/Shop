@@ -1,20 +1,16 @@
 $(document).ready(function() {
     countInBasket();
 
-    $('.minus').click(function () {
-        var $input = $(this).parent().find('input');
-        var count = parseInt($input.val()) - 1;
-        count = count < 1 ? 1 : count;
-        $input.val(count);
-        $input.change();
-        return false;
+    $('.deleteItem').click(function () {
+        var $input = $(this).parent().parent().find('div.param.idBasket');
+        $.ajax({
+            url: '/basket/delete/'+ $input.html(),
+            type: 'POST'
+        }).done( function () {
+            basketView();
+        });
     });
-    $('.plus').click(function () {
-        var $input = $(this).parent().find('input');
-        $input.val(parseInt($input.val()) + 1);
-        $input.change();
-        return false;
-    });
+
     $('#clearBasket').click(function () {
         $.ajax({
             url: '/basket/delete',

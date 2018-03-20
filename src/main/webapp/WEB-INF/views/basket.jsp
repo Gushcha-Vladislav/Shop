@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<link rel="stylesheet" href="/resources/css/basket.css" >
+<link rel="stylesheet" href="/resources/css/basket.css" >
 <script src="/resources/js/basket.js"></script>
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -19,18 +19,14 @@
             <div class="row">
                 <c:forEach var="item" items="${bag}">
                     <div class="col-xs-12 thumbnail">
-                        <div>${item.id}</div>
-                        <div class="col-sm-5 col-xs-10"><a>${item.nameProduct}</a></div>
+                        <div class="param idBasket">${item.id}</div>
+                        <div class="col-sm-5 col-xs-10 nameProduct"><a>${item.nameProduct}</a></div>
                         <div class="col-xs-2 visible-xs text-right"><a><i class="fas fa-times"></i></a></div>
                         <div class="col-sm-3 col-xs-6 ">
-                            <div class="number " onselectstart="return false" onmousedown="return false">
-                                <a class="minus"><i class="fas fa-times"></i></a>
-                                <input type="text" class="basket" value="${item.amount}" size="5" disabled/>
-                                <a class="plus"><i class="fas fa-times"></i></a>
-                            </div>
+                            <input type="text" class="basket amount" value="${item.amount}" size="5" disabled/>
                         </div>
                         <div class="col-sm-3 col-xs-6"><c:out value="${item.price*item.amount}"/></div>
-                        <div class="col-sm-1 text-right hidden-xs"><a><i class="fas fa-times"></i></a></div>
+                        <div class="col-sm-1 text-right hidden-xs"><a class="deleteItem"><i class="fas fa-times"></i></a></div>
                     </div>
                 </c:forEach>
                 <div class="col-xs-6 text-left">
@@ -43,6 +39,3 @@
         </div>
     </div>
 </div>
-
-
-Изменять количество на складе от покупки
