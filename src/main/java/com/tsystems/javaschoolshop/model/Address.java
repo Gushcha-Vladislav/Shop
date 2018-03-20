@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 @Table(name = "addresses", schema = "webshopdb")
 public class Address extends Generic {
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user")
     private User user;
 

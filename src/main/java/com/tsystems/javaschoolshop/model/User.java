@@ -1,6 +1,7 @@
 package com.tsystems.javaschoolshop.model;
 
 import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -37,7 +38,7 @@ public class User extends Generic {
     private Date birthday;
 
     @NotNull
-    @Pattern(regexp = "[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\\.)+[a-z]{2,6}")
+    @Email
     @Column(name = "email", unique = true)
     private String email;
 

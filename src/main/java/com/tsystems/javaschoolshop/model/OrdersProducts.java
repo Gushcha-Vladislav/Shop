@@ -8,12 +8,12 @@ import javax.validation.constraints.NotNull;
 public class OrdersProducts extends Generic {
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_order")
     private Order order;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_product", nullable = false)
     private Product product;
 
