@@ -13,11 +13,13 @@
             <div class="caption text-center">
                 <h5><a href="/catalog/${product.id}" >${product.nameProduct}</a></h5>
             </div>
+            <input class="param" value="${product.id}">
             <img class="img-responsive" src="/resources/${product.image}"  alt="">
-                <div class="caption">
-                    <p>Цена : ${product.price}</p>
-                    <button class="btn btn-success" data-toggle="modal" type="modal" data-target="#addToCart">Pay</button>
-                </div>
+            <div class="caption">
+                <p>Цена : ${product.price}</p>
+                <a  class="btn btn-success payCatalog" data-toggle="modal" type="modal" data-target="#addToCart"
+                        onclick="loadInModal('${product.id}','${product.nameProduct}','${product.price}','${product.image}','${product.quantityInStock}')">Add a item</a>
+            </div>
         </div>
     </div>
 </c:forEach>
