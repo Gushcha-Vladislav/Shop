@@ -1,5 +1,13 @@
 $(document).ready(function () {
 
+    $.ajax({
+        url: '/get/count/' + id,
+        type: 'GET'
+    }).done( function (response) {
+        $('#amount-number').val(parseInt(response));
+        $('#totalPrice')[0].innerHTML=parseInt(response)*parseFloat($('#priceProduct')[0].innerHTML);
+    });
+
     $('#button-less').click(function () {
         if (parseInt($('#amount-number').val()) > 0) {
             $('#amount-number').val(parseInt($('#amount-number').val()) - 1);
@@ -18,7 +26,7 @@ $(document).ready(function () {
     function getQuantityInStockById() {
         $.ajax({
             url: '/catalog/' + $('#id').html()+"/quantity",
-            type: 'POST'
+            type: 'GET'
         }).done(
             function (response) {
                 $("#quantity").html(response);
@@ -93,4 +101,5 @@ $(document).ready(function () {
     function popup(url) {
         window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
     }
+
 });
