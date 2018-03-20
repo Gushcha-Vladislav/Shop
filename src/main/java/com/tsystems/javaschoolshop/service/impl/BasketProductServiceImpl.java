@@ -6,6 +6,7 @@ import com.tsystems.javaschoolshop.model.dto.BasketProductDto;
 import com.tsystems.javaschoolshop.service.api.BasketProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class BasketProductServiceImpl implements BasketProductService {
     }
 
     @Override
+    @Transactional
     public boolean addToBasket(BasketProductDto basketProductDto, List<BasketProductDto> basket) {
 
         Product product = productDao.findProductById(basketProductDto.getId());
@@ -38,10 +40,11 @@ public class BasketProductServiceImpl implements BasketProductService {
             }
         }
 
-        if (!isFoundInBag && product.getQuantityInStock() >= basketProductDto.getAmount()) {
-            basket.add(basketProductDto);
-            product.setQuantityInStock(product.getQuantityInStock() - basketProductDto.getAmount());
-        } else return false;
+        if (!isFoundInBag)
+            if(product.getQuantityInStock() >= basketProductDto.getAmount()) {
+                basket.add(basketProductDto);
+                product.setQuantityInStock(product.getQuantityInStock() - basketProductDto.getAmount());
+            }else return false;
         productDao.saveProduct(product);
         return true;
     }
