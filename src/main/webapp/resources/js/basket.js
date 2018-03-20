@@ -15,5 +15,12 @@ $(document).ready(function() {
         $input.change();
         return false;
     });
-    
+    $('#clearBasket').click(function () {
+        $.ajax({
+            url: '/basket/delete',
+            type: 'POST'
+        }).done( function () {
+            basketView();
+            });
+    });
 });

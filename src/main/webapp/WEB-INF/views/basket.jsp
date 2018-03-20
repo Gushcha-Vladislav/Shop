@@ -17,7 +17,7 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                <c:forEach var="item" items="${basketBean}">
+                <c:forEach var="item" items="${bag}">
                     <div class="col-xs-12 thumbnail">
                         <div>${item.id}</div>
                         <div class="col-sm-5 col-xs-10"><a>${item.nameProduct}</a></div>
@@ -25,11 +25,11 @@
                         <div class="col-sm-3 col-xs-6 ">
                             <div class="number " onselectstart="return false" onmousedown="return false">
                                 <a class="minus"><i class="fas fa-times"></i></a>
-                                <input type="text" class="basket" value="${item.count}" size="5" disabled/>
+                                <input type="text" class="basket" value="${item.amount}" size="5" disabled/>
                                 <a class="plus"><i class="fas fa-times"></i></a>
                             </div>
                         </div>
-                        <div class="col-sm-3 col-xs-6"><c:out value="${item.price*item.count}"/></div>
+                        <div class="col-sm-3 col-xs-6"><c:out value="${item.price*item.amount}"/></div>
                         <div class="col-sm-1 text-right hidden-xs"><a><i class="fas fa-times"></i></a></div>
                     </div>
                 </c:forEach>
@@ -37,7 +37,7 @@
                     <a href="#" class="btn btn-success ">Order</a>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <a href="#" class="btn btn-success ">Clear</a>
+                    <a  id="clearBasket" class="btn btn-success ">Clear</a>
                 </div>
             </div>
         </div>
