@@ -9,12 +9,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="/resources/css/input.css">
 <c:import url="head.jsp"/>
+<script src="/resources/js/login.js"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-offset-3 col-sm-8">
             <div class="breadcrumb">
                 <li><a href="#">Home</a></li>
-                <li id="breadCrumb"><a href="#">Authentication</a></li>
+                <li id="breadCrumb"><a href="/login">Authentication</a></li>
             </div>
         </div>
     </div>
@@ -25,6 +26,7 @@
         <div class="col-sm-8">
             <div class="row">
                 <div class="main-login main-center">
+                    <div id="error"></div>
                     <form class="" method="post" action="/j_spring_security_check">
                         <c:import url="inputLogin.jsp"/>
                         <div class="form-group ">
