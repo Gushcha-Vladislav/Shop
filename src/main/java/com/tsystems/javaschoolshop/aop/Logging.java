@@ -12,6 +12,7 @@ public class Logging {
 
     @Pointcut("within(com.tsystems.javaschoolshop.service..*) ||" +
             "within(com.tsystems.javaschoolshop.model..*) ||" +
+            "within(com.tsystems.javaschoolshop.controller..*) ||" +
             "within(com.tsystems.javaschoolshop.dao..*)")
     public void witch()  {
         // pointcut for log
