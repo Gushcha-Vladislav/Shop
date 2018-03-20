@@ -17,12 +17,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="/resources/css/input.css">
 <c:import url="head.jsp"/>
+<script src="/webjars/jquery-maskedinput/1.3.1/jquery.maskedinput.min.js"></script>
+<script src="/resources/js/signUp.js"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-offset-3 col-sm-8">
             <div class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li id="breadCrumb"><a href="#">Authentication</a></li>
+                <li><a href="/catalog">Home</a></li>
+                <li id="breadCrumb"><a href="/signUp">Authentication</a></li>
             </div>
         </div>
     </div>
