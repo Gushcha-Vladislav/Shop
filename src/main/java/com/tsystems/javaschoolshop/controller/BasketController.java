@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -25,16 +26,14 @@ public class BasketController {
 
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String basket() {
-        return "basket";
+    public ModelAndView basket() {
+        return new ModelAndView("basket","bag",basketBean.getBasket());
     }
 
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
     @ResponseBody
     public boolean addToBasketById( BasketProductDto basketProductDto,
                            final @PathVariable("id") int id) {
-
-        basketProductDto.setId(id);
         return basketProductService.addToBasket(basketProductDto,basketBean.getBasket());
     }
 
