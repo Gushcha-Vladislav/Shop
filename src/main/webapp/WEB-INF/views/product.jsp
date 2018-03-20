@@ -11,13 +11,14 @@
 <c:import url="head.jsp"/>
 <script src="/resources/js/product.js"></script>
 <link rel="stylesheet" href="/resources/css/product.css">
+<script src="/resources/js/productPage.js"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
-                <li><a href="">Home</a></li>
+                <li><a href="/catalog">Home</a></li>
                 <li><a href="">${product.category.nameCategory}</a></li>
-                <li><a href="">${product.nameProduct}</a></li>
+                <li><a href="/catalog/${product.id}">${product.nameProduct}</a></li>
             </div>
         </div>
     </div>
@@ -69,11 +70,9 @@
 
                         <h4 class="btn-cart">Choose amount:</h4></div>
                     <div class="col-sm-4 col-xs-5 amount-button  pay">
-                        <button type="button" class="button-less" id="button-less"><i class="fa fa-minus"></i>
-                        </button>
+                        <button type="button" class="button-less" id="button-less"><i class="fa fa-minus"></i></button>
                         <input type="number" id="amount-number" name="amount" class="amount-number" value="0" disabled>
-                        <button type="button" class="button-more" id="button-more"><i class="fa fa-plus"></i>
-                        </button>
+                        <button type="button" class="button-more" id="button-more"><i class="fa fa-plus"></i></button>
                     </div>
                     <div class="col-sm-4 col-xs-5  pay">Цена :
                         <h4 class="btn-cart" id="totalPrice">0</h4></div>

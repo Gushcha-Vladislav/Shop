@@ -1,59 +1,7 @@
 $(document).ready(function () {
 
-    $.ajax({
-        url: '/get/count/' + id,
-        type: 'GET'
-    }).done( function (response) {
-        $('#amount-number').val(parseInt(response));
-        $('#totalPrice')[0].innerHTML=parseInt(response)*parseFloat($('#priceProduct')[0].innerHTML);
-    });
-
-    $('#button-less').click(function () {
-        if (parseInt($('#amount-number').val()) > 0) {
-            $('#amount-number').val(parseInt($('#amount-number').val()) - 1);
-            $('#totalPrice').html((parseFloat($('#priceProduct').html()) * parseInt($('#amount-number').val())));
-        }
-    });
-
-    $('#button-more').click(function () {
-        if (parseInt($('#amount-number').val()) < parseInt($('#quantity').html())) {
-            $('#amount-number').val(parseInt($('#amount-number').val()) + 1);
-            $('#totalPrice').html(parseFloat($('#priceProduct').html()) * parseInt($('#amount-number').val()));
-
-        }
-    });
-
-    function getQuantityInStockById() {
-        $.ajax({
-            url: '/catalog/' + $('#id').html()+"/quantity",
-            type: 'GET'
-        }).done(
-            function (response) {
-                $("#quantity").html(response);
-            });
-    }
-
-    $('#addToBasket').click(function () {
-        $.ajax({
-            url: '/basket/add/' + $('#id').html(),
-            type: 'POST',
-            data: {
-                'nameProduct': $('#nameProduct').html(),
-                'price': $('#priceProduct').html(),
-                'amount': $('#amount-number').val().toString(),
-                'image': $('#image').html()
-            }
-        }).done(
-            function (response) {
-                if(response==true) {
-                    countInBasket();
-                    getQuantityInStockById();
-                    $("#closeModal").trigger("click");
-                }else{
-                    alert("This product has expired");
-                }
-            });
-    });
+    countItems();
+    getQuantityInStockById();
 
     $('#vk').click(function () {
         var url = 'http://vkontakte.ru/share.php?';
@@ -71,7 +19,7 @@ $(document).ready(function () {
         url += '&p[summary]=' + $('#nameProduct').html();
         url += '&p[url]=' + document.location.href;
         url += '&p[images][0]=' + encodeURIComponent(window.location.hostname+"resources/"+$('#image').html());
-        Share.popup(url);
+        popup(url);
     });
 
     $('#mailRu').click(function () {
@@ -80,7 +28,7 @@ $(document).ready(function () {
         url += '&title=' + $('#nameProduct').html();
         url += '&description=' + $('#nameProduct').html();
         url += '&imageurl=' + encodeURIComponent(window.location.hostname+"resources/"+$('#image').html());
-        Share.popup(url)
+       popup(url)
     });
 
     $('#twitter').click(function () {
@@ -88,14 +36,14 @@ $(document).ready(function () {
         url += 'text=' + $('#nameProduct').html();
         url += '&url=' + document.location.href;
         url += '&counturl=' + document.location.href;
-        Share.popup(url);
+        popup(url);
     });
 
     $('#ok').click(function () {
         var url = 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1';
         url += '&st.comments=' + $('#nameProduct').html();
         url += '&st._surl=' + document.location.href;
-        Share.popup(url);
+        popup(url);
     });
 
     function popup(url) {
@@ -103,3 +51,12 @@ $(document).ready(function () {
     }
 
 });
+function getQuantityInStockById() {
+    $.ajax({
+        url: '/catalog/' + $('#id').html()+"/quantity",
+        type: 'GET'
+    }).done(
+        function (response) {
+            $("#quantity").html(response);
+        });
+}
