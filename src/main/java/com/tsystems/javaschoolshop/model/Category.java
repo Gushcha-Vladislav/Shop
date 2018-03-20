@@ -82,10 +82,10 @@ public class Category extends Generic {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Category{");
-        sb.append("id=").append(getId()).append('\'');
-        sb.append(", hierarchyNumber='").append(hierarchyNumber).append('\'');
-        sb.append(", parent=").append(parent.toString());
-        sb.append(", nameCategory='").append(nameCategory).append('\'');
+        if(getId()!=null) sb.append("id=").append(getId()).append('\'');
+        if(hierarchyNumber!=null) sb.append(", hierarchyNumber='").append(hierarchyNumber).append('\'');
+        if(parent!=null) sb.append(", parent=").append(parent.toString());
+        if(nameCategory!=null) sb.append(", nameCategory='").append(nameCategory).append('\'');
         sb.append(", status=").append(status);
         sb.append('}');
         return sb.toString();

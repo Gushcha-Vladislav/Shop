@@ -130,11 +130,11 @@ public class User extends Generic {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");
-        sb.append("id=").append(getId()).append('\'');
-        sb.append(", nameUser='").append(nameUser).append('\'');
-        sb.append(", lastNameUser='").append(lastNameUser).append('\'');
-        sb.append(", birthday=").append(birthday.toString());
-        sb.append(", email='").append(email).append('\'');
+        if(getId()!=null) sb.append("id=").append(getId()).append('\'');
+        if(nameUser!=null) sb.append(", nameUser='").append(nameUser).append('\'');
+        if(lastNameUser!=null) sb.append(", lastNameUser='").append(lastNameUser).append('\'');
+        if(birthday!=null) sb.append(", birthday=").append(birthday.toString());
+        if(email!=null) sb.append(", email='").append(email).append('\'');
         sb.append('}');
         return sb.toString();
     }

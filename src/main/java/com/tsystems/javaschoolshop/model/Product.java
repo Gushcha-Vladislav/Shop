@@ -150,13 +150,13 @@ public class Product extends Generic {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Product{");
-        sb.append("id=").append(getId()).append('\'');
-        sb.append(", nameProduct='").append(nameProduct).append('\'');
-        sb.append(", category=").append(category.toString());
-        sb.append(", price=").append(price);
-        sb.append(", brand='").append(brand).append('\'');
-        sb.append(", property='").append(property).append('\'');
-        sb.append(", quantityInStock=").append(quantityInStock);
+        if(getId()!=null) sb.append("id=").append(getId()).append('\'');
+        if(nameProduct!=null) sb.append(", nameProduct='").append(nameProduct).append('\'');
+        if(category!=null) sb.append(", category=").append(category.toString());
+        if(price!=null) sb.append(", price=").append(price);
+        if(brand!=null) sb.append(", brand='").append(brand).append('\'');
+        if(property!=null) sb.append(", property='").append(property).append('\'');
+        if(quantityInStock!=null) sb.append(", quantityInStock=").append(quantityInStock);
         sb.append(", status=").append(status);
         sb.append('}');
         return sb.toString();

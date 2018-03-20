@@ -19,11 +19,11 @@ public class OrdersProducts extends Generic {
 
     @NotNull
     @Column(name = "amount")
-    private int amount;
+    private Integer amount;
 
     @NotNull
     @Column(name = "price_one")
-    private int priceOne;
+    private Integer priceOne;
 
     public OrdersProducts() {
     }
@@ -70,11 +70,11 @@ public class OrdersProducts extends Generic {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OrdersProducts{");
-        sb.append("id=").append(getId()).append('\'');
-        sb.append(", order=").append(order.toString());
-        sb.append(", product=").append(product.toString());
-        sb.append(", amount=").append(amount);
-        sb.append(", priceOne=").append(priceOne);
+        if(getId()!=null) sb.append("id=").append(getId()).append('\'');
+        if(order!=null) sb.append(", order=").append(order.toString());
+        if(product!=null) sb.append(", product=").append(product.toString());
+        if(amount!=null) sb.append(", amount=").append(amount);
+        if(priceOne!=null) sb.append(", priceOne=").append(priceOne);
         sb.append('}');
         return sb.toString();
     }

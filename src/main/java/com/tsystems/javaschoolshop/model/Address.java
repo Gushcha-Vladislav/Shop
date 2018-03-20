@@ -122,14 +122,14 @@ public class Address extends Generic {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Address{");
-        sb.append("id=").append(getId()).append('\'');
-        sb.append(", user=").append(user.toString());
-        sb.append(", city='").append(city).append('\'');
-        sb.append(", country='").append(country).append('\'');
-        sb.append(", postcode='").append(postcode).append('\'');
-        sb.append(", street='").append(street).append('\'');
-        sb.append(", house='").append(house).append('\'');
-        sb.append(", apartment='").append(apartment).append('\'');
+        if(getId()!=null) sb.append("id=").append(getId()).append('\'');
+        if(user!=null) sb.append(", user=").append(user.toString());
+        if(city!=null) sb.append(", city='").append(city).append('\'');
+        if(country!=null) sb.append(", country='").append(country).append('\'');
+        if(postcode!=null) sb.append(", postcode='").append(postcode).append('\'');
+        if(street!=null) sb.append(", street='").append(street).append('\'');
+        if(house!=null) sb.append(", house='").append(house).append('\'');
+        if(apartment!=null) sb.append(", apartment='").append(apartment).append('\'');
         sb.append('}');
         return sb.toString();
     }

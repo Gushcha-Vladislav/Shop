@@ -125,14 +125,14 @@ public class Order extends Generic {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Order{");
-        sb.append("id=").append(getId()).append('\'');
-        sb.append(", user=").append(user.toString());
-        sb.append(", orderStatus='").append(orderStatus).append('\'');
-        sb.append(", address='").append(address).append('\'');
-        sb.append(", dateOrder=").append(dateOrder);
-        sb.append(", payment='").append(payment).append('\'');
-        sb.append(", delivery='").append(delivery).append('\'');
-        sb.append(", orderPrice=").append(orderPrice);
+        if(getId()!=null) sb.append("id=").append(getId()).append('\'');
+        if(user!=null) sb.append(", user=").append(user.toString());
+        if(orderStatus!=null) sb.append(", orderStatus='").append(orderStatus).append('\'');
+        if(address!=null) sb.append(", address='").append(address).append('\'');
+        if(dateOrder!=null) sb.append(", dateOrder=").append(dateOrder);
+        if(payment!=null) sb.append(", payment='").append(payment).append('\'');
+        if(delivery!=null) sb.append(", delivery='").append(delivery).append('\'');
+        if(orderPrice!=null) sb.append(", orderPrice=").append(orderPrice);
         sb.append('}');
         return sb.toString();
     }
