@@ -1,10 +1,11 @@
-$( document ).ready(function() {
+$(document).ready(function () {
     countInBasket();
-    $("#buttonBasketProducts").click(function(){
+    $("#buttonBasketProducts").click(function () {
         basketView();
     });
 });
-function basketView(){
+
+function basketView() {
     $.ajax({
         url: '/basket',
         type: 'GET'
@@ -14,7 +15,8 @@ function basketView(){
         }
     );
 }
-function countInBasket(){
+
+function countInBasket() {
     $.ajax({
         url: '/basket/count',
         type: 'GET'
@@ -23,4 +25,14 @@ function countInBasket(){
             $('#countProductInBasket').html(response);
         }
     );
+}
+
+function countItems() {
+    $.ajax({
+        url: '/basket/count/' + $('#id').html(),
+        type: 'GET'
+    }).done(function (response) {
+        $('#amount-number').val(parseInt(response));
+        $('#totalPrice').html(parseInt(response) * parseFloat($('#priceProduct').html()));
+    });
 }

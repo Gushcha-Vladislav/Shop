@@ -15,7 +15,7 @@
     <script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/webjars/font-awesome/4.5.0/css/font-awesome.min.css"  rel="stylesheet"/>
+    <link href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css"  rel="stylesheet"/>
     <script src="/resources/js/fontawesome-all.min.js"></script>
     <link href="/resources/css/head.css" rel="stylesheet">
     <script src="/resources/js/head.js"></script>
@@ -30,9 +30,13 @@
             </div>
             <div class="col-xs-3 dropdown text-center">
                 <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
-                    <a class="btn" href="/login">
-                        <i class="menu-icon fas fa-sign-in-alt fa-lg "></i>Sing In
-                    </a>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="menu-icon fas fa-user fa-lg"></i>Profile
+                        <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/login">Sign In</a></li>
+                        <li><a href="/signUp">Sign Up</a></li>
+                    </ul>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_USER')">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown"><i
@@ -48,13 +52,18 @@
                         <li><a href="/j_spring_security_logout">Log out</a></li>
                     </ul>
                 </sec:authorize>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <sec:authorize access="hasRole('ROLE_ADMIN')  or hasRole('ROLE_SUPER_ADMIN')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                             class="menu-icon fas fa-user fa-lg"></i>Имя<b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="">Profile</a></li>
                         <li class="divider"></li>
+                        </sec:authorize>
+                        <sec:authorize access="hasRole('ROLE_SUPER_ADMIN')">
+                            <li><a href="">Add new Admin</a></li>
+                        </sec:authorize>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')  or hasRole('ROLE_SUPER_ADMIN')">
                         <li><a href="">Orders</a></li>
                         <li><a href="#">Statistics</a></li>
                         <li class="divider"></li>
