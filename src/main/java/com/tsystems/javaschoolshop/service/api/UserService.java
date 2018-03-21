@@ -11,4 +11,5 @@ public interface UserService {
     void saveNewUser(User user);
     User findUserFromSecurityContextHolder();
     boolean isEmailFree(String email);
+    boolean isPhoneFree(String phone);
 }

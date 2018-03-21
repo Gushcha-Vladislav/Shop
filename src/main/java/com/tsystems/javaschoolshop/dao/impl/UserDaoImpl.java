@@ -22,7 +22,15 @@ public class UserDaoImpl extends GenericDao implements UserDao {
         if (result.isEmpty()) return null;
         else return result.get(0);
     }
-
+    @Override
+    @Transactional
+    public User findUserByPhone(String phone) {
+        Query query = em.createQuery("SELECT u FROM User u WHERE phone = :phone");
+        query.setParameter("phone", phone);
+        List<User> result = (List<User>) query.getResultList();
+        if (result.isEmpty()) return null;
+        else return result.get(0);
+    }
     @Override
     @Transactional
     public void saveUser(User user) {
