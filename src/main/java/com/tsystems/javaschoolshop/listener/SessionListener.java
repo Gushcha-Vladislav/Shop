@@ -7,12 +7,10 @@ import com.tsystems.javaschoolshop.service.api.ProductService;
 import com.tsystems.javaschoolshop.session.BasketBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import java.util.List;
 
 
 public class SessionListener implements ServletContextListener, HttpSessionListener {

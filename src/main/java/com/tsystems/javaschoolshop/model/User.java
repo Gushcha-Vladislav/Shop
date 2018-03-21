@@ -3,11 +3,9 @@ package com.tsystems.javaschoolshop.model;
 import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
