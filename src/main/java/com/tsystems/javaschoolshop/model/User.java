@@ -21,10 +21,12 @@ public class User extends Generic {
     private List<Address> addresses = new ArrayList<>();
 
     @NotNull
-    @Column(name = "name_user", length = 20)
+    @Size(min=3, max=20)
+    @Column(name = "name_user")
     private String nameUser;
 
-    @Column(name = "last_name_user", length = 20)
+    @Size(min=3, max=20)
+    @Column(name = "last_name_user")
     private String lastNameUser;
 
     @Column(name = "role")
@@ -42,9 +44,8 @@ public class User extends Generic {
     @Column(name = "email", unique = true)
     private String email;
 
-    @NotNull
     @Size(min = 11, max = 20)
-    @Column(name = "phone", unique = true, length = 20)
+    @Column(name = "phone", unique = true)
     private String phone;
 
     @NotNull
