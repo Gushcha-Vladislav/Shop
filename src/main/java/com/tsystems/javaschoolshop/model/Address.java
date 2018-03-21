@@ -133,4 +133,18 @@ public class Address extends Generic {
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public int hashCode() {
+        return this.getId()/100;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Address)) return false;
+
+        Address tmp = (Address) obj;
+        return tmp.getId() == this.getId();
+    }
 }
