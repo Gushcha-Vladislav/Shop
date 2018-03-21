@@ -17,7 +17,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="/resources/css/input.css">
 <c:import url="head.jsp"/>
-<script src="/webjars/jquery-maskedinput/1.3.1/jquery.maskedinput.min.js"></script>
+<script src="/webjars/jquery-maskedinput/1.4.0/jquery.maskedinput.min.js"></script>
 <script src="/resources/js/signUp.js"></script>
 <div class="container-fluid">
     <div class="row">
@@ -35,7 +35,7 @@
         <div class="col-sm-8">
             <div class="row ">
                 <div class="col-sm-12 main-center">
-                    <form class="" method="post" action="/signUp">
+                    <form  id="signUp" class="" method="post" action="/signUp">
                     <div class="form-group">
                         <label for="name" class="cols-sm-2 control-label">Your Name</label>
                         <div class="cols-sm-10">
@@ -43,8 +43,8 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-user fa" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" class="form-control" name="nameUser" id="name"
-                                       placeholder="Enter your Name" required maxlength="20"/>
+                                <input type="text" class="form-control required" name="nameUser" id="name"
+                                       placeholder="Enter your Name" required minlength="5" maxlength="20"/>
                             </div>
                         </div>
 
@@ -58,7 +58,7 @@
                                     <i class="fa fa-users fa" aria-hidden="true"></i>
                                 </span>
                                 <input type="text" class="form-control" name="lastNameUser"
-                                       id="username" placeholder="Enter your lastName"
+                                       id="username" placeholder="Enter your lastName" minlength="5"
                                        maxlength="20"/>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                                 <span class="input-group-addon">
                                     <i class="fas fa-birthday-cake" aria-hidden="true"></i>
                                 </span>
-                                <input type="date" class="form-control birthday" name="birthday"
+                                <input type="date" class="form-control birthday required" name="birthday"
                                        id="birthday" placeholder="Enter your birthday"
                                        required/>
                             </div>

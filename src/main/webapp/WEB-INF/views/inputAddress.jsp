@@ -13,7 +13,7 @@
             <div class="cols-sm-10">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-globe"></i></span>
-                    <input type="text" class="form-control" name="country" id="country"
+                    <input type="text" class="form-control required" name="country" id="country"
                            placeholder="Enter your country" required maxlength="45"/>
                 </div>
             </div>
@@ -25,8 +25,8 @@
             <div class="cols-sm-10">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-university"></i></span>
-                    <input type="text" class="form-control" name="city" id="city"
-                           placeholder="Enter your city" maxlength="45" required/>
+                    <input type="text" class="form-control required" name="city" id="city"
+                           placeholder="Enter your city" maxlength="45"  minlength="5"  required/>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="far fa-envelope"></i></span>
                     <input type="text" class="form-control" name="postcode" id="postcode"
-                           placeholder="Enter your postcode" maxlength="10"/>
+                           placeholder="Enter your postcode" minlength="6"  maxlength="10"/>
                 </div>
             </div>
         </div>
@@ -49,8 +49,8 @@
             <div class="cols-sm-10">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-road"></i></span>
-                    <input type="text" class="form-control" name="street" id="street" placeholder="Enter your street"
-                           maxlength="45" required/>
+                    <input type="text" class="form-control required" name="street" id="street" placeholder="Enter your street"
+                           maxlength="45" minlength="5"  required/>
                 </div>
             </div>
         </div>
@@ -61,8 +61,8 @@
             <div class="cols-sm-10">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-home"></i></span>
-                    <input type="text" class="form-control" name="house" id="house" placeholder="Enter your house"
-                           required maxlength="5"/>
+                    <input type="text" class="form-control required" name="house" id="house" placeholder="Enter your house"
+                           required maxlength="5" minlength="1" />
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-bed"></i></span>
                     <input type="text" class="form-control" name="apartment" id="apartment"
-                           placeholder="Enter your apartment" maxlength="5"/>
+                           placeholder="Enter your apartment"minlength="1"  maxlength="5"/>
                 </div>
             </div>
         </div>
