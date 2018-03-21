@@ -12,4 +12,5 @@ public interface UserService {
     User findUserFromSecurityContextHolder();
     boolean isEmailFree(String email);
     boolean isPhoneFree(String phone);
+    boolean changePassword(String oldPassword, String newPassword);
 }

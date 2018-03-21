@@ -57,4 +57,15 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.saveUser(user);
     }
+
+    @Override
+    public boolean changePassword(String oldPassword, String newPassword) {
+        User user = findUserFromSecurityContextHolder();
+        if(passwordEncoder.matches(oldPassword,user.getPassword())){
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userDao.saveUser(user);
+            return true;
+        }
+        return false;
+    }
 }
