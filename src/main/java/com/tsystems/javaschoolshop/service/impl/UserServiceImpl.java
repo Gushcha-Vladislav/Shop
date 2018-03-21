@@ -68,4 +68,11 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    public void saveAddress(Address address) {
+        User user = findUserFromSecurityContextHolder();
+        user.getAddresses().add(address);
+        userDao.saveUser(user);
+    }
 }
