@@ -50,6 +50,12 @@ public class LoginController {
 
         return userService.isEmailFree(email);
     }
+    @RequestMapping(value = "/signUp/phone", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean isPhoneFree(@RequestParam(name = "phone") String phone) {
+
+        return userService.isPhoneFree(phone);
+    }
 
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
