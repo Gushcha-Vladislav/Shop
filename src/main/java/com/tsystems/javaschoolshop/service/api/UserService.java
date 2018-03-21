@@ -14,4 +14,5 @@ public interface UserService {
     boolean isPhoneFree(String phone);
     boolean changePassword(String oldPassword, String newPassword);
     void saveAddress(Address address);
+    void deleteAddress(Address address);
 }
