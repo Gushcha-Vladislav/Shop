@@ -2,6 +2,7 @@ package com.tsystems.javaschoolshop.dao.impl;
 
 import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.UserDao;
+import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,5 +37,12 @@ public class UserDaoImpl extends GenericDao implements UserDao {
     public void saveUser(User user) {
         em.merge(user);
         em.flush();
+    }
+
+    @Override
+    public Address findAddressById(int idAddress) {
+        Query query = em.createQuery("SELECT u FROM Address u WHERE id = :id");
+        query.setParameter("id", idAddress);
+        return (Address) query.getSingleResult();
     }
 }
