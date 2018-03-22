@@ -70,14 +70,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveAddress(Address address) {
         User user = findUserFromSecurityContextHolder();
+        address.setUser(user);
         user.getAddresses().add(address);
         userDao.saveUser(user);
     }
 
     @Override
-    public void deleteAddress(Address address){
+    public void deleteAddress(int idAddress){
         User user = findUserFromSecurityContextHolder();
-        user.getAddresses().remove(address);
+        user.getAddresses().remove(userDao.findAddressById(idAddress));
         userDao.saveUser(user);
     }
 }
