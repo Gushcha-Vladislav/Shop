@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @Secured({"ROLE_USER"})
@@ -34,11 +33,12 @@ public class OrderController {
         this.basketProductService=basketProductService;
     }
 
-    @RequestMapping(value = "/order")
+    @RequestMapping(value = "/order", method = RequestMethod.GET)
     public ModelAndView orderPage () {
         ModelAndView modelAndView = new ModelAndView("order");
         modelAndView.addObject("totalPriceForPay", basketProductService.totalPrice((basketBean.getBasket())));
         modelAndView.addObject("user", userService.findUserFromSecurityContextHolder());
+        modelAndView.addObject("basket", basketBean.getBasket());
         return modelAndView;
     }
 
@@ -47,6 +47,7 @@ public class OrderController {
                            @RequestParam(name = "paymentType") String paymentType) {
 
         orderService.saveOrder(idAddress,paymentType,(basketBean.getBasket()));
+        basketBean.setBasket(new ArrayList<>());
         return "redirect:/catalog";
     }
 }
