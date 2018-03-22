@@ -4,9 +4,10 @@ $(document).ready(function () {
         });
     $(".required").keyup(
         function () {
-            if($("#email").val() > 5 && $("#password").val() > 3 && $("#country").val() > 5
-                && $("#city").val() > 5 && $("#street").val() > 5 && $("#house").val() > 5
-                && $("#nameUser").val() > 5){
+            if($("#email").val().length >= 3 && $("#password").val().length >= 3
+            && $("#country").val().length >= 2 && $("#city").val().length >= 2
+                && $("#street").val().length >= 2 && $("#house").val().length >= 1
+                && $("#nameUser").val().length >= 3){
                 $(".login-button").removeAttr('disabled');
             } else{
                 $('.login-button').attr('disabled', 'disabled');
@@ -23,11 +24,11 @@ $(document).ready(function () {
             }
         }).
             done(function(recourse) {
-                error(recourse,"phone")
+                error(recourse,"email")
             });
         }
     );
-    $("#email").change(
+    $("#phone").change(
         function() {
             $.ajax({
                 url: '/signUp/phone',
@@ -44,7 +45,7 @@ $(document).ready(function () {
     function error(recourse,error){
         if(recourse === false){
             $('.login-button').attr('disabled', 'disabled');
-            alert("Error" + error);
+            alert("Error " + error);
         }
     }
 });

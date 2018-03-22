@@ -24,7 +24,7 @@ public class Product extends Generic {
     @Column(name = "price")
     private Integer price;
 
-    @Size(min=3, max=50)
+    @Size(min=3, max=20)
     @Column(name = "brand")
     private String brand;
 

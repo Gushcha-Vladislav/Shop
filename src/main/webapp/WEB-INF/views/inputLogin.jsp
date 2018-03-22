@@ -18,14 +18,14 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="logInPassword" class="cols-sm-2 control-label">Your password</label>
+    <label for="password" class="cols-sm-2 control-label">Your password</label>
     <div class="cols-sm-10">
         <div class="input-group">
             <span class="input-group-addon">
                 <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
             </span>
             <input type="password" class="form-control required" name="password"
-                   id="logInPassword" placeholder="Enter your Password"/>
+                   id="password" placeholder="Enter your Password"/>
         </div>
     </div>
 </div>

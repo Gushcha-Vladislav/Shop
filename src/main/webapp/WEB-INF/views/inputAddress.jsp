@@ -74,7 +74,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-bed"></i></span>
                     <input type="text" class="form-control" name="apartment" id="apartment"
-                           placeholder="Enter your apartment"minlength="1"  maxlength="5"/>
+                           placeholder="Enter your apartment" minlength="1"  maxlength="5"/>
                 </div>
             </div>
         </div>

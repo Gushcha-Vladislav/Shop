@@ -13,29 +13,31 @@ public class Address extends Generic {
     private User user;
 
     @NotNull
-    @Size(min = 3, max = 45)
-    @Column(name = "city")
-    private String city;
-
-    @NotNull
-    @Size(min = 3, max = 45)
+    @Size(min = 2, max = 45)
     @Column(name = "country")
     private String country;
+
+    @NotNull
+    @Size(min = 2, max = 45)
+    @Column(name = "city")
+    private String city;
 
     @Size(min = 6, max = 10)
     @Column(name = "postcode")
     private String postcode;
 
     @NotNull
-    @Size(min = 3, max = 45)
+    @Size(min = 2, max = 45)
     @Column(name = "street")
     private String street;
 
     @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "house")
     private String house;
 
 
+    @Size(min = 1, max = 5)
     @Column(name = "apartment")
     private String apartment;
 
