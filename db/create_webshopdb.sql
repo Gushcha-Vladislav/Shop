@@ -38,10 +38,10 @@ CREATE TABLE IF NOT EXISTS webshopdb.categories (
 
 CREATE TABLE IF NOT EXISTS webshopdb.products (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name_product VARCHAR(20) NOT NULL,
+  name_product VARCHAR(45) NOT NULL,
   id_category INT NOT NULL,
   price INT NOT NULL,
-  brand VARCHAR(20),
+  brand VARCHAR(40),
   property VARCHAR(10) NOT NULL,
   image VARCHAR(100) NOT NULL,
   description TEXT NOT NULL,
