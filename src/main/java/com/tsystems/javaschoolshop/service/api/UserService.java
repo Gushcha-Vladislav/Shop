@@ -15,4 +15,5 @@ public interface UserService {
     boolean changePassword(String oldPassword, String newPassword);
     void saveAddress(Address address);
     void deleteAddress(int idAddress);
+    Address findAddressById(int idAddress);
 }

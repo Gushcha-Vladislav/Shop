@@ -81,4 +81,9 @@ public class UserServiceImpl implements UserService {
         user.getAddresses().remove(userDao.findAddressById(idAddress));
         userDao.saveUser(user);
     }
+
+    @Override
+    public Address findAddressById(int idAddress) {
+        return userDao.findAddressById(idAddress);
+    }
 }
