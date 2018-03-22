@@ -11,8 +11,9 @@ public class OrderDaoImpl  extends GenericDao implements OrderDao {
 
     @Override
     @Transactional
-    public void saveOrder(Order order) {
-        em.merge(order);
+    public Order saveOrder(Order order) {
+        Order temp =em.merge(order);
         em.flush();
+        return temp;
     }
 }

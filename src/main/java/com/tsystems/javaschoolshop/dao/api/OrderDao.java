@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface OrderDao {
 
-    void saveOrder(Order order);
+    Order saveOrder(Order order);
 }
