@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "users", schema = "webshopdb")
 public class User extends Generic {
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 
     @NotNull

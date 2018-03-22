@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 @Table(name = "addresses", schema = "webshopdb")
 public class Address extends Generic {
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "id_user")
     private User user;
 
@@ -136,7 +136,11 @@ public class Address extends Generic {
 
     @Override
     public int hashCode() {
-        return this.getId()/100;
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + getId();
+        result = prime * result + getId();
+        return result;
     }
 
     @Override
