@@ -5,10 +5,6 @@ import com.tsystems.javaschoolshop.model.User;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,15 +18,14 @@ import java.util.List;
 @Controller
 @Secured({"ROLE_ANONYMOUS"})
 @RequestMapping(value = "/")
-public class LoginController {
+public class LoginController extends GenericController{
 
     private final UserService userService;
-    private final UserDetailsService userDetailsService;
 
     @Autowired
     public LoginController(UserService userService,UserDetailsService userDetailsService) {
+        super(userDetailsService);
         this.userService = userService;
-        this.userDetailsService=userDetailsService;
     }
 
     @RequestMapping(value = "/login")
@@ -75,10 +70,4 @@ public class LoginController {
         return "redirect:/catalog";
     }
 
-    public void authenticateUserAndSetSession(final String email, final HttpServletRequest request) {
-        request.getSession();
-        UserDetails user = userDetailsService.loadUserByUsername(email);
-        Authentication authenticatedUser = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
-    }
 }
