@@ -33,6 +33,7 @@ public class MailConfig {
         properties.setProperty("mail.transport.protocol", "smtp");
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
+        properties.setProperty("mail.smtp.ssl.trust",HOST);
         properties.setProperty("mail.debug", "true");
         javaMailSender.setJavaMailProperties(properties);
 
