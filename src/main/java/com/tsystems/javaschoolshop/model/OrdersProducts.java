@@ -14,7 +14,7 @@ public class OrdersProducts extends Generic {
 
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_product", nullable = false)
+    @JoinColumn(name = "id_product")
     private Product product;
 
     @NotNull

@@ -10,31 +10,31 @@ import javax.validation.constraints.Size;
 public class Product extends Generic {
 
     @NotNull
-    @Size(min=3,max=20)
+    @Size(min = 3, max = 45)
     @Column(name = "name_product")
     private String nameProduct;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;
 
     @NotNull
-    @OrderBy
+    @OrderBy()
     @Column(name = "price")
     private Integer price;
 
-    @Size(min=3, max=20)
+    @Size(min = 3, max = 40)
     @Column(name = "brand")
     private String brand;
 
     @NotNull
-    @Size(max=10)
+    @Size(max = 10)
     @Column(name = "property")
     private String property;
 
     @NotNull
-    @Size(max=100)
+    @Size(max = 100)
     @Column(name = "image")
     private String image;
 
@@ -47,12 +47,8 @@ public class Product extends Generic {
     @Column(name = "quantity_in_stock")
     private Integer quantityInStock;
 
-    @NotNull
-    @Column(name = "quantity_sold")
-    private Integer quantitySold;
-
     @Column(name = "status", nullable = false)
-    private boolean status=true;
+    private boolean status = true;
 
     public Product() {
     }
@@ -131,14 +127,6 @@ public class Product extends Generic {
         this.quantityInStock = quantityInStock;
     }
 
-    public int getQuantitySold() {
-        return quantitySold;
-    }
-
-    public void setQuantitySold(int quantitySold) {
-        this.quantitySold = quantitySold;
-    }
-
     public boolean isStatus() {
         return status;
     }
@@ -150,13 +138,13 @@ public class Product extends Generic {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Product{");
-        if(getId()!=null) sb.append("id=").append(getId()).append('\'');
-        if(nameProduct!=null) sb.append(", nameProduct='").append(nameProduct).append('\'');
-        if(category!=null) sb.append(", category=").append(category.toString());
-        if(price!=null) sb.append(", price=").append(price);
-        if(brand!=null) sb.append(", brand='").append(brand).append('\'');
-        if(property!=null) sb.append(", property='").append(property).append('\'');
-        if(quantityInStock!=null) sb.append(", quantityInStock=").append(quantityInStock);
+        if (getId() != null) sb.append("id=").append(getId()).append('\'');
+        if (nameProduct != null) sb.append(", nameProduct='").append(nameProduct).append('\'');
+        if (category != null) sb.append(", category=").append(category.toString());
+        if (price != null) sb.append(", price=").append(price);
+        if (brand != null) sb.append(", brand='").append(brand).append('\'');
+        if (property != null) sb.append(", property='").append(property).append('\'');
+        if (quantityInStock != null) sb.append(", quantityInStock=").append(quantityInStock);
         sb.append(", status=").append(status);
         sb.append('}');
         return sb.toString();
@@ -164,7 +152,7 @@ public class Product extends Generic {
 
     @Override
     public int hashCode() {
-        return this.getId()/100;
+        return this.getId() / 100;
     }
 
     @Override

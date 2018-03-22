@@ -12,7 +12,7 @@ import java.util.List;
 public class Order extends Generic {
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_user")
     private User user;
 
@@ -42,8 +42,9 @@ public class Order extends Generic {
     @Column(name = "order_price")
     private Integer orderPrice;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrdersProducts> products = new ArrayList<>();
+
     public Order() {
     }
 
@@ -114,10 +115,12 @@ public class Order extends Generic {
         this.orderPrice = orderPrice;
     }
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
     public List<OrdersProducts> getProducts() {
         return products;
     }
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
     public void setProducts(List<OrdersProducts> products) {
         this.products = products;
     }
