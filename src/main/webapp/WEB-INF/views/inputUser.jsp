@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="form-group">
     <label for="name" class="cols-sm-2 control-label">Your Name</label>
     <div class="cols-sm-10">
@@ -14,7 +15,7 @@
                 <i class="fa fa-user fa" aria-hidden="true"></i>
             </span>
             <input type="text" class="form-control required" name="nameUser" id="name"
-                   placeholder="Enter your Name" required minlength="5" maxlength="20"/>
+                   placeholder="Enter your Name" required minlength="3" maxlength="20"/>
         </div>
     </div>
 
@@ -28,7 +29,7 @@
                                     <i class="fa fa-users fa" aria-hidden="true"></i>
                                 </span>
             <input type="text" class="form-control" name="lastNameUser"
-                   id="username" placeholder="Enter your lastName" minlength="5"
+                   id="username" placeholder="Enter your lastName" minlength="3"
                    maxlength="20"/>
         </div>
     </div>
