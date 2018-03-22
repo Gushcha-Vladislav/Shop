@@ -26,7 +26,7 @@
     <div class="container-fluid">
         <div class="row menu">
             <div class="col-xs-3 ">
-                <a class="text-left" href="#">Логотип</a>
+                <a class="text-left" href="/catalog">Логотип</a>
             </div>
             <div class="col-xs-3 dropdown text-center">
                 <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
@@ -43,10 +43,10 @@
                             class="menu-icon fas fa-user fa-lg"></i>Name<b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="">Profile</a></li>
+                        <li><a href="/account">Profile</a></li>
                         <li class="divider"></li>
-                        <li><a href="">Update password</a></li>
-                        <li><a href="">Update addresses</a></li>
+                        <li><a href="/account/password">Update password</a></li>
+                        <li><a href="/account/addresses">Update addresses</a></li>
                         <li><a href="">History orders</a></li>
                         <li class="divider"></li>
                         <li><a href="/j_spring_security_logout">Log out</a></li>
@@ -57,7 +57,7 @@
                             class="menu-icon fas fa-user fa-lg"></i>Имя<b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="">Profile</a></li>
+                        <li><a href="/account">Profile</a></li>
                         <li class="divider"></li>
                         </sec:authorize>
                         <sec:authorize access="hasRole('ROLE_SUPER_ADMIN')">
