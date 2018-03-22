@@ -46,7 +46,6 @@ CREATE TABLE IF NOT EXISTS webshopdb.products (
   image VARCHAR(100) NOT NULL,
   description TEXT NOT NULL,
   quantity_in_stock INT NOT NULL DEFAULT 250,
-  quantity_sold INT NOT NULL DEFAULT 0,
   `status` BOOLEAN NOT NULL DEFAULT TRUE,
   FOREIGN KEY (id_category) REFERENCES webshopdb.categories (id)
 );
