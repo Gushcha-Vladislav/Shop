@@ -30,7 +30,7 @@
                     </div>
                 </c:forEach>
                 <div class="col-xs-6 text-left">
-                    <a href="#" class="btn btn-success ">Order</a>
+                    <a href="/order" class="btn btn-success ">Order</a>
                 </div>
                 <div class="col-xs-6 text-right">
                     <a  id="clearBasket" class="btn btn-success ">Clear</a>

@@ -73,7 +73,7 @@
             </div>
             <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ANONYMOUS')">
                 <div class="col-xs-3 text-center">
-                    <a href=""><i class="fab fa-amazon-pay fa-lg menu-icon fa-fw"></i>Order</a></div>
+                    <a href="/order"><i class="fab fa-amazon-pay fa-lg menu-icon fa-fw"></i>Order</a></div>
                 <div class="col-xs-3 text-center">
                     <a id ="buttonBasketProducts" data-toggle="modal" type="modal" data-target="#basketProducts">
                         <i class="fas fa-shopping-basket fa-lg menu-icon fa-fw"></i>Basket
