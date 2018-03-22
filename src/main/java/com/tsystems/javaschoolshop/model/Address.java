@@ -137,20 +137,27 @@ public class Address extends Generic {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + getId();
-        result = prime * result + getId();
-        return result;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (!(obj instanceof Address)) return false;
 
         Address tmp = (Address) obj;
         return tmp.getId() == this.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getCountry().hashCode();
+        result = 31 * result + getCity().hashCode();
+        return result;
+    }
+
+    public String toStringForEmail(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(country).append(", ").append(city).append(" ");
+        if (postcode.length() != 0) sb.append("(").append(postcode).append(")");
+        sb.append(", ").append(street).append(" ").append(house);
+        if (apartment.length() !=0) sb.append(", ").append(apartment);
+        return sb.toString();
     }
 }
