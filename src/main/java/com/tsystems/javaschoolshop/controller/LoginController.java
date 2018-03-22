@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -34,7 +35,8 @@ public class LoginController extends GenericController{
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
-    public String signUp(User user, Address address) {
+    public String signUp(User user,Address address) {
+        ModelAndView modelAndView=new ModelAndView("signUp");
         return "signUp";
     }
 
@@ -54,11 +56,13 @@ public class LoginController extends GenericController{
 
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public String signUp(@Valid Address address,@Valid User user, BindingResult result,
+    public String signUp(@Valid Address address, BindingResult resultAddress,
+                         @Valid User user, BindingResult resultUser,
                         final HttpServletRequest request) {
-        if (result.hasErrors()) {
-            List<ObjectError> errorsValid=result.getAllErrors();
-            return "signUp";
+        if (resultUser.hasErrors() || resultAddress.hasErrors()) {
+            List<ObjectError> errorUser=resultUser.getAllErrors();
+            List<ObjectError> errorAddress=resultAddress.getAllErrors();
+            return "redirect:/signUp";
 
         }else{
             if (!userService.isEmailFree(user.getEmail())) return "/signUp";
