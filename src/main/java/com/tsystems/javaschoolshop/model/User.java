@@ -1,5 +1,6 @@
 package com.tsystems.javaschoolshop.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,7 +16,7 @@ import java.util.List;
 @Table(name = "users", schema = "webshopdb")
 public class User extends Generic {
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
 
     @NotNull
@@ -87,6 +88,7 @@ public class User extends Generic {
         this.role = role;
     }
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     public Date getBirthday() {
         return birthday;
     }
