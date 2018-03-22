@@ -26,8 +26,8 @@
         <div class="container col-sm-9">
             <div class="row">
                 <div class="container-fluid">
-                    <div class="row ">
-                        <c:forEach var="item" items="${bag}">
+                    <div class="row">
+                        <c:forEach var="item" items="${basket}">
                             <div class="col-xs-12">
                                 <div class="img-thumbnail">
                                     <div class="col-xs-5 ">
@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="col-xs-7 order">
                                         <div class="col-xs-12"><h3 class="text-center"><a
-                                                href="/catalog/${item.idProduct}">${item.nameProduct}</a></h3>
+                                                href="/catalog/${item.id}">${item.nameProduct}</a></h3>
                                         </div>
                                         <div class="col-xs-12">
                                             <h4>Unit price:&nbsp;&nbsp;</h4>
