@@ -44,4 +44,9 @@ public class ProductServiceImpl implements ProductService {
     public Integer getQuantityProductInStickById(int id) {
         return productDao.findProductById(id).getQuantityInStock();
     }
+
+    @Override
+    public List<Product> findTop10Products(boolean adminMode) {
+        return productDao.findTop10Products(adminMode);
+    }
 }
