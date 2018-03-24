@@ -11,6 +11,4 @@ public interface ProductService {
     Product saveProduct(Product product);
     Integer getQuantityProductInStickById(int id);
     List<Product> findTop10Products(boolean adminMode);
-    List<ProductDto> convertProductsToProductsDto(List<Product> products);
-    List<ProductDto> findTop10ProductsDto(boolean adminMode);
 }

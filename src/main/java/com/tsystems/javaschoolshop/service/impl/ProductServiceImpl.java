@@ -52,24 +52,5 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findTop10Products(adminMode);
     }
 
-    @Override
-    public List<ProductDto> convertProductsToProductsDto(List<Product> products) {
-        List<ProductDto> resultList = new ArrayList<>();
-        for (Product product : products) {
-            ProductDto dto = new ProductDto();
-            dto.setId(product.getId());
-            dto.setNameProduct(product.getNameProduct());
-            dto.setImage(product.getImage());
-            dto.setPrice(product.getPrice());
-            dto.setNumberOfSales(productDao.findTotalSalesById(product.getId()));
-            dto.setActive(product.isStatus());
-            resultList.add(dto);
-        }
-        return resultList;
-    }
 
-    @Override
-    public List<ProductDto> findTop10ProductsDto(boolean adminMode) {
-        return convertProductsToProductsDto(findTop10Products(adminMode));
-    }
 }
