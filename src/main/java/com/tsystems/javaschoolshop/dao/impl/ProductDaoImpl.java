@@ -57,7 +57,7 @@ public class ProductDaoImpl extends GenericDao implements ProductDao {
     }
 
     @Override
-    public int findTotalSalesById(int id) {
+    public int findNumberOfSalesById(int id) {
         String subQuery = "SELECT MIN(p1.id), p1.order.id, p1.product.id FROM OrdersProducts p1"
                 + " WHERE p1.product.id = :id"
                 + " GROUP BY(p1.order.id, p1.product.id)";

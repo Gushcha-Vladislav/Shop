@@ -11,4 +11,5 @@ public interface ProductService {
     Product saveProduct(Product product);
     Integer getQuantityProductInStickById(int id);
     List<Product> findTop10Products(boolean adminMode);
+    int findNumberOfSalesById(int id);
 }

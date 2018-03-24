@@ -6,6 +6,7 @@ import com.tsystems.javaschoolshop.service.api.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +50,8 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findTop10Products(boolean adminMode) {
         return productDao.findTop10Products(adminMode);
     }
-
-
+    @Override
+    public int findNumberOfSalesById(int id){
+        return productDao.findNumberOfSalesById(id);
+    }
 }
