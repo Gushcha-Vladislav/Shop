@@ -29,7 +29,7 @@ public class LoginController extends GenericController{
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
     }
