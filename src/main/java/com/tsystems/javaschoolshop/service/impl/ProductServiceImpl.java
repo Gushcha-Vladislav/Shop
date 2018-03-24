@@ -3,11 +3,9 @@ package com.tsystems.javaschoolshop.service.impl;
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.service.api.ProductService;
-import com.tsystems.javaschoolshop.model.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

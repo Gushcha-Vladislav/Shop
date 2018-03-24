@@ -1,7 +1,7 @@
 package com.tsystems.javaschoolshop.service.api;
 
 import com.tsystems.javaschoolshop.model.Product;
-import com.tsystems.javaschoolshop.model.dto.ProductDto;
+
 import java.util.List;
 
 public interface ProductService {
