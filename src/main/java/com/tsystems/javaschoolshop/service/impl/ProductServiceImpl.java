@@ -67,4 +67,9 @@ public class ProductServiceImpl implements ProductService {
         }
         return resultList;
     }
+
+    @Override
+    public List<ProductDto> findTop10ProductsDto(boolean adminMode) {
+        return convertProductsToProductsDto(findTop10Products(adminMode));
+    }
 }
