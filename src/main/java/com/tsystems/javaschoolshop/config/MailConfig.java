@@ -1,22 +1,22 @@
 package com.tsystems.javaschoolshop.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
 @Configuration
+@PropertySource(value = { "classpath:mail.properties" })
 public class MailConfig {
-    private static final String HOST = "smtp.gmail.com";
 
-    public static final String USERNAME = "shopforjavaschool@gmail.com";
-
-    private static final String PASSWORD = "1234567890vlad";
-
-    private static final int PORT = 587;
+    @Autowired
+    private Environment environment;
 
     @Value("${email.subject}")
     private String subject;
@@ -24,16 +24,16 @@ public class MailConfig {
     @Bean
     public JavaMailSender javaMailService() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-        javaMailSender.setHost(HOST);
-        javaMailSender.setUsername(USERNAME);
-        javaMailSender.setPassword(PASSWORD);
-        javaMailSender.setPort(PORT);
+        javaMailSender.setHost(environment.getRequiredProperty("mail.host"));
+        javaMailSender.setUsername(environment.getRequiredProperty("mail.username"));
+        javaMailSender.setPassword(environment.getRequiredProperty("mail.password"));
+        javaMailSender.setPort(new Integer(environment.getRequiredProperty("mail.port")));
 
         Properties properties = new Properties();
         properties.setProperty("mail.transport.protocol", "smtp");
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
-        properties.setProperty("mail.smtp.ssl.trust",HOST);
+        properties.setProperty("mail.smtp.ssl.trust",environment.getRequiredProperty("mail.host"));
         properties.setProperty("mail.debug", "true");
         javaMailSender.setJavaMailProperties(properties);
 

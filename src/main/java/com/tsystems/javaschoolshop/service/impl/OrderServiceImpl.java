@@ -12,6 +12,8 @@ import com.tsystems.javaschoolshop.service.api.BasketProductService;
 import com.tsystems.javaschoolshop.service.api.OrderService;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
@@ -21,20 +23,23 @@ import java.util.List;
 
 
 @Service
+@PropertySource(value = { "classpath:mail.properties" })
 public class OrderServiceImpl implements OrderService {
 
     private final OrderDao orderDao;
     private final MailSender mailSender;
     private final UserService userService;
     private final BasketProductService basketProductService;
+    private final Environment environment;
 
     @Autowired
     public OrderServiceImpl(OrderDao orderDao, MailSender mailSender, UserService userService,
-                            BasketProductService basketProductService) {
+                            BasketProductService basketProductService, Environment environment) {
         this.orderDao = orderDao;
         this.mailSender = mailSender;
         this.userService = userService;
         this.basketProductService = basketProductService;
+        this.environment = environment;
     }
 
     @Override
@@ -42,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
         Address address = userService.findAddressById(idAddress);
         Order order = new Order();
         order.setUser(address.getUser());
-        order.setAddress(address.toString());
+        order.setAddress(address.toStringForEmail());
         if (paymentType.equals("CASH")) {
             order.setPayment(PaymentTypeEnum.CASH.toString());
             order.setDelivery(PaymentStatusEnum.AWAITING_PAYMENT.toString());
@@ -58,8 +63,7 @@ public class OrderServiceImpl implements OrderService {
             OrdersProducts ordersProducts = new OrdersProducts(order, product, bagItem.getAmount(), product.getPrice());
             order.getProducts().add(ordersProducts);
         }
-        orderDao.saveOrder(order);
-        sendMessage(order,userService.findUserFromSecurityContextHolder(),basket,idAddress);
+        sendMessage(orderDao.saveOrder(order),userService.findUserFromSecurityContextHolder(),basket,idAddress);
     }
 
     @Override
@@ -82,7 +86,7 @@ public class OrderServiceImpl implements OrderService {
                 + "Delivery address: " + userService.findAddressById(idAddress).toStringForEmail() + System.lineSeparator() + System.lineSeparator()
                 + "Thank you for choosing us!";
 
-        msg.setFrom(MailConfig.USERNAME);
+        msg.setFrom(environment.getRequiredProperty("mail.username"));
         msg.setTo(user.getEmail());
         msg.setSubject("JavaShop");
         msg.setText(message);
