@@ -5,7 +5,7 @@ import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,5 +54,21 @@ public class ProductDaoImpl extends GenericDao implements ProductDao {
             products.add(findProductById(id));
         }
         return products;
+    }
+
+    @Override
+    public int findTotalSalesById(int id) {
+        String subQuery = "SELECT MIN(p1.id), p1.order.id, p1.product.id FROM OrdersProducts p1"
+                + " WHERE p1.product.id = :id"
+                + " GROUP BY(p1.order.id, p1.product.id)";
+        Query totalSalesQuery = em.createQuery("SELECT COUNT(o.product.id) FROM OrdersProducts o"
+                + " WHERE (o.id, o.order.id, o.product.id) IN"
+                + " (" + subQuery +") GROUP BY o.product.id");
+        totalSalesQuery.setParameter("id", id);
+        try {
+            return (int) totalSalesQuery.getSingleResult();
+        } catch (NoResultException e) {
+            return  0;
+        }
     }
 }

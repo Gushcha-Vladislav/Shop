@@ -9,4 +9,5 @@ public interface ProductDao {
     Product findProductById(final int id);
     Product saveProduct(Product product);
     List<Product> findTop10Products(boolean adminMode);
+    int findTotalSalesById(int id);
 }
