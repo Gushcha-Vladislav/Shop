@@ -3,9 +3,11 @@ package com.tsystems.javaschoolshop.service.impl;
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.service.api.ProductService;
+import com.tsystems.javaschoolshop.model.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,5 +50,21 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findTop10Products(boolean adminMode) {
         return productDao.findTop10Products(adminMode);
+    }
+
+    @Override
+    public List<ProductDto> convertProductsToProductsDto(List<Product> products) {
+        List<ProductDto> resultList = new ArrayList<>();
+        for (Product product : products) {
+            ProductDto dto = new ProductDto();
+            dto.setId(product.getId());
+            dto.setNameProduct(product.getNameProduct());
+            dto.setImage(product.getImage());
+            dto.setPrice(product.getPrice());
+            dto.setNumberOfSales(productDao.findTotalSalesById(product.getId()));
+            dto.setActive(product.isStatus());
+            resultList.add(dto);
+        }
+        return resultList;
     }
 }
