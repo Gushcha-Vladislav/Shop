@@ -75,9 +75,9 @@ CREATE TABLE IF NOT EXISTS webshopdb.orders_products (
 
 CREATE TABLE IF NOT EXISTS webshopdb.statistics (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  id_user INT,
+  id_user INT UNIQUE,
   price INT DEFAULT 0,
-  id_product INT,
+  id_product INT UNIQUE,
   amount INT DEFAULT 0,
   FOREIGN KEY (id_user) REFERENCES webshopdb.users (id),
   FOREIGN KEY (id_product) REFERENCES webshopdb.products (id)

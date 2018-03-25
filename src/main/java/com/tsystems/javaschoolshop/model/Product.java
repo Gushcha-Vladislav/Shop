@@ -9,6 +9,9 @@ import javax.validation.constraints.Size;
 @Table(name = "products", schema = "webshopdb")
 public class Product extends Generic {
 
+    @OneToOne(mappedBy = "product",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private StatisticTopProduct statisticTopProduct;
+
     @NotNull
     @Size(min = 3, max = 45)
     @Column(name = "name_product")

@@ -19,6 +19,9 @@ public class User extends Generic {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 
+    @OneToOne(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private StatisticTopUser statisticTopUser;
+
     @NotNull
     @Size(min=3, max=20)
     @Column(name = "name_user")
@@ -127,6 +130,14 @@ public class User extends Generic {
 
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    public StatisticTopUser getStatisticTopUser() {
+        return statisticTopUser;
+    }
+
+    public void setStatisticTopUser(StatisticTopUser statisticTopUser) {
+        this.statisticTopUser = statisticTopUser;
     }
 
     @Override
