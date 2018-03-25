@@ -28,28 +28,26 @@
                 <div class="container-fluid">
                     <div class="row">
                         <c:forEach var="item" items="${basket}">
-                            <div class="col-xs-12">
-                                <div class="img-thumbnail">
-                                    <div class="col-xs-5 ">
-                                        <img src="/resources/${item.image}" alt=""
-                                             class="img-responsive img-circle img-thumbnail">
+                            <div class="col-xs-12 col-sm-10 col-sm-offset-1 img-thumbnail">
+                                <div class="col-xs-5 ">
+                                    <img src="/resources/${item.image}" alt=""
+                                         class="img-responsive img-circle img-thumbnail">
+                                </div>
+                                <div class="col-xs-7 order">
+                                    <div class="col-xs-12"><h3 class="text-center"><a
+                                            href="/catalog/${item.id}">${item.nameProduct}</a></h3>
                                     </div>
-                                    <div class="col-xs-7 order">
-                                        <div class="col-xs-12"><h3 class="text-center"><a
-                                                href="/catalog/${item.id}">${item.nameProduct}</a></h3>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <h4>Unit price:&nbsp;&nbsp;</h4>
-                                            <h4>${item.price}</h4>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <h4>Amount:&nbsp;&nbsp;</h4>
-                                            <h4>${item.amount}</h4>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <h4>Total price:&nbsp;&nbsp;</h4>
-                                            <h4>${item.amount*item.price}</h4>
-                                        </div>
+                                    <div class="col-xs-12">
+                                        <p>Unit price:&nbsp;&nbsp;</p>
+                                        <p>${item.price}</p>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <p>Amount:&nbsp;&nbsp;</p>
+                                        <p>${item.amount}</p>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <p>Total price:&nbsp;&nbsp;</p>
+                                        <p>${item.amount*item.price}</p>
                                     </div>
                                 </div>
                             </div>
@@ -60,31 +58,29 @@
             <div class="row">
                 <div class="container-fluid">
                     <div class="row ">
-                        <div class="col-xs-12">
-                            <div class="container img-thumbnail order" >
-                                <div class="col-sm-6 ">
-                                    <h4>Order price:&nbsp;&nbsp;</h4>
-                                    <h4>${totalPriceForPay}</h4>
-                                </div>
-                                <div class="col-sm-6">
-                                    <select id="selectForAddress" class="sort">
-                                        <c:forEach var="item" items="${user.addresses}">
-                                            <option value="${item.id}">${item.city}&nbsp;${item.street}&nbsp;${item.house}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a class="btn btn-success pay">Pay</a>
-                                </div>
-                                <div class="col-sm-6 param">
-                                    <a class="btn btn-success CARD" data-toggle="modal" type="modal" data-target="#CARD"></a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <select id="selectPaymentType" class="sort">
-                                        <option value="CASH">Cash</option>
-                                        <option value="CARD">Credit card</option>
-                                    </select>
-                                </div>
+                        <div class="col-xs-12 col-sm-10 col-sm-offset-1 img-thumbnail order">
+                            <div class="col-sm-6 ">
+                                <p>Order price:&nbsp;&nbsp; ${totalPriceForPay}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <select id="selectForAddress" class="sort">
+                                    <c:forEach var="item" items="${user.addresses}">
+                                        <option value="${item.id}">${item.city}&nbsp;${item.street}&nbsp;${item.house}</option>
+                                    </c:forEach>
+                                        <option value="newAddress">Add new address</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <a class="btn btn-success pay">Pay</a>
+                            </div>
+                            <div class="col-sm-6 param">
+                                <a class="btn btn-success CARD" data-toggle="modal" type="modal" data-target="#CARD"></a>
+                            </div>
+                            <div class="col-sm-6">
+                                <select id="selectPaymentType" class="sort">
+                                    <option value="CASH">Cash</option>
+                                    <option value="CARD">Credit card</option>
+                                </select>
                             </div>
                         </div>
                     </div>
