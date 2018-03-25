@@ -18,7 +18,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.tsystems.javaschoolshop.config" })
+@ComponentScan({ "com.tsystems.javaschoolshop" })
 @PropertySource(value = { "classpath:application.properties" })
 public class DataConfig {
     @Autowired
