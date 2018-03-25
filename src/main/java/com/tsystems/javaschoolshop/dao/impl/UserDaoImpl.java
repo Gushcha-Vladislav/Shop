@@ -45,4 +45,17 @@ public class UserDaoImpl extends GenericDao implements UserDao {
         query.setParameter("id", idAddress);
         return (Address) query.getSingleResult();
     }
+
+    @Override
+    public User findUserById(int id) {
+        Query query = em.createQuery("SELECT u FROM User u WHERE id = :id");
+        query.setParameter("id", id);
+        return (User) query.getSingleResult();
+    }
+
+    @Override
+    public List<User> findTopNUsers(int n) {
+        Query listOfUsersIdQuery = em.createQuery("SELECT u.user FROM StatisticTopUser u ORDER BY u.price DESC");
+        return (List<User>) listOfUsersIdQuery.setMaxResults(n).getResultList();
+    }
 }
