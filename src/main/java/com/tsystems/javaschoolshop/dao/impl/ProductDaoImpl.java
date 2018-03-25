@@ -3,6 +3,7 @@ package com.tsystems.javaschoolshop.dao.impl;
 import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
+import com.tsystems.javaschoolshop.model.StatisticTopProduct;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.NoResultException;
@@ -36,37 +37,20 @@ public class ProductDaoImpl extends GenericDao implements ProductDao {
 
     @Override
     public List<Product> findTop10Products(boolean adminMode) {
-        String subQuery = "SELECT MIN(p1.id), p1.order.id, p1.product.id FROM OrdersProducts p1"
-                + " GROUP BY(p1.order.id, p1.product.id)";
+        String temp ="SELECT c.product FROM StatisticTopProduct c ";
         Query topListQuery;
-        if (adminMode) {
-            topListQuery = em.createQuery("SELECT p.product.id FROM OrdersProducts p"
-                    + " WHERE (p.id, p.order.id, p.product.id) IN(" + subQuery + ") GROUP BY p.product.id"
-                    + " ORDER BY COUNT(p.product.id) DESC");
-        } else {
-            topListQuery = em.createQuery("SELECT p.product.id FROM OrdersProducts p"
-                    + " WHERE (p.id, p.order.id, p.product.id) IN(" + subQuery + ") AND p.product.active=true GROUP BY p.product.id"
-                    + " ORDER BY COUNT(p.product.id) DESC");
-        }
-        topListQuery.setMaxResults(10);
-        List<Product> products = new ArrayList<>();
-        for (Integer id : (List<Integer>)topListQuery.getResultList()) {
-            products.add(findProductById(id));
-        }
+        if(!adminMode) topListQuery= em.createQuery(temp+"WHERE c.product.status = TRUE ORDER BY c.amount DESC", Product.class);
+        else topListQuery= em.createQuery(temp+" ORDER BY c.amount DESC", Product.class);
+        List<Product> products = topListQuery.setMaxResults(10).getResultList();
         return products;
     }
 
     @Override
     public int findNumberOfSalesById(int id) {
-        String subQuery = "SELECT MIN(p1.id), p1.order.id, p1.product.id FROM OrdersProducts p1"
-                + " WHERE p1.product.id = :id"
-                + " GROUP BY(p1.order.id, p1.product.id)";
-        Query totalSalesQuery = em.createQuery("SELECT COUNT(o.product.id) FROM OrdersProducts o"
-                + " WHERE (o.id, o.order.id, o.product.id) IN"
-                + " (" + subQuery +") GROUP BY o.product.id");
-        totalSalesQuery.setParameter("id", id);
+        Query query= em.createQuery("SELECT c.amount FROM StatisticTopProduct c WHERE c.product.id = :id", Product.class);
+        query.setParameter("id", id);
         try {
-            return (int) totalSalesQuery.getSingleResult();
+            return (int) query.getSingleResult();
         } catch (NoResultException e) {
             return  0;
         }
