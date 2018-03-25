@@ -9,9 +9,6 @@ import javax.validation.constraints.Size;
 @Table(name = "products", schema = "webshopdb")
 public class Product extends Generic {
 
-    @OneToOne(mappedBy = "product",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private StatisticTopProduct statisticTopProduct;
-
     @NotNull
     @Size(min = 3, max = 45)
     @Column(name = "name_product")
@@ -53,6 +50,9 @@ public class Product extends Generic {
     @Column(name = "status", nullable = false)
     private boolean status = true;
 
+    @OneToOne(mappedBy = "product",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private StatisticTopProduct statisticTopProduct;
+
     public Product() {
     }
 
@@ -82,11 +82,11 @@ public class Product extends Generic {
         this.category = category;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -122,11 +122,11 @@ public class Product extends Generic {
         this.description = description;
     }
 
-    public int getQuantityInStock() {
+    public Integer getQuantityInStock() {
         return quantityInStock;
     }
 
-    public void setQuantityInStock(int quantityInStock) {
+    public void setQuantityInStock(Integer quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
 
@@ -136,6 +136,14 @@ public class Product extends Generic {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public StatisticTopProduct getStatisticTopProduct() {
+        return statisticTopProduct;
+    }
+
+    public void setStatisticTopProduct(StatisticTopProduct statisticTopProduct) {
+        this.statisticTopProduct = statisticTopProduct;
     }
 
     @Override

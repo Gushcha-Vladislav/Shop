@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @DiscriminatorValue("SP")
-public class StatisticTopProduct {
+public class StatisticTopProduct extends Statistics {
 
     @NotNull
     @OneToOne
@@ -15,6 +15,9 @@ public class StatisticTopProduct {
     @NotNull
     @Column(name = "amount")
     private Integer amount;
+
+    public StatisticTopProduct() {
+    }
 
     public StatisticTopProduct(Product product, Integer amount) {
         this.product = product;
@@ -35,5 +38,15 @@ public class StatisticTopProduct {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("StatisticTopProduct{");
+        if(getId()!=null) sb.append("id=").append(getId()).append('\'');
+        if(product!=null) sb.append("product=").append(product.toString()).append('\'');
+        if(amount!=null) sb.append(", amount=").append(amount);
+        sb.append('}');
+        return sb.toString();
     }
 }

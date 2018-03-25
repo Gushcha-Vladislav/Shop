@@ -16,12 +16,6 @@ import java.util.List;
 @Table(name = "users", schema = "webshopdb")
 public class User extends Generic {
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Address> addresses = new ArrayList<>();
-
-    @OneToOne(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private StatisticTopUser statisticTopUser;
-
     @NotNull
     @Size(min=3, max=20)
     @Column(name = "name_user")
@@ -53,6 +47,12 @@ public class User extends Generic {
     @NotNull
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private StatisticTopUser statisticTopUser;
 
     public User() {
     }
@@ -90,7 +90,7 @@ public class User extends Generic {
     public void setRole(String role) {
         this.role = role;
     }
-
+    
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     public Date getBirthday() {
         return birthday;

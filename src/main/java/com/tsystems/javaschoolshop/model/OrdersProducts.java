@@ -51,19 +51,19 @@ public class OrdersProducts extends Generic {
         this.product = product;
     }
 
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
-    public int getPriceOne() {
+    public Integer getPriceOne() {
         return priceOne;
     }
 
-    public void setPriceOne(int priceOne) {
+    public void setPriceOne(Integer priceOne) {
         this.priceOne = priceOne;
     }
 

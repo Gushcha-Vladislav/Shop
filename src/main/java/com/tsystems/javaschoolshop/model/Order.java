@@ -90,7 +90,6 @@ public class Order extends Generic {
         this.dateOrder = dateOrder;
     }
 
-
     public String getPayment() {
         return payment;
     }
@@ -107,20 +106,18 @@ public class Order extends Generic {
         this.delivery = delivery;
     }
 
-    public int getOrderPrice() {
+    public Integer getOrderPrice() {
         return orderPrice;
     }
 
-    public void setOrderPrice(int orderPrice) {
+    public void setOrderPrice(Integer orderPrice) {
         this.orderPrice = orderPrice;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
     public List<OrdersProducts> getProducts() {
         return products;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
     public void setProducts(List<OrdersProducts> products) {
         this.products = products;
     }
