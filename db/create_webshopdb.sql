@@ -71,5 +71,14 @@ CREATE TABLE IF NOT EXISTS webshopdb.orders_products (
   price_one INT NOT NULL,
   FOREIGN KEY (id_order) REFERENCES webshopdb.orders (id),
   FOREIGN KEY (id_product) REFERENCES webshopdb.products (id)
-   );
+);
 
+CREATE TABLE IF NOT EXISTS webshopdb.statistics (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id_user INT,
+  price INT DEFAULT 0,
+  id_product INT,
+  amount INT DEFAULT 0,
+  FOREIGN KEY (id_user) REFERENCES webshopdb.users (id),
+  FOREIGN KEY (id_product) REFERENCES webshopdb.products (id)
+);
