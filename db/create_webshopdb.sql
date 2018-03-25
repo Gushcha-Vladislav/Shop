@@ -68,7 +68,6 @@ CREATE TABLE IF NOT EXISTS webshopdb.orders_products (
   id_order INT NOT NULL,
   id_product INT NOT NULL,
   amount INT NOT NULL,
-  price_one INT NOT NULL,
   FOREIGN KEY (id_order) REFERENCES webshopdb.orders (id),
   FOREIGN KEY (id_product) REFERENCES webshopdb.products (id)
 );
