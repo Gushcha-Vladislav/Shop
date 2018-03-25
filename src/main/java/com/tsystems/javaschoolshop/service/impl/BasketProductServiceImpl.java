@@ -2,6 +2,7 @@ package com.tsystems.javaschoolshop.service.impl;
 
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
+import com.tsystems.javaschoolshop.model.StatisticTopProduct;
 import com.tsystems.javaschoolshop.model.dto.BasketProductDto;
 import com.tsystems.javaschoolshop.service.api.BasketProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ public class BasketProductServiceImpl implements BasketProductService {
     @Override
     @Transactional
     public boolean addToBasket(BasketProductDto basketProductDto, List<BasketProductDto> basket) {
-
         Product product = productDao.findProductById(basketProductDto.getId());
         boolean isFoundInBag = false;
         for (BasketProductDto basketProduct : basket) {
@@ -35,6 +35,7 @@ public class BasketProductServiceImpl implements BasketProductService {
                 basketProduct.setAmount(basketProductDto.getAmount());
                 basketProduct.setPrice(basketProductDto.getPrice());
                 product.setQuantityInStock(product.getQuantityInStock() - basketProductDto.getAmount() + basketProduct.getAmount());
+                product.setStatisticTopProduct(new StatisticTopProduct(product,product.getStatisticTopProduct().getAmount()+ basketProductDto.getAmount() - basketProduct.getAmount()));
                 isFoundInBag = true;
                 break;
             }
@@ -44,12 +45,14 @@ public class BasketProductServiceImpl implements BasketProductService {
             if(product.getQuantityInStock() >= basketProductDto.getAmount()) {
                 basket.add(basketProductDto);
                 product.setQuantityInStock(product.getQuantityInStock() - basketProductDto.getAmount());
+                product.setStatisticTopProduct(new StatisticTopProduct(product,product.getStatisticTopProduct().getAmount()+ basketProductDto.getAmount()));
             }else return false;
         productDao.saveProduct(product);
         return true;
     }
 
     @Override
+    @Transactional
     public boolean deleteFromBasketById(int id, List<BasketProductDto> basket) {
 
         for (BasketProductDto product : basket) {
@@ -57,6 +60,7 @@ public class BasketProductServiceImpl implements BasketProductService {
                 Product originalProduct = productDao.findProductById(id);
                 originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
                 productDao.saveProduct(originalProduct);
+                originalProduct.setStatisticTopProduct(new StatisticTopProduct(originalProduct,originalProduct.getStatisticTopProduct().getAmount() - product.getAmount()));
                 basket.remove(product);
                 break;
             }
@@ -93,10 +97,12 @@ public class BasketProductServiceImpl implements BasketProductService {
     }
 
     @Override
+    @Transactional
     public List<BasketProductDto> deleteFromBasket(List<BasketProductDto> basket) {
         for (BasketProductDto product : basket) {
             Product originalProduct = productDao.findProductById(product.getId());
             originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
+            originalProduct.setStatisticTopProduct(new StatisticTopProduct(originalProduct,originalProduct.getStatisticTopProduct().getAmount() - product.getAmount()));
             productDao.saveProduct(originalProduct);
         }
 

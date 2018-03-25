@@ -17,6 +17,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -43,7 +44,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void saveOrder(int idAddress, String paymentType, List<BasketProductDto> basket) {
+    @Transactional
+    public Order saveOrder(int idAddress, String paymentType, List<BasketProductDto> basket) {
+        User user = userService.findUserFromSecurityContextHolder();
         Address address = userService.findAddressById(idAddress);
         Order order = new Order();
         order.setUser(address.getUser());
@@ -57,13 +60,16 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setOrderStatus(OrderStatusEnum.AWAITING_SHIPMENT.toString());
         order.setDateOrder(new Date());
-        order.setOrderPrice(basketProductService.totalPrice(basket));
+        int totalPrise =basketProductService.totalPrice(basket);
+        order.setOrderPrice(totalPrise);
+        user.setStatisticTopUser(new StatisticTopUser(user,totalPrise));
         for (BasketProductDto bagItem : basket) {
             Product product = basketProductService.convertBasketProductDtoToProduct(bagItem);
             OrdersProducts ordersProducts = new OrdersProducts(order, product, bagItem.getAmount(), product.getPrice());
             order.getProducts().add(ordersProducts);
         }
-        sendMessage(orderDao.saveOrder(order),userService.findUserFromSecurityContextHolder(),basket,idAddress);
+        userService.saveNewUser(user);
+        return orderDao.saveOrder(order);
     }
 
     @Override
