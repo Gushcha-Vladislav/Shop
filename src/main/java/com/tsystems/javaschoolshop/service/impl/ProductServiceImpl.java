@@ -3,6 +3,7 @@ package com.tsystems.javaschoolshop.service.impl;
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.service.api.ProductService;
+import com.tsystems.javaschoolshop.util.ComparatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.jms.core.JmsTemplate;
@@ -29,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
         else return productDao.findAllProducts()
                 .stream()
                 .filter(Product::isStatus)
+                .sorted(ComparatorUtil.getAscendingNameProductComparator())
                 .collect(Collectors.toList());
     }
 
