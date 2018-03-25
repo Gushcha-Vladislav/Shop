@@ -5,13 +5,16 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @MappedSuperclass
-public class Generic implements Serializable {
+public abstract class Generic implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
+    public Generic(){
+
+    }
     public Integer getId() {
         return id;
     }
