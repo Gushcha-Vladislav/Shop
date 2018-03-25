@@ -18,6 +18,7 @@ public class AppInitializer implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(WebConfig.class);
         ctx.register(SecurityConfig.class);
+        ctx.register(JmsConfig.class);
         container.addListener(new ContextLoaderListener(ctx));
         container.addListener(new SessionListener());
 
@@ -29,6 +30,5 @@ public class AppInitializer implements WebApplicationInitializer {
         FilterRegistration.Dynamic encodingFilter = container.addFilter("encoding-filter", CharacterEncodingFilter.class);
         encodingFilter.setInitParameter("encoding", "UTF-8");
         encodingFilter.setInitParameter("forceEncoding", "true");
-        encodingFilter.addMappingForUrlPatterns(null, true, "/*");
-    }
+        encodingFilter.addMappingForUrlPatterns(null, true, "/*");}
 }
