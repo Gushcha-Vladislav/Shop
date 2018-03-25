@@ -47,7 +47,7 @@ public class ProductDaoImpl extends GenericDao implements ProductDao {
 
     @Override
     public int findNumberOfSalesById(int id) {
-        Query query= em.createQuery("SELECT c.amount FROM StatisticTopProduct c WHERE c.product.id = :id", Product.class);
+        Query query= em.createQuery("SELECT c.amount FROM StatisticTopProduct c WHERE c.product.id = :id");
         query.setParameter("id", id);
         try {
             return (int) query.getSingleResult();
