@@ -1,7 +1,5 @@
 package com.tsystems.javaschoolshop.util;
 
-
-import com.tsystems.javaschoolshop.model.Category;
 import com.tsystems.javaschoolshop.model.Product;
 
 import java.util.Comparator;
