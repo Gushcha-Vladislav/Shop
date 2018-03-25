@@ -2,9 +2,11 @@ package com.tsystems.javaschoolshop.controller;
 
 import com.tsystems.javaschoolshop.service.api.BasketProductService;
 import com.tsystems.javaschoolshop.service.api.OrderService;
+import com.tsystems.javaschoolshop.service.api.ProductService;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import com.tsystems.javaschoolshop.session.BasketBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.JmsException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,14 +25,16 @@ public class OrderController {
     private final BasketBean basketBean;
     private final UserService userService;
     private final BasketProductService basketProductService;
+    private final ProductService productService;
 
     @Autowired
-    public OrderController(OrderService orderService, BasketBean basketBean,
+    public OrderController(OrderService orderService, BasketBean basketBean,ProductService productService,
                            UserService userService, BasketProductService basketProductService) {
         this.orderService = orderService;
         this.basketBean = basketBean;
         this.userService = userService;
         this.basketProductService=basketProductService;
+        this.productService =productService;
     }
 
     @RequestMapping(value = "/order", method = RequestMethod.GET)
@@ -48,6 +52,10 @@ public class OrderController {
 
         orderService.saveOrder(idAddress,paymentType,(basketBean.getBasket()));
         basketBean.setBasket(new ArrayList<>());
+        try {
+            productService.sendMessage();
+        } catch (JmsException e) {
+        }
         return "redirect:/catalog";
     }
 }
