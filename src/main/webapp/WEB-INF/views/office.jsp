@@ -12,7 +12,7 @@
 <script src="/resources/js/account.js"></script>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-offset-3 col-sm-9 hidden-xs">
+        <div class="col-sm-offset-4 col-sm-7 hidden-xs">
             <div class="breadcrumb">
                 <li><a href="/home">Home</a></li>
                 <li><a href="/account">${user.nameUser}</a></li>

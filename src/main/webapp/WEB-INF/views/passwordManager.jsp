@@ -10,7 +10,7 @@
 <c:import url="head.jsp"/>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-offset-3 col-sm-9 hidden-xs">
+        <div class="col-sm-offset-4 col-sm-7">
             <div class="breadcrumb">
                 <li><a href="/home">Home</a></li>
                 <li><a href="/account">User Name</a></li>

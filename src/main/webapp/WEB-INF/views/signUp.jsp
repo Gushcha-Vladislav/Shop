@@ -13,7 +13,7 @@
 <script src="/resources/js/signUp.js"></script>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-offset-3 col-sm-8">
+        <div class="col-sm-offset-4 col-sm-7">
             <div class="breadcrumb">
                 <li><a href="/catalog">Home</a></li>
                 <li id="breadCrumb"><a href="/signUp">Authentication</a></li>
