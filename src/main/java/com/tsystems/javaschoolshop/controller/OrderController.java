@@ -1,5 +1,6 @@
 package com.tsystems.javaschoolshop.controller;
 
+import com.tsystems.javaschoolshop.model.Order;
 import com.tsystems.javaschoolshop.service.api.BasketProductService;
 import com.tsystems.javaschoolshop.service.api.OrderService;
 import com.tsystems.javaschoolshop.service.api.ProductService;
@@ -50,7 +51,8 @@ public class OrderController {
     public String orderPay(@RequestParam(name = "idAddress") int idAddress,
                            @RequestParam(name = "paymentType") String paymentType) {
 
-        orderService.saveOrder(idAddress,paymentType,(basketBean.getBasket()));
+        Order order = orderService.saveOrder(idAddress,paymentType,(basketBean.getBasket()));
+        orderService.sendMessage(order,userService.findUserFromSecurityContextHolder(),basketBean.getBasket(),idAddress);
         basketBean.setBasket(new ArrayList<>());
         try {
             productService.sendMessage();
