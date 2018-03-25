@@ -41,7 +41,6 @@ public class BasketProductServiceMockTest {
         productP1.setBrand("Gold");
         productP1.setCategory(null);
         productP1.setQuantityInStock(250);
-        productP1.setQuantitySold(2);
         productP1.setDescription("description");
         productP1.setProperty("property");
 
@@ -53,7 +52,6 @@ public class BasketProductServiceMockTest {
         productP2.setBrand("Gold");
         productP2.setCategory(null);
         productP2.setQuantityInStock(250);
-        productP2.setQuantitySold(2);
         productP2.setDescription("description");
         productP2.setProperty("property");
 
