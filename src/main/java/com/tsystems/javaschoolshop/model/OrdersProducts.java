@@ -22,8 +22,6 @@ public class OrdersProducts extends Generic {
     private Integer amount;
 
     @NotNull
-    @Column(name = "price_one")
-    private Integer priceOne;
 
     public OrdersProducts() {
     }
@@ -32,7 +30,6 @@ public class OrdersProducts extends Generic {
         this.order = order;
         this.product = product;
         this.amount = amount;
-        this.priceOne = priceOne;
     }
 
     public Order getOrder() {
@@ -59,13 +56,6 @@ public class OrdersProducts extends Generic {
         this.amount = amount;
     }
 
-    public Integer getPriceOne() {
-        return priceOne;
-    }
-
-    public void setPriceOne(Integer priceOne) {
-        this.priceOne = priceOne;
-    }
 
     @Override
     public String toString() {
@@ -74,7 +64,6 @@ public class OrdersProducts extends Generic {
         if(order!=null) sb.append(", order=").append(order.toString());
         if(product!=null) sb.append(", product=").append(product.toString());
         if(amount!=null) sb.append(", amount=").append(amount);
-        if(priceOne!=null) sb.append(", priceOne=").append(priceOne);
         sb.append('}');
         return sb.toString();
     }
