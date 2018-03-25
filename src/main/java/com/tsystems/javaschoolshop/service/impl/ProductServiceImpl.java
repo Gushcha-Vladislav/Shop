@@ -5,8 +5,8 @@ import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.service.api.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
+import org.springframework.jms.core.JmsTemplate;
+import javax.jms.TextMessage;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,10 +14,13 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductDao productDao;
+    private final JmsTemplate jmsTemplate;
 
     @Autowired
-    ProductServiceImpl(ProductDao productDao) {
+    ProductServiceImpl(ProductDao productDao,JmsTemplate jmsTemplate) {
+
         this.productDao = productDao;
+        this.jmsTemplate =jmsTemplate;
     }
 
     @Override
@@ -53,5 +56,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public int findNumberOfSalesById(int id){
         return productDao.findNumberOfSalesById(id);
+    }
+
+    @Override
+    public void sendMessage() {
+        jmsTemplate.send("advertising.stand", session -> {
+            TextMessage msg = session.createTextMessage();
+            msg.setText("update");
+            return msg;
+        });
     }
 }
