@@ -35,7 +35,7 @@ public class BasketProductServiceImpl implements BasketProductService {
                 basketProduct.setAmount(basketProductDto.getAmount());
                 basketProduct.setPrice(basketProductDto.getPrice());
                 product.setQuantityInStock(product.getQuantityInStock() - basketProductDto.getAmount() + basketProduct.getAmount());
-                product.setStatisticTopProduct(new StatisticTopProduct(product,product.getStatisticTopProduct().getAmount()+ basketProductDto.getAmount() - basketProduct.getAmount()));
+                product.getStatisticTopProduct().setAmount(product.getStatisticTopProduct().getAmount()+ basketProductDto.getAmount() - basketProduct.getAmount());
                 isFoundInBag = true;
                 break;
             }
@@ -44,8 +44,9 @@ public class BasketProductServiceImpl implements BasketProductService {
         if (!isFoundInBag)
             if(product.getQuantityInStock() >= basketProductDto.getAmount()) {
                 basket.add(basketProductDto);
+                if(product.getStatisticTopProduct()==null) product.setStatisticTopProduct(new StatisticTopProduct(product,0));
                 product.setQuantityInStock(product.getQuantityInStock() - basketProductDto.getAmount());
-                product.setStatisticTopProduct(new StatisticTopProduct(product,product.getStatisticTopProduct().getAmount()+ basketProductDto.getAmount()));
+                product.getStatisticTopProduct().setAmount(product.getStatisticTopProduct().getAmount()+ basketProductDto.getAmount());
             }else return false;
         productDao.saveProduct(product);
         return true;
@@ -59,8 +60,8 @@ public class BasketProductServiceImpl implements BasketProductService {
             if (product.getId() == id) {
                 Product originalProduct = productDao.findProductById(id);
                 originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
+                originalProduct.getStatisticTopProduct().setAmount(originalProduct.getStatisticTopProduct().getAmount() - product.getAmount());
                 productDao.saveProduct(originalProduct);
-                originalProduct.setStatisticTopProduct(new StatisticTopProduct(originalProduct,originalProduct.getStatisticTopProduct().getAmount() - product.getAmount()));
                 basket.remove(product);
                 break;
             }
@@ -102,7 +103,7 @@ public class BasketProductServiceImpl implements BasketProductService {
         for (BasketProductDto product : basket) {
             Product originalProduct = productDao.findProductById(product.getId());
             originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
-            originalProduct.setStatisticTopProduct(new StatisticTopProduct(originalProduct,originalProduct.getStatisticTopProduct().getAmount() - product.getAmount()));
+            originalProduct.getStatisticTopProduct().setAmount(originalProduct.getStatisticTopProduct().getAmount() - product.getAmount());
             productDao.saveProduct(originalProduct);
         }
 

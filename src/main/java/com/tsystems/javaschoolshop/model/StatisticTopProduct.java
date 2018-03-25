@@ -1,22 +1,20 @@
 package com.tsystems.javaschoolshop.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @DiscriminatorValue("SP")
 public class StatisticTopProduct extends Statistics {
 
-    @NotNull
     @OneToOne
     @JoinColumn(name = "id_product")
     private Product product;
 
-    @NotNull
     @Column(name = "amount")
     private Integer amount;
 
     public StatisticTopProduct() {
+
     }
 
     public StatisticTopProduct(Product product, Integer amount) {

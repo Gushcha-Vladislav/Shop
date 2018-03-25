@@ -52,7 +52,7 @@ public class User extends Generic {
     private List<Address> addresses = new ArrayList<>();
 
     @OneToOne(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private StatisticTopUser statisticTopUser;
+    private StatisticTopUser statisticTopUser = new StatisticTopUser(this,0);
 
     public User() {
     }

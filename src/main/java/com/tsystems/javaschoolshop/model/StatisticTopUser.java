@@ -7,12 +7,10 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue("SU")
 public class StatisticTopUser extends Statistics {
 
-    @NotNull
     @OneToOne
     @JoinColumn(name = "id_user")
     private User user;
 
-    @NotNull
     @Column(name = "price")
     private Integer price;
 
@@ -23,7 +21,6 @@ public class StatisticTopUser extends Statistics {
         this.user = user;
         this.price = price;
     }
-
     public User getUser() {
         return user;
     }

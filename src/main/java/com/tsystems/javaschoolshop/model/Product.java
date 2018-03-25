@@ -51,7 +51,7 @@ public class Product extends Generic {
     private boolean status = true;
 
     @OneToOne(mappedBy = "product",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private StatisticTopProduct statisticTopProduct;
+    private StatisticTopProduct statisticTopProduct = new StatisticTopProduct(this,0);
 
     public Product() {
     }

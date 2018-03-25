@@ -2,6 +2,7 @@ package com.tsystems.javaschoolshop.mock.service;
 
 import com.tsystems.javaschoolshop.dao.impl.ProductDaoImpl;
 import com.tsystems.javaschoolshop.model.Product;
+import com.tsystems.javaschoolshop.model.StatisticTopProduct;
 import com.tsystems.javaschoolshop.model.dto.BasketProductDto;
 import com.tsystems.javaschoolshop.service.impl.BasketProductServiceImpl;
 import org.junit.Assert;
@@ -43,6 +44,7 @@ public class BasketProductServiceMockTest {
         productP1.setQuantityInStock(250);
         productP1.setDescription("description");
         productP1.setProperty("property");
+        productP1.setStatisticTopProduct(new StatisticTopProduct(productP1,15));
 
         productP2.setId(2);
         productP2.setNameProduct("bread");
@@ -54,6 +56,7 @@ public class BasketProductServiceMockTest {
         productP2.setQuantityInStock(250);
         productP2.setDescription("description");
         productP2.setProperty("property");
+        productP2.setStatisticTopProduct(new StatisticTopProduct(productP2,15));
 
         product1.setId(1);
         product1.setAmount(2);
