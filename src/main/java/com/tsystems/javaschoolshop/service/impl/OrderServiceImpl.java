@@ -62,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
         order.setDateOrder(new Date());
         int totalPrise =basketProductService.totalPrice(basket);
         order.setOrderPrice(totalPrise);
-        user.setStatisticTopUser(new StatisticTopUser(user,totalPrise));
+        user.getStatisticTopUser().setPrice(user.getStatisticTopUser().getPrice()+totalPrise);
         for (BasketProductDto bagItem : basket) {
             Product product = basketProductService.convertBasketProductDtoToProduct(bagItem);
             OrdersProducts ordersProducts = new OrdersProducts(order, product, bagItem.getAmount(), product.getPrice());
