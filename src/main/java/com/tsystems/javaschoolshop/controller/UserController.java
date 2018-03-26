@@ -74,7 +74,8 @@ public class UserController extends GenericController{
         return "redirect:/account/addresses";
     }
     @RequestMapping(value = "/formAddress", method = RequestMethod.GET)
-    public ModelAndView formAddress() {
+    public ModelAndView formAddress(final HttpServletRequest request) {
+        request.getSession().setAttribute("nameUser", userService.findUserFromSecurityContextHolder().getNameUser());
         return new ModelAndView("formAddress", "address", new Address());
     }
 }
