@@ -26,7 +26,7 @@
         <div class="container col-sm-9">
             <div class="row">
                 <div class="main-login">
-                    <form class="" method="post" action="/addAddress">
+                    <form class="" method="post" action="/account/user">
                         <div class="col-sm-offset-3 col-sm-6 main-center">
                             <div id="error"></div>
                             <c:import url="inputLogin.jsp"/>

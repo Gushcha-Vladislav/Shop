@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:import url="head.jsp"/>
 <link rel="stylesheet" href="/resources/css/select.css">
 <script src="/resources/js/order.js"></script>
@@ -56,6 +57,7 @@
                     <div class="col-sm-6">
                         <p>Order price:&nbsp;&nbsp; ${totalPriceForPay}</p>
                     </div>
+                    <c:if test="${fn:length(user.addresses) > 0}">
                     <div class="col-sm-6">
                         <select id="selectForAddress" class="sort">
                             <c:forEach var="item" items="${user.addresses}">
@@ -76,6 +78,12 @@
                             <option value="CARD">Credit card</option>
                         </select>
                     </div>
+                    </c:if>
+                    <c:if test="${fn:length(user.addresses) eq 0}">
+                        <div class="col-sm-6">
+                            <a href="/account/addresses" class="btn btn-success pay">Add address</a>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </div>
