@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="/resources/css/input.css">
 <c:import url="head.jsp"/>
@@ -13,7 +14,7 @@
 <script src="/resources/js/signUp.js"></script>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-7">
+        <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
                 <li><a href="/catalog">Home</a></li>
                 <li id="breadCrumb"><a href="/signUp">Authentication</a></li>
@@ -24,16 +25,18 @@
         <div class="col-sm-3">
             <%--категории--%>
         </div>
-        <div class="col-sm-8">
+        <div class="container col-sm-9">
             <div class="row ">
-                <div class="col-sm-12 main-center">
-                    <form  id="signUp" method="POST" action="${pageContext.request.contextPath}/signUp" modelAttribute="user">
-                    <c:import url="inputUser.jsp"/>
-                    <div class="form-group ">
-                        <input type="submit" id="register" value="Register"
-                               class="btn btn-primary btn-lg btn-block login-button">
-                    </div>
-                    </form>
+                <div class="col-sm-12">
+                    <form:form  id="signUp" method="POST" action="${pageContext.request.contextPath}/signUp" modelAttribute="user">
+                        <div class="col-sm-offset-3 col-sm-6 main-center">
+                            <c:import url="inputUser.jsp"/>
+                            <div class="form-group ">
+                                <input type="submit" id="register" value="Register"
+                                       class="btn btn-primary btn-lg btn-block login-button">
+                            </div>
+                        </div>
+                    </form:form>
                 </div>
             </div>
         </div>
