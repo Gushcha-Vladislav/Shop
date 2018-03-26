@@ -56,7 +56,6 @@ public class LoginController extends GenericController{
                          final HttpServletRequest request) {
         if (result.hasErrors()) {
             return "formUser";
-
         }else{
             if (!userService.isEmailFree(user.getEmail())) return "formUser";
             userService.saveNewUser(user);
