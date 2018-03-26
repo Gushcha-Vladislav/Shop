@@ -28,11 +28,9 @@
                         <dov class="col-xs-12">
                             <h1>Ooops... You have error. Write a message admin</h1>
                         </dov>
-                        <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
                             <dov class="col-xs-12">
-                                <h1>${exeption}</h1>
+                                <h1>${exception}</h1>
                             </dov>
-                        </sec:authorize>
                     </div>
                 </div>
             </div>
