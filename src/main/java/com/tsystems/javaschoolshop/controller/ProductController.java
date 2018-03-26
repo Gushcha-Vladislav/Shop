@@ -51,13 +51,5 @@ public class ProductController {
 
         return productService.getQuantityProductInStickById(id).toString();
     }
-//   @RequestMapping(   // consumes="application/json",
-////            produces="application/json",
-//            value = "/test")
-//    public String showProductPage(@Valid Test test, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "false";
-//        }
-//        return "true";
-//    }
+
 }
