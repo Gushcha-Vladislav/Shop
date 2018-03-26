@@ -10,7 +10,7 @@
 <c:import url="head.jsp"/>
 <script src="/resources/js/signUp.js"></script>
 <script src="/resources/js/account.js"></script>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">

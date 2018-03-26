@@ -12,7 +12,7 @@
 <c:import url="head.jsp"/>
 <script src="/webjars/jquery-maskedinput/1.4.0/jquery.maskedinput.min.js"></script>
 <script src="/resources/js/signUp.js"></script>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
