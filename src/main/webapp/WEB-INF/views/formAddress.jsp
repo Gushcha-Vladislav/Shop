@@ -15,7 +15,7 @@
 <script src="/resources/js/signUp.js"></script>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-offset-3 col-sm-8">
+        <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
                 <li><a href="/catalog">Home</a></li>
                 <li id="breadCrumb"><a href="/signUp">Authentication</a></li>
@@ -26,15 +26,17 @@
         <div class="col-sm-3">
             <%--категории--%>
         </div>
-        <div class="col-sm-8">
+        <div class="container col-sm-9">
             <div class="row ">
                 <div class="col-sm-12"> <h4>Add new address</h4></div>
                 <div class="col-sm-12 main-center">
                     <form:form  id="signUp" method="POST" action="${pageContext.request.contextPath}/account/addresses" modelAttribute="address">
-                        <c:import url="inputAddress.jsp"/>
-                        <div class="form-group ">
-                            <input type="submit" id="register" value="AddNewAddress"
-                                   class="btn btn-primary btn-lg btn-block login-button">
+                        <div class="col-sm-offset-3 col-sm-6 main-center">
+                            <c:import url="inputAddress.jsp"/>
+                            <div class="form-group ">
+                                <input type="submit" id="register" value="AddNewAddress"
+                                       class="btn btn-primary btn-lg btn-block login-button">
+                            </div>
                         </div>
                     </form:form>
                 </div>
