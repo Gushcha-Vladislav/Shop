@@ -39,8 +39,7 @@ public class ProductDaoImpl extends GenericDao implements ProductDao {
         Query topListQuery;
         if(!adminMode) topListQuery= em.createQuery(temp+"WHERE c.product.status = TRUE ORDER BY c.amount DESC", Product.class);
         else topListQuery= em.createQuery(temp+" ORDER BY c.amount DESC", Product.class);
-        List<Product> products = topListQuery.setMaxResults(10).getResultList();
-        return products;
+        return topListQuery.setMaxResults(10).getResultList();
     }
 
     @Override
