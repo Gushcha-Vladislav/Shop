@@ -29,8 +29,7 @@ public class UserController extends GenericController{
 
     @RequestMapping(value = "/account", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView account() {
-        ModelAndView modelAndView = new ModelAndView("office", "user", userService.findUserFromSecurityContextHolder());
-        return modelAndView;
+        return new ModelAndView("office", "user", userService.findUserFromSecurityContextHolder());
     }
     @RequestMapping(value = "/account/change", method = RequestMethod.POST)
     public String accountChange(User user) {
