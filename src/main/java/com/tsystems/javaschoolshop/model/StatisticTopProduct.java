@@ -40,7 +40,7 @@ public class StatisticTopProduct extends Statistics {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("StatisticTopProduct{");
+        final StringBuilder sb = new StringBuilder("StatisticTopProduct{");
         if(getId()!=null) sb.append("id=").append(getId()).append('\'');
         if(product!=null) sb.append("product=").append(product.toString()).append('\'');
         if(amount!=null) sb.append(", amount=").append(amount);
