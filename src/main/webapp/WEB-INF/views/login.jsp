@@ -10,11 +10,11 @@
 <link rel="stylesheet" href="/resources/css/input.css">
 <c:import url="head.jsp"/>
 <script src="/resources/js/login.js"></script>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-7">
+        <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
-                <li><a href="#">Home</a></li>
+                <li><a href="/catalog">Home</a></li>
                 <li id="breadCrumb"><a href="/login">Authentication</a></li>
             </div>
         </div>
@@ -25,13 +25,15 @@
         </div>
         <div class="col-sm-8">
             <div class="row">
-                <div class="main-login main-center">
-                    <div id="error"></div>
-                    <form class="" method="post" action="/j_spring_security_check">
-                        <c:import url="inputLogin.jsp"/>
-                        <div class="form-group ">
-                            <input type="submit" value="Login"
-                                   class="btn btn-primary btn-lg btn-block login-button">
+                <div class="main-login">
+                    <form class="" method="post" action="/addAddress">
+                        <div class="col-sm-offset-3 col-sm-6 main-center">
+                            <div id="error"></div>
+                            <c:import url="inputLogin.jsp"/>
+                            <div class="form-group ">
+                                <input type="submit" value="Login"
+                                       class="btn btn-primary btn-lg btn-block login-button">
+                            </div>
                         </div>
                     </form>
                 </div>
