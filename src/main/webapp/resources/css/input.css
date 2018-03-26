@@ -115,3 +115,7 @@ input:valid {
 input.basket {
     width: 100px;
 }
+
+.error {
+    color :red;
+}
