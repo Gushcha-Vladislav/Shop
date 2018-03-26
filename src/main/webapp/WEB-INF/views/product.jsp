@@ -12,9 +12,9 @@
 <script src="/resources/js/product.js"></script>
 <link rel="stylesheet" href="/resources/css/product.css">
 <script src="/resources/js/productPage.js"></script>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-7">
+        <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
                 <li><a href="/catalog">Home</a></li>
                 <li><a href="">${product.category.nameCategory}</a></li>
@@ -26,7 +26,7 @@
         <div class="col-sm-3">
             <%--<c:import url="category.jsp"/>--%>
         </div>
-        <div class="col-sm-9">
+        <div class="container col-sm-9">
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <h4 class="nameProduct" id="nameProduct">${product.nameProduct}</h4>
@@ -49,11 +49,11 @@
                         </button>
                     </div>
                     </sec:authorize>
-                    <a href="#" class="btn" id="vk"><i class="fab fa-vk fa-3x"></i></a>
-                    <a href="#" class="btn" id="fb"><i class="fab fa-facebook fa-3x"></i></a>
-                    <a href="#" class="btn" id="mailRu"><i class="fas fa-at fa-3x"></i></a>
-                    <a href="#" class="btn" id="ok"><i class="fab fa-odnoklassniki-square fa-3x"></i></a>
-                    <a href="#" class="btn" id="twitter"><i class="fab fa-twitter-square fa-3x"></i></a>
+                    <a class="btn" id="vk"><i class="fab fa-vk fa-3x"></i></a>
+                    <a class="btn" id="fb"><i class="fab fa-facebook fa-3x"></i></a>
+                    <a class="btn" id="mailRu"><i class="fas fa-at fa-3x"></i></a>
+                    <a class="btn" id="ok"><i class="fab fa-odnoklassniki-square fa-3x"></i></a>
+                    <a class="btn" id="twitter"><i class="fab fa-twitter-square fa-3x"></i></a>
                 </div>
             </div>
         </div>
@@ -66,9 +66,7 @@
             <div class="modal-body">
                 <button class="close" type="button" data-dismiss="modal" id="closeModal"><i class="fas fa-times"></i></button>
                 <div class="item-amount row">
-                    <div class="col-xs-5 col-sm-12 pay">
-
-                        <h4 class="btn-cart">Choose amount:</h4></div>
+                    <div class="col-xs-5 col-sm-12 pay"><h4 class="btn-cart">Choose amount:</h4></div>
                     <div class="col-sm-4 col-xs-5 amount-button  pay">
                         <button type="button" class="button-less" id="button-less"><i class="fa fa-minus"></i></button>
                         <input type="number" id="amount-number" name="amount" class="amount-number" value="0" disabled>
