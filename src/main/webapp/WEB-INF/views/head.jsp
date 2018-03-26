@@ -40,7 +40,7 @@
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_USER')">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="menu-icon fas fa-user fa-lg"></i>Name<b
+                            class="menu-icon fas fa-user fa-lg"></i>${nameUser}<b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/account">Profile</a></li>
@@ -54,7 +54,7 @@
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')  or hasRole('ROLE_SUPER_ADMIN')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="menu-icon fas fa-user fa-lg"></i>Имя<b
+                            class="menu-icon fas fa-user fa-lg"></i>${nameUser}<b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/account">Profile</a></li>
