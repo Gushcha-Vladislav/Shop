@@ -22,7 +22,7 @@ public class Address extends Generic {
     @Column(name = "city")
     private String city;
 
-    @Size(min = 6, max = 10)
+    @Size(max = 10)
     @Column(name = "postcode")
     private String postcode;
 
@@ -36,6 +36,7 @@ public class Address extends Generic {
     @Column(name = "house")
     private String house;
 
+    @Size(max = 5)
     @Column(name = "apartment")
     private String apartment;
 

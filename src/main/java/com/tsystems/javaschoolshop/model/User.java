@@ -21,6 +21,7 @@ public class User extends Generic {
     @Column(name = "name_user")
     private String nameUser;
 
+    @Size(max = 20)
     @Column(name = "last_name_user")
     private String lastNameUser;
 
@@ -39,7 +40,7 @@ public class User extends Generic {
     @Column(name = "email", unique = true)
     private String email;
 
-    @Size(min = 11, max = 20)
+    @Size(max = 20)
     @Column(name = "phone", unique = true)
     private String phone;
 
