@@ -23,7 +23,7 @@
         <div class="col-sm-3">
             <%--категории--%>
         </div>
-        <div class="col-sm-8">
+        <div class="container col-sm-9">
             <div class="row">
                 <div class="main-login">
                     <form class="" method="post" action="/addAddress">
