@@ -15,7 +15,6 @@ import javax.validation.Valid;
 
 @Controller
 @Secured({"ROLE_ANONYMOUS"})
-@RequestMapping(value = "/")
 public class LoginController extends GenericController{
 
     private final UserService userService;
@@ -31,7 +30,7 @@ public class LoginController extends GenericController{
         return "login";
     }
 
-    @RequestMapping(value = "/singUp", method = RequestMethod.GET)
+    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public ModelAndView signUp() {
         return new ModelAndView("formUser","user",new User());
     }
