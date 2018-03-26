@@ -6,11 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:import url="head.jsp"/>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-7">
+        <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
                 <li><a href="#">Error</a></li>
             </div>
@@ -24,7 +25,14 @@
             <div class="row">
                 <div class="container-fluid">
                     <div class="row">
-                        <h1>Ooops... You have error. Write a message admin</h1>
+                        <dov class="col-xs-12">
+                            <h1>Ooops... You have error. Write a message admin</h1>
+                        </dov>
+                        <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+                            <dov class="col-xs-12">
+                                <h1>${exeption}</h1>
+                            </dov>
+                        </sec:authorize>
                     </div>
                 </div>
             </div>
