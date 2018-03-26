@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: gusch
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="form-group">
     <label for="email" class="cols-sm-2 control-label">Your email</label>
     <div class="cols-sm-10">
@@ -15,6 +17,7 @@
                    placeholder="Enter your Email" required maxlength="45"
                    pattern="[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}"/>
         </div>
+        <span class="errorSpan"><form:errors path="email" cssClass="error" /></span>
     </div>
 </div>
 <div class="form-group">
@@ -27,5 +30,6 @@
             <input type="password" class="form-control required" name="password"
                    id="password" placeholder="Enter your Password"/>
         </div>
+        <span class="errorSpan"><form:errors path="password" cssClass="error" /></span>
     </div>
 </div>

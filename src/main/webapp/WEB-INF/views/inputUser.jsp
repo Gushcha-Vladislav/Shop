@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="form-group">
     <label for="nameUser" class="cols-sm-2 control-label">Your Name</label>
     <div class="cols-sm-10">
@@ -17,6 +18,7 @@
             <input type="text" class="form-control required" name="nameUser" id="nameUser"
                    placeholder="Enter your Name" required minlength="3" maxlength="20"/>
         </div>
+        <span class="errorSpan"><form:errors path="nameUser" cssClass="error" /></span>
     </div>
 
 </div>
@@ -32,6 +34,7 @@
                    id="lastNameUser" placeholder="Enter your lastName" minlength="3"
                    maxlength="20"/>
         </div>
+        <span class="errorSpan"><form:errors path="lastNameUser" cssClass="error" /></span>
     </div>
 </div>
 <div class="form-group">
@@ -46,6 +49,7 @@
                    id="birthday" placeholder="Enter your birthday"
                    required/>
         </div>
+        <span class="errorSpan"><form:errors path="birthday" cssClass="error" /></span>
     </div>
 </div>
 <div class="form-group">
@@ -58,6 +62,7 @@
             <input type="tel" class="form-control" name="phone" id="phone"
                    placeholder="Enter phone" maxlength="20"/>
         </div>
+        <span class="errorSpan"><form:errors path="phone" cssClass="error" /></span>
     </div>
 </div>
 <c:import url="inputLogin.jsp"/>

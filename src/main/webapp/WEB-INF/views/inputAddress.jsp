@@ -5,6 +5,7 @@
   Time: 22:44
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="row">
     <div class="col-sm-6">
@@ -15,6 +16,7 @@
                     <span class="input-group-addon"><i class="fas fa-globe"></i></span>
                     <input type="text" class="form-control required" name="country" id="country"
                            placeholder="Enter your country" required maxlength="45"/>
+                    <span class="errorSpan"><form:errors path="country" cssClass="error" /></span>
                 </div>
             </div>
         </div>
@@ -28,6 +30,7 @@
                     <input type="text" class="form-control required" name="city" id="city"
                            placeholder="Enter your city" maxlength="45"  minlength="5"  required/>
                 </div>
+                <span class="errorSpan"><form:errors path="city" cssClass="error" /></span>
             </div>
         </div>
     </div>
@@ -40,6 +43,7 @@
                     <input type="text" class="form-control" name="postcode" id="postcode"
                            placeholder="Enter your postcode" minlength="6"  maxlength="10"/>
                 </div>
+                <span class="errorSpan"><form:errors path="postcode" cssClass="error" /></span>
             </div>
         </div>
     </div>
@@ -52,6 +56,7 @@
                     <input type="text" class="form-control required" name="street" id="street" placeholder="Enter your street"
                            maxlength="45" minlength="5"  required/>
                 </div>
+                <span class="errorSpan"><form:errors path="street" cssClass="error" /></span>
             </div>
         </div>
     </div>
@@ -64,6 +69,7 @@
                     <input type="text" class="form-control required" name="house" id="house" placeholder="Enter your house"
                            required maxlength="5" minlength="1" />
                 </div>
+                <span class="errorSpan"><form:errors path="house" cssClass="error" /></span>
             </div>
         </div>
     </div>
@@ -76,6 +82,7 @@
                     <input type="text" class="form-control" name="apartment" id="apartment"
                            placeholder="Enter your apartment" minlength="1"  maxlength="5"/>
                 </div>
+                <span class="errorSpan"><form:errors path="apartment" cssClass="error" /></span>
             </div>
         </div>
     </div>
