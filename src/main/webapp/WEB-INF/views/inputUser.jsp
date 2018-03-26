@@ -18,7 +18,7 @@
             <input type="text" class="form-control required" name="nameUser" id="nameUser"
                    placeholder="Enter your Name" required minlength="3" maxlength="20"/>
         </div>
-        <span class="errorSpan"><form:errors path="nameUser" cssClass="error" /></span>
+        <h4><form:errors path="nameUser" cssClass="error" /></h4>
     </div>
 
 </div>
@@ -34,7 +34,7 @@
                    id="lastNameUser" placeholder="Enter your lastName" minlength="3"
                    maxlength="20"/>
         </div>
-        <span class="errorSpan"><form:errors path="lastNameUser" cssClass="error" /></span>
+        <h4><form:errors path="lastNameUser" cssClass="error" /></h4>
     </div>
 </div>
 <div class="form-group">
@@ -49,7 +49,7 @@
                    id="birthday" placeholder="Enter your birthday"
                    required/>
         </div>
-        <span class="errorSpan"><form:errors path="birthday" cssClass="error" /></span>
+        <h4><form:errors path="birthday" cssClass="error" /></h4>
     </div>
 </div>
 <div class="form-group">
@@ -62,7 +62,7 @@
             <input type="tel" class="form-control" name="phone" id="phone"
                    placeholder="Enter phone" maxlength="20"/>
         </div>
-        <span class="errorSpan"><form:errors path="phone" cssClass="error" /></span>
+        <h4><form:errors path="phone" cssClass="error" /></h4>
     </div>
 </div>
 <c:import url="inputLogin.jsp"/>
