@@ -1,7 +1,5 @@
 package com.tsystems.javaschoolshop.service.impl;
 
-
-import com.tsystems.javaschoolshop.config.MailConfig;
 import com.tsystems.javaschoolshop.dao.api.OrderDao;
 import com.tsystems.javaschoolshop.model.*;
 import com.tsystems.javaschoolshop.model.dto.BasketProductDto;
