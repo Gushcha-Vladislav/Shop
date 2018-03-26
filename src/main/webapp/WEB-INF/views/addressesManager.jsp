@@ -10,11 +10,11 @@
 <c:import url="head.jsp"/>
 <link rel="stylesheet" href="/resources/css/input.css">
 <script src="/resources/js/address.js"></script>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-7">
+        <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
-                <li><a href="/Home">Home</a></li>
+                <li><a href="/catalog">Home</a></li>
                 <li><a href="/account">User Name</a></li>
                 <li><a href="/account/addresses">Address manager</a></li>
             </div>
@@ -37,34 +37,8 @@
                             <c:import url="addressItem.jsp"/>
                         </div>
                         <div class="col-xs-12">
-                            <buuton class="btn btn-success btn-block" data-toggle="modal" type="modal"
-                                    data-target="#addAddress" >Add address</buuton>
+                            <a class="btn btn-success btn-block" href="/account/formAddress">Add address</a>
                         </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="addAddress">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal"><i class="fas fa-times"></i></button>
-                <h4 class="modal-title text-center">Add address</h4>
-            </div>
-            <div class="modal-body">
-                <div class="tab-pane fade in" id="checkIn">
-                    <div class="main-login main-center">
-                        <form class="" method="post" action="/account/addresses">
-                            <c:import url="inputAddress.jsp"/>
-                            <div class="form-group ">
-                                <input type="submit" type="button" id="register"
-                                       class="btn btn-primary btn-lg btn-block login-button"
-                                       value="AddElement">
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
