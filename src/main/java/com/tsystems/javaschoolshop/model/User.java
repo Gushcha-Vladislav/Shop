@@ -21,7 +21,6 @@ public class User extends Generic {
     @Column(name = "name_user")
     private String nameUser;
 
-    @Size(min=3, max=20)
     @Column(name = "last_name_user")
     private String lastNameUser;
 

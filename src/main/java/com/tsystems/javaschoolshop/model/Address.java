@@ -36,8 +36,6 @@ public class Address extends Generic {
     @Column(name = "house")
     private String house;
 
-
-    @Size(min = 1, max = 5)
     @Column(name = "apartment")
     private String apartment;
 
