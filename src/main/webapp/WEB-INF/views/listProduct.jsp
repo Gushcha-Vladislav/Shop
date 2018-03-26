@@ -12,20 +12,21 @@
 <link rel="stylesheet" href="/resources/css/product.css" >
 <script src="/resources/js/catalog.js"></script>
 <script src="/resources/js/productPage.js"></script>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
+        <div class="col-sm-offset-3 col-sm-6">
             <div class="breadcrumb">
                 <li><a href="/catalog">Home</a></li>
                 <li id="breadCrumb"><a href="/catalog">All categories</a></li>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
+            <label clss="sort" for="sortSelect">Order by : </label>
             <select class="sort" id="sortSelect">
-                <option value="SortByPriceAscending">По возрастанию цены</option>
-                <option value="SortByPriceDescending">По убыванию цены</option>
-                <option value="SortByNameAscending">По названию, по алфавиту</option>
-                <option value="SortByNameDescending">По названию, против алфавита</option>
+                <option value="SortByPriceAscending">Price up</option>
+                <option value="SortByPriceDescending">Price down</option>
+                <option value="SortByNameAscending">Name up</option>
+                <option value="SortByNameDescending">Name down</option>
             </select>
         </div>
     </div>
