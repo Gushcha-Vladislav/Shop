@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="head.jsp"/>
-<script src="/resources/js/signUp.js"></script>
+<script src="/resources/js/formUser.js"></script>
 <script src="/resources/js/account.js"></script>
 <div class="container">
     <div class="row">

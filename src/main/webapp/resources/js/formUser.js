@@ -1,13 +1,11 @@
 $(document).ready(function () {
-    validEmail();
+    $('.login-button').attr('disabled', 'disabled');
     $(function($){
         $("#phone").mask("+7(999) 999-9999");
         });
-    $(".required").keyup(
+    $(".required").change(
         function () {
             if($("#email").val().length >= 3 && $("#password").val().length >= 3
-            && $("#country").val().length >= 2 && $("#city").val().length >= 2
-                && $("#street").val().length >= 2 && $("#house").val().length >= 1
                 && $("#nameUser").val().length >= 3){
                 $(".login-button").removeAttr('disabled');
             } else{
@@ -31,7 +29,8 @@ $(document).ready(function () {
             }
         }).
         done(function(recourse) {
-            error(recourse,"phone")
+            error(recourse,"phone");
+            $("#validPhone").html("Error, this email is in the database");
         });
     }
     function validEmail() {
@@ -43,7 +42,8 @@ $(document).ready(function () {
             }
         }).
         done(function(recourse) {
-            error(recourse,"email")
+            error(recourse,"email");
+            $("#validEmail").html("Error, this email is in the database");
         });
     }
 });
