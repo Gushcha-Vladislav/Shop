@@ -26,7 +26,7 @@ public class OrdersProducts extends Generic {
     public OrdersProducts() {
     }
 
-    public OrdersProducts(Order order, Product product, int amount, int priceOne) {
+    public OrdersProducts(Order order, Product product, int amount) {
         this.order = order;
         this.product = product;
         this.amount = amount;

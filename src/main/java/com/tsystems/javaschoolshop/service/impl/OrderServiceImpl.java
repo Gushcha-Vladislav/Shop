@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
         user.getStatisticTopUser().setPrice(user.getStatisticTopUser().getPrice()+totalPrise);
         for (BasketProductDto bagItem : basket) {
             Product product = basketProductService.convertBasketProductDtoToProduct(bagItem);
-            OrdersProducts ordersProducts = new OrdersProducts(order, product, bagItem.getAmount(), product.getPrice());
+            OrdersProducts ordersProducts = new OrdersProducts(order, product, bagItem.getAmount());
             order.getProducts().add(ordersProducts);
         }
         userService.saveNewUser(user);
