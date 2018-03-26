@@ -57,6 +57,7 @@ public class OrderController {
         try {
             productService.sendMessage();
         } catch (JmsException e) {
+            // otherwise, Ignore sending messages
         }
         return "redirect:/catalog";
     }
