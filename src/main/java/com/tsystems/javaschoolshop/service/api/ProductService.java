@@ -1,6 +1,7 @@
 package com.tsystems.javaschoolshop.service.api;
 
 import com.tsystems.javaschoolshop.model.Product;
+import com.tsystems.javaschoolshop.model.dto.ProductDto;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface ProductService {
     int findNumberOfSalesById(int id);
 
     void sendMessage();
+
+    List<ProductDto> convertProductsToProductsDto (List<Product> products);
 }

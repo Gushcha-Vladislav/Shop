@@ -2,12 +2,14 @@ package com.tsystems.javaschoolshop.service.impl;
 
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
+import com.tsystems.javaschoolshop.model.dto.ProductDto;
 import com.tsystems.javaschoolshop.service.api.ProductService;
 import com.tsystems.javaschoolshop.util.ComparatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.jms.core.JmsTemplate;
 import javax.jms.TextMessage;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,6 +60,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public int findNumberOfSalesById(int id){
         return productDao.findNumberOfSalesById(id);
+    }
+
+    @Override
+    public List<ProductDto> convertProductsToProductsDto(List<Product> products) {
+        List<ProductDto> result = new ArrayList<>();
+        if (products == null) return result;
+        for (Product product : products) {
+            result.add(new ProductDto(product.getId(),product.getNameProduct(),product.getPrice(),
+                    product.getImage(),findNumberOfSalesById(product.getId())));
+        }
+        return result;
     }
 
     @Override
