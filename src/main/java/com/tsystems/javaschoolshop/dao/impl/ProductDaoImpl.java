@@ -3,12 +3,10 @@ package com.tsystems.javaschoolshop.dao.impl;
 import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
-import com.tsystems.javaschoolshop.model.StatisticTopProduct;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
