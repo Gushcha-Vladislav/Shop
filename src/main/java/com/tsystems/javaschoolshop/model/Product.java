@@ -56,7 +56,8 @@ public class Product extends Generic {
     public Product() {
     }
 
-    public Product(String nameProduct, Category category, int price, String brand, String property, String image, String description) {
+    public Product(String nameProduct, Category category, Integer price, String brand,
+                   String property, String image, String description, Integer quantityInStock) {
         this.nameProduct = nameProduct;
         this.category = category;
         this.price = price;
@@ -64,6 +65,7 @@ public class Product extends Generic {
         this.property = property;
         this.image = image;
         this.description = description;
+        this.quantityInStock = quantityInStock;
     }
 
     public String getNameProduct() {
