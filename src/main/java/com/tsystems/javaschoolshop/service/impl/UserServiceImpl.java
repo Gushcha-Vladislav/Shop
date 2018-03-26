@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isPhoneFree(final String phone) {
-        if (phone == null || phone.isEmpty() || phone.trim().length()>20 || phone.trim().length()<11) return false;
+        if (phone == null || phone.trim().length()>20 || phone.trim().length()<11) return false;
         return userDao.findUserByPhone(phone) == null;
     }
 
@@ -49,8 +49,6 @@ public class UserServiceImpl implements UserService {
     public void saveNewUser(User user) {
         if(user.getPhone().trim().length() == 0) user.setPhone(null);
         if(user.getLastNameUser().trim().length() == 0) user.setLastNameUser(null);
-        if(user.getAddresses().get(0).getApartment().trim().length() == 0) user.getAddresses().get(0).setApartment(null);
-        if(user.getAddresses().get(0).getPostcode().trim().length() == 0) user.getAddresses().get(0).setPostcode(null);
         user.setRole(UserRoleEnum.ROLE_USER.name());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.saveUser(user);
