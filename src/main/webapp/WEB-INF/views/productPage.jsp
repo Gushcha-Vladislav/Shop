@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:forEach var="product" items="${products}">
-    <div class="col-xs-6 col-sm-4">
+    <div class="col-xs-6 col-lg-4">
         <div class="thumbnail">
             <div class="caption text-center">
                 <h5><a href="/catalog/${product.id}" >${product.nameProduct}</a></h5>
