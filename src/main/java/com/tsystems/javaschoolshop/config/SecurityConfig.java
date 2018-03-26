@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/home/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
                 .antMatchers("/order").access("hasRole('ROLE_USER')")
                 .and().formLogin().loginPage("/login").permitAll().usernameParameter("email")
-                .passwordParameter("password").loginProcessingUrl("/j_spring_security_check").failureUrl("/login.html?error=true").successForwardUrl("/account/formAddress")
+                .passwordParameter("password").loginProcessingUrl("/addAddress").failureUrl("/login.html?error=true").successForwardUrl("/account/formAddress")
                 .and()
                 .logout().logoutUrl("/j_spring_security_logout").logoutSuccessUrl("/");
 
