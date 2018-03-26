@@ -35,9 +35,8 @@ public class LoginController extends GenericController{
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
-    public String signUp(User user,Address address) {
-        ModelAndView modelAndView=new ModelAndView("signUp");
-        return "signUp";
+    public ModelAndView signUp(User user,Address address) {
+        return new ModelAndView("signUp");
     }
 
 
@@ -60,8 +59,6 @@ public class LoginController extends GenericController{
                          @Valid User user, BindingResult resultUser,
                         final HttpServletRequest request) {
         if (resultUser.hasErrors() || resultAddress.hasErrors()) {
-            List<ObjectError> errorUser=resultUser.getAllErrors();
-            List<ObjectError> errorAddress=resultAddress.getAllErrors();
             return "redirect:/signUp";
 
         }else{
