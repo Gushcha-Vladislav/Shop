@@ -31,9 +31,9 @@ public class LoginController extends GenericController{
         return "login";
     }
 
-    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
-    public ModelAndView signUp(User user,Address address) {
-        return new ModelAndView("signUp");
+    @RequestMapping(value = "/singUp", method = RequestMethod.GET)
+    public ModelAndView signUp() {
+        return new ModelAndView("formUser","user",new User());
     }
 
 
@@ -52,20 +52,16 @@ public class LoginController extends GenericController{
 
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public String signUp(@Valid Address address, BindingResult resultAddress,
-                         @Valid User user, BindingResult resultUser,
-                        final HttpServletRequest request) {
-        if (resultUser.hasErrors() || resultAddress.hasErrors()) {
-            return "redirect:/signUp";
+    public String signUp(@Valid User user, BindingResult result,
+                         final HttpServletRequest request) {
+        if (result.hasErrors()) {
+            return "formUser";
 
         }else{
-            if (!userService.isEmailFree(user.getEmail())) return "/signUp";
-            address.setUser(user);
-            user.getAddresses().add(address);
+            if (!userService.isEmailFree(user.getEmail())) return "formUser";
             userService.saveNewUser(user);
-            authenticateUserAndSetSession(address.getUser().getEmail(), request);
+            authenticateUserAndSetSession(user.getEmail(), request);
         }
         return "redirect:/catalog";
     }
-
 }
