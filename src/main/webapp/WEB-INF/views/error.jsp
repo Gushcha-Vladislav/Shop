@@ -29,7 +29,7 @@
                             <h1>Ooops... You have error. Write a message admin</h1>
                         </dov>
                             <dov class="col-xs-12">
-                                <h1>${exception}</h1>
+                                <h6>${exception}</h6>
                             </dov>
                     </div>
                 </div>
