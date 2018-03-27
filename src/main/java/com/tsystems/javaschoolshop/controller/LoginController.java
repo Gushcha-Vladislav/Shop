@@ -60,6 +60,6 @@ public class LoginController extends GenericController{
             userService.saveNewUser(user);
             authenticateUserAndSetSession(user.getEmail(), request);
         }
-        return "redirect:/catalog";
+        return "redirect:/account/formAddress";
     }
 }
