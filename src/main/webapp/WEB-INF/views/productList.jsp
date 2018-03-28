@@ -20,9 +20,9 @@
                 <li id="breadCrumb"><a href="/catalog">All categories</a></li>
             </div>
         </div>
-        <div class="col-sm-3">
-            <label clss="sort" for="sortSelect">Order by : </label>
-            <select class="sort" id="sortSelect">
+        <div class="col-sm-3 pull-right">
+            <label clss="sort pull-right" for="sortSelect">Order by : </label>
+            <select class="sort pull-right" id="sortSelect">
                 <option value="SortByPriceAscending">Price up</option>
                 <option value="SortByPriceDescending">Price down</option>
                 <option value="SortByNameAscending">Name up</option>
@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="container-fluid">
                     <div class="row" id="listProducts">
-                        <c:import url="productPage.jsp"/>
+                        <c:import url="productItem.jsp"/>
                     </div>
                 </div>
             </div>
