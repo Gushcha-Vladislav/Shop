@@ -47,12 +47,12 @@
                         <li class="divider"></li>
                         <li><a href="/account/password">Update password</a></li>
                         <li><a href="/account/addresses">Update addresses</a></li>
-                        <li><a href="">History orders</a></li>
+                        <li><a href="/account/order">History orders</a></li>
                         <li class="divider"></li>
                         <li><a href="/j_spring_security_logout">Log out</a></li>
                     </ul>
                 </sec:authorize>
-                <sec:authorize access="hasRole('ROLE_ADMIN')  or hasRole('ROLE_SUPER_ADMIN')">
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                             class="menu-icon fas fa-user fa-lg"></i>${nameUser}<b
                             class="caret"></b></a>
@@ -63,8 +63,8 @@
                         <sec:authorize access="hasRole('ROLE_SUPER_ADMIN')">
                             <li><a href="">Add new Admin</a></li>
                         </sec:authorize>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')  or hasRole('ROLE_SUPER_ADMIN')">
-                        <li><a href="">Orders</a></li>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li><a href="/account/order">Orders</a></li>
                         <li><a href="#">Statistics</a></li>
                         <li class="divider"></li>
                         <li><a href="/j_spring_security_logout">Log out</a></li>
