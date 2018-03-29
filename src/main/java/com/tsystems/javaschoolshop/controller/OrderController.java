@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.JmsException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 
 @Controller
 @Secured({"ROLE_USER"})
-@RequestMapping(value = "/")
+@RequestMapping(value = "/order")
 public class OrderController {
 
     private final OrderService orderService;
@@ -38,7 +39,7 @@ public class OrderController {
         this.productService =productService;
     }
 
-    @RequestMapping(value = "/order", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView orderPage () {
         ModelAndView modelAndView = new ModelAndView("order");
         modelAndView.addObject("totalPriceForPay", basketProductService.totalPrice((basketBean.getBasket())));
@@ -47,7 +48,7 @@ public class OrderController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/order/pay")
+    @RequestMapping(value = "/pay")
     public String orderPay(@RequestParam(name = "idAddress") int idAddress,
                            @RequestParam(name = "paymentType") String paymentType) {
 
@@ -60,5 +61,11 @@ public class OrderController {
             // otherwise, Ignore sending messages
         }
         return "redirect:/catalog";
+    }
+
+    @RequestMapping(value = "/repeat/{id}", method = RequestMethod.GET)
+    public String orderRepeat(final @PathVariable("id") int id) {
+        basketBean.setBasket(orderService.repeatOrderById(id));
+        return "redirect:/order";
     }
 }
