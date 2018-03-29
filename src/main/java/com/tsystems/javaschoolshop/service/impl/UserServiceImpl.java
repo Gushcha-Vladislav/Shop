@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isPhoneFree(final String phone) {
-        if (phone == null || phone.trim().length()>20 || phone.trim().length()<11) return false;
+        if (phone == null || phone.trim().length()>20) return false;
         return userDao.findUserByPhone(phone) == null;
     }
 

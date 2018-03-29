@@ -80,10 +80,9 @@ public class UserController extends GenericController{
         request.getSession().setAttribute("nameUser", userService.findUserFromSecurityContextHolder().getNameUser());
         return new ModelAndView("formAddress", "address", new Address());
     }
-
+    @Secured({"ROLE_USER"})
     @RequestMapping(value = "/order", method = RequestMethod.GET)
     public ModelAndView orderList() {
         return new ModelAndView("orderManager", "orders", orderService.findOrderByUser());
     }
-
 }
