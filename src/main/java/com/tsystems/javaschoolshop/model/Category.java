@@ -29,6 +29,9 @@ public class Category extends Generic {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Category> children = new ArrayList<>();
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> products = new ArrayList<>();
+
     public Category() {
     }
 
@@ -77,6 +80,14 @@ public class Category extends Generic {
 
     public void setChildren(List<Category> children) {
         this.children = children;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override

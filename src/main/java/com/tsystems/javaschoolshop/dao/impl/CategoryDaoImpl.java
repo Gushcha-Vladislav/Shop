@@ -16,4 +16,11 @@ public class CategoryDaoImpl extends GenericDao implements CategoryDao {
         Query query = em.createQuery("SELECT c FROM Category c WHERE parent = null");
         return (List<Category>) query.getResultList();
     }
+
+    @Override
+    public Category findCategoryById(int id){
+        Query query = em.createQuery("SELECT p FROM Category p WHERE id = :id");
+        query.setParameter("id", id);
+        return (Category) query.getSingleResult();
+    }
 }
