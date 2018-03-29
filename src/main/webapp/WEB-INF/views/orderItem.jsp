@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<script src="/resources/js/orderManager.js"></script>
 <c:forEach var="order" items="${orders}">
 <div  class="col-xs-12 thumbnail">
     <div class="col-sm-4">
@@ -27,9 +28,9 @@
         </div>
     </sec:authorize>
     <sec:authorize access="hasRole('ROLE_ADMIN')">
-        <div class="col-sm-2 col-xs-6">Id user :${order.user.id}</div>
+        <div class="col-sm-2 col-xs-6 id">Id user : ${order.user.id}</div>
         <div class="col-sm-5 col-xs-12">
-            <label for="orderStatus" class="pull-right">Order status :</label>
+            <div class="param">${order.id}</div>
             <select class="sort  pull-right" id="orderStatus">
                 <option value="AWAITING_PAYMENT"
                         <c:if test="${order.orderStatus eq 'Awaiting payment'}">selected</c:if> >Awaiting
@@ -49,17 +50,18 @@
                         <c:if test="${order.orderStatus eq 'Done'}">selected</c:if>>Done
                 </option>
             </select>
+            <label for="orderStatus" class="pull-right">Order status :</label>
         </div>
         <div class="col-sm-5 col-xs-12">
-            <label for="paymentType" class="pull-right">Payment status: </label>
-            <select class="sort  pull-right" id="paymentType">
+            <select class="sort  pull-right" id="paymentStatus">
                 <option value="AWAITING_PAYMENT"
-                        <c:if test="${order.orderStatus eq 'Awaiting payment'}">selected</c:if> >Awaiting
+                        <c:if test="${order.delivery eq 'Awaiting payment'}">selected</c:if> >Awaiting
                     payment
                 </option>
-                <option value="PAID" <c:if test="${order.orderStatus eq 'Paid'}">selected</c:if>>Paid
+                <option value="PAID" <c:if test="${order.delivery eq 'Paid'}">selected</c:if>>Paid
                 </option>
             </select>
+            <label for="paymentStatus" class="pull-right">Payment status: </label>
         </div>
     </sec:authorize>
     <c:forEach var="itemInOrder" items="${order.products}">

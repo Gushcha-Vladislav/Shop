@@ -64,7 +64,7 @@
                             <li><a href="">Add new Admin</a></li>
                         </sec:authorize>
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <li><a href="/account/order">Orders</a></li>
+                        <li><a href="/admin/order">Orders</a></li>
                         <li><a href="#">Statistics</a></li>
                         <li class="divider"></li>
                         <li><a href="/j_spring_security_logout">Log out</a></li>
