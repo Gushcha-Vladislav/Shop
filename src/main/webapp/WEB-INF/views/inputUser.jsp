@@ -9,51 +9,48 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="form-group">
-    <label for="nameUser" class="cols-sm-2 control-label">Your Name</label>
+    <label for="nameUser" class="cols-sm-2 control-label">Name *</label>
     <div class="cols-sm-10">
         <div class="input-group">
             <span class="input-group-addon">
                 <i class="fa fa-user fa" aria-hidden="true"></i>
             </span>
             <input type="text" class="form-control required" name="nameUser" id="nameUser"
-                   placeholder="Enter your Name" required minlength="3" maxlength="20"/>
+                   placeholder="Enter name" minlength="3" maxlength="20"/>
         </div>
         <h4><form:errors path="nameUser" cssClass="error" /></h4>
     </div>
 
 </div>
 <div class="form-group">
-    <label for="lastNameUser" class="cols-sm-2 control-label">Your last
-        name</label>
+    <label for="lastNameUser" class="cols-sm-2 control-label">Last name *</label>
     <div class="cols-sm-10">
         <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="fa fa-users fa" aria-hidden="true"></i>
                                 </span>
             <input type="text" class="form-control" name="lastNameUser"
-                   id="lastNameUser" placeholder="Enter your lastName" minlength="3"
+                   id="lastNameUser" placeholder="Enter lastName" minlength="3"
                    maxlength="20"/>
         </div>
         <h4><form:errors path="lastNameUser" cssClass="error" /></h4>
     </div>
 </div>
 <div class="form-group">
-    <label for="birthday" class="cols-sm-2 control-label">Your
-        birthday</label>
+    <label for="birthday" class="cols-sm-2 control-label">Birthday *</label>
     <div class="cols-sm-10">
         <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="fas fa-birthday-cake" aria-hidden="true"></i>
                                 </span>
             <input type="date" class="form-control birthday required" name="birthday"
-                   id="birthday" placeholder="Enter your birthday"
-                   required/>
+                   id="birthday" placeholder="Enter birthday"/>
         </div>
         <h4><form:errors path="birthday" cssClass="error" /></h4>
     </div>
 </div>
 <div class="form-group">
-    <label for="phone" class="cols-sm-2 control-label">Your phone</label>
+    <label for="phone" class="cols-sm-2 control-label">Phone</label>
     <div class="cols-sm-10">
         <div class="input-group">
                                 <span class="input-group-addon">
