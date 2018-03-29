@@ -42,7 +42,7 @@
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                     </div>
-                                    <h4><form:errors path="nmeUser" cssClass="error" /></h4>
+                                    <h4><form:errors path="nameUser" cssClass="error" /></h4>
                                 </div>
                             </div>
                             <div class="form-group">
