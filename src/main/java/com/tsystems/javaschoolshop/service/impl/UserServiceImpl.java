@@ -101,4 +101,9 @@ public class UserServiceImpl implements UserService {
     public List<User> findSimpleAdmins() {
         return userDao.findSimpleAdmins();
     }
+
+    @Override
+    public void deleteUser(int id) {
+        userDao.deleteUser(id);
+    }
 }

@@ -16,4 +16,5 @@ public interface UserDao {
     User findUserById(int id);
     List<User> findTopNUsers(int n);
     List<User> findSimpleAdmins();
+    void deleteUser(int id);
 }

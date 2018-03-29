@@ -67,4 +67,11 @@ public class UserDaoImpl extends GenericDao implements UserDao {
         query.setParameter("role", UserRoleEnum.ROLE_ADMIN.name());
         return (List<User>) query.getResultList();
     }
+
+    @Override
+    @Transactional
+    public void deleteUser(int id) {
+        em.remove(findUserById(id));
+        em.flush();
+    }
 }

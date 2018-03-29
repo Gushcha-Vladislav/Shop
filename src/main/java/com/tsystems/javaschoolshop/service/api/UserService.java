@@ -21,4 +21,5 @@ public interface UserService {
     void saveUser(User user);
     List<User> findTopNUsers();
     List<User> findSimpleAdmins();
+    void deleteUser(int id);
 }
