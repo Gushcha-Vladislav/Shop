@@ -48,10 +48,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(User user) {
+    public void createUser(User user,String role) {
         if(user.getPhone().trim().length() == 0) user.setPhone(null);
         if(user.getLastNameUser().trim().length() == 0) user.setLastNameUser(null);
-        user.setRole(UserRoleEnum.ROLE_USER.name());
+        user.setRole(role);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.saveUser(user);
     }

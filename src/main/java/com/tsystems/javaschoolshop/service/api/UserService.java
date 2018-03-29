@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserService {
 
     User findUserByEmail(String email);
-    void createUser(User user);
+    void createUser(User user, String role);
     User findUserFromSecurityContextHolder();
     boolean isEmailFree(String email);
     boolean isPhoneFree(String phone);
