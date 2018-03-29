@@ -176,9 +176,9 @@ public class OrderServiceImpl implements OrderService {
     public int findRevenuePerNDay(int dayAgo) {
         int amount = 0;
         LocalDate date1 = LocalDate.now();
-        LocalDate date2 =LocalDate.now().minusDays(dayAgo);
-        List<Order> orders = orderDao.findOrderByDate(Date.from(date1.atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                                                        Date.from(date2.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        LocalDate date2 = LocalDate.now().minusDays(dayAgo);
+        List<Order> orders = orderDao.findOrderByDate(Date.from(date2.atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                Date.from(date1.atStartOfDay(ZoneId.systemDefault()).toInstant()));
         for (Order order : orders) {
             amount += order.getOrderPrice();
         }
