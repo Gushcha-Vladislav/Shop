@@ -25,7 +25,7 @@
         <div class="container col-sm-9">
             <div class="row">
                 <div class="col-xs-12"><h2 class="text-center">Change password</h2></div>
-                <form action=/account/password" class="text-center"  method="post" >
+                <form action="/account/password" class="text-center"  method="post" >
                     <div class="col-sm-6  col-sm-offset-3">
                         <div class="form-group">
                             <label for="oldPassword" class="cols-sm-2 control-label">Old password</label>
