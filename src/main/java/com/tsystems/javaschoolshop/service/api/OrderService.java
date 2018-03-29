@@ -15,4 +15,5 @@ public interface OrderService {
     boolean changeOrderStatusById(int idOrder,String orderStatus);
     boolean changePaymentStatusById(int idOrder,String paymentStatus);
     void sendMessage(Order order, User user, List<BasketProductDto> bag, int idAddress);
+    int findRevenuePerNDay(int dayAgo);
 }

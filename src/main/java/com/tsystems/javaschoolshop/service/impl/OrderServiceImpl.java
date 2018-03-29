@@ -18,6 +18,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -169,4 +171,18 @@ public class OrderServiceImpl implements OrderService {
         msg.setText(message);
         mailSender.send(msg);
     }
+
+    @Override
+    public int findRevenuePerNDay(int dayAgo) {
+        int amount = 0;
+        LocalDate date1 = LocalDate.now();
+        LocalDate date2 =LocalDate.now().minusDays(dayAgo);
+        List<Order> orders = orderDao.findOrderByDate(Date.from(date1.atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                                                        Date.from(date2.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        for (Order order : orders) {
+            amount += order.getOrderPrice();
+        }
+        return amount;
+    }
+
 }

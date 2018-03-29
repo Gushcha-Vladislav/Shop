@@ -7,6 +7,8 @@ import com.tsystems.javaschoolshop.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -32,9 +34,17 @@ public class OrderDaoImpl  extends GenericDao implements OrderDao {
         query.setParameter("id", idOrder);
         return (Order) query.getSingleResult();
     }
+
     @Override
     public List<Order> findAllOrder(){
         return  em.createQuery("select e from Order e", Order.class).getResultList();
     }
 
+    @Override
+    public List<Order> findOrderByDate(Date startDate, Date endDate) {
+        Query query = em.createQuery("SELECT e FROM Order e WHERE e.dateOrder BETWEEN :startDate AND :endDate");
+        query.setParameter("startDate", startDate, TemporalType.DATE);
+        query.setParameter("endDate", endDate, TemporalType.DATE);
+        return (List<Order>) query.getResultList();
+    }
 }
