@@ -15,4 +15,5 @@ public interface UserDao {
     Address findAddressById(int idAddress);
     User findUserById(int id);
     List<User> findTopNUsers(int n);
+    List<User> findSimpleAdmins();
 }

@@ -20,4 +20,5 @@ public interface UserService {
     Address findAddressById(int idAddress);
     void saveUser(User user);
     List<User> findTopNUsers();
+    List<User> findSimpleAdmins();
 }

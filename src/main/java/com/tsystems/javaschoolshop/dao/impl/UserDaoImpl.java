@@ -60,4 +60,11 @@ public class UserDaoImpl extends GenericDao implements UserDao {
         query.setParameter("role", UserRoleEnum.ROLE_USER.name());
         return (List<User>) query.setMaxResults(n).getResultList();
     }
+
+    @Override
+    public List<User> findSimpleAdmins() {
+        Query query = em.createQuery("SELECT u FROM User u WHERE role = :role");
+        query.setParameter("role", UserRoleEnum.ROLE_ADMIN.name());
+        return (List<User>) query.getResultList();
+    }
 }

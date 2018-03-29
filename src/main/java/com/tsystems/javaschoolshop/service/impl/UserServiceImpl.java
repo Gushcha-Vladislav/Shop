@@ -96,4 +96,9 @@ public class UserServiceImpl implements UserService {
     public List<User> findTopNUsers() {
         return userDao.findTopNUsers(3);
     }
+
+    @Override
+    public List<User> findSimpleAdmins() {
+        return userDao.findSimpleAdmins();
+    }
 }
