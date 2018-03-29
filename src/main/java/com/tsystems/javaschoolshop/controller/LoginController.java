@@ -2,6 +2,7 @@ package com.tsystems.javaschoolshop.controller;
 
 import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
+import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-@Secured({"ROLE_ANONYMOUS"})
+@Secured({"ROLE_ANONYMOUS","ROLE_SUPER_ADMIN"})
 public class LoginController extends GenericController{
 
     private final UserService userService;
@@ -57,7 +58,7 @@ public class LoginController extends GenericController{
             return "formUser";
         }else{
             if (!userService.isEmailFree(user.getEmail())) return "formUser";
-            userService.createUser(user);
+            userService.createUser(user, UserRoleEnum.ROLE_USER.name());
             authenticateUserAndSetSession(user.getEmail(), request);
         }
         return "redirect:/account/formAddress";
