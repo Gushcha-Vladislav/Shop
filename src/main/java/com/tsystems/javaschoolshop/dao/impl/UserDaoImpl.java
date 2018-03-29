@@ -4,6 +4,7 @@ import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.UserDao;
 import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
+import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,7 +56,8 @@ public class UserDaoImpl extends GenericDao implements UserDao {
 
     @Override
     public List<User> findTopNUsers(int n) {
-        Query listOfUsersIdQuery = em.createQuery("SELECT u.user FROM StatisticTopUser u ORDER BY u.price DESC");
-        return (List<User>) listOfUsersIdQuery.setMaxResults(n).getResultList();
+        Query query = em.createQuery("SELECT u.user FROM StatisticTopUser u WHERE role =:role ORDER BY u.price DESC");
+        query.setParameter("role", UserRoleEnum.ROLE_USER.name());
+        return (List<User>) query.setMaxResults(n).getResultList();
     }
 }

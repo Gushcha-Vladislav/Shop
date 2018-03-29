@@ -4,6 +4,8 @@ package com.tsystems.javaschoolshop.service.api;
 import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
 
+import java.util.List;
+
 
 public interface UserService {
 
@@ -17,4 +19,5 @@ public interface UserService {
     void deleteAddress(int idAddress);
     Address findAddressById(int idAddress);
     void saveUser(User user);
+    List<User> findTopNUsers();
 }

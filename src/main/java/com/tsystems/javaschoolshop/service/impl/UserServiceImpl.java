@@ -10,6 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -88,5 +90,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         userDao.saveUser(user);
+    }
+
+    @Override
+    public List<User> findTopNUsers() {
+        return userDao.findTopNUsers(3);
     }
 }
