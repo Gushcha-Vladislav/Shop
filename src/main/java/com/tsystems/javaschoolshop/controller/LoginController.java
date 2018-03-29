@@ -57,7 +57,7 @@ public class LoginController extends GenericController{
             return "formUser";
         }else{
             if (!userService.isEmailFree(user.getEmail())) return "formUser";
-            userService.saveNewUser(user);
+            userService.createUser(user);
             authenticateUserAndSetSession(user.getEmail(), request);
         }
         return "redirect:/account/formAddress";
