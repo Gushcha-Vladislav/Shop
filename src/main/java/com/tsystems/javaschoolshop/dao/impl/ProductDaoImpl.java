@@ -3,11 +3,14 @@ package com.tsystems.javaschoolshop.dao.impl;
 import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
+import org.hibernate.envers.internal.tools.query.QueryBuilder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ProductDaoImpl extends GenericDao implements ProductDao {

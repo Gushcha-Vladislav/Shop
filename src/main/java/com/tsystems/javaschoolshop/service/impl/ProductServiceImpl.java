@@ -1,8 +1,10 @@
 package com.tsystems.javaschoolshop.service.impl;
 
+import com.tsystems.javaschoolshop.dao.api.CategoryDao;
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.model.dto.ProductDto;
+import com.tsystems.javaschoolshop.service.api.CategoryService;
 import com.tsystems.javaschoolshop.service.api.ProductService;
 import com.tsystems.javaschoolshop.util.ComparatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.jms.core.JmsTemplate;
 import javax.jms.TextMessage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,12 +21,13 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductDao productDao;
     private final JmsTemplate jmsTemplate;
-
+    private final CategoryService categoryService;
     @Autowired
-    ProductServiceImpl(ProductDao productDao,JmsTemplate jmsTemplate) {
+    ProductServiceImpl(ProductDao productDao,JmsTemplate jmsTemplate,CategoryService categoryService) {
 
         this.productDao = productDao;
         this.jmsTemplate =jmsTemplate;
+        this.categoryService =categoryService;
     }
 
     @Override
@@ -81,4 +85,9 @@ public class ProductServiceImpl implements ProductService {
             return msg;
         });
     }
+    @Override
+    public List<Product> findProductByCategory(int id) {
+        return categoryService.findCategoryById(id).getProducts();
+    }
+
 }
