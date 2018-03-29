@@ -1,6 +1,7 @@
 package com.tsystems.javaschoolshop.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.tsystems.javaschoolshop.model.dto.UserDto;
 import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -45,6 +46,7 @@ public class User extends Generic {
     private String phone;
 
     @NotNull
+    @Size(min=1)
     @Column(name = "password")
     private String password;
 
@@ -57,16 +59,13 @@ public class User extends Generic {
     public User() {
     }
 
-    public User(String nameUser, String lastNameUser, Date birthday, String email, String phone, String password) {
-        this.nameUser = nameUser;
-        this.lastNameUser = lastNameUser;
-        this.role = UserRoleEnum.ROLE_USER.name();
-        this.birthday = birthday;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
+    public User change(UserDto user) {
+        if(user.getNameUser()!=null) this.nameUser = user.getNameUser();
+        if(user.getLastNameUser()!=null) this.lastNameUser=user.getLastNameUser();
+        if(user.getEmail()!=null) this.email = user.getEmail();
+        if(user.getPhone() !=null) this.phone = user.getPhone();
+        return this;
     }
-
     public String getNameUser() {
         return nameUser;
     }

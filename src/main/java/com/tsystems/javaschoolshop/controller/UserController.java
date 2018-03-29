@@ -2,6 +2,7 @@ package com.tsystems.javaschoolshop.controller;
 
 import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
+import com.tsystems.javaschoolshop.model.dto.UserDto;
 import com.tsystems.javaschoolshop.service.api.OrderService;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,13 @@ public class UserController extends GenericController{
         return new ModelAndView("office", "user", userService.findUserFromSecurityContextHolder());
     }
     @RequestMapping(value = "/change", method = RequestMethod.POST)
-    public String accountChange(User user) {
+    public String accountChange(@Valid UserDto userDto, BindingResult result, final HttpServletRequest request) {
+        if (result.hasErrors()) {
+            return "redirect:/account";
+        }
+        User user =userService.findUserFromSecurityContextHolder().change(userDto);
+        userService.saveUser(user);
+        authenticateUserAndSetSession(user.getEmail(),request);
         return "redirect:/account";
         }
 
