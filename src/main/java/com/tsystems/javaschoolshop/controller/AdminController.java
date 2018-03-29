@@ -1,6 +1,7 @@
 package com.tsystems.javaschoolshop.controller;
 
 import com.tsystems.javaschoolshop.service.api.OrderService;
+import com.tsystems.javaschoolshop.service.api.ProductService;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -18,11 +19,13 @@ public class AdminController {
 
     private final UserService userService;
     private final OrderService orderService;
+    private final ProductService productService;
     @Autowired
-    public AdminController(final UserService userService, final OrderService orderService) {
+    public AdminController(final UserService userService, final OrderService orderService, ProductService productService) {
 
         this.userService = userService;
         this.orderService=orderService;
+        this.productService =productService;
     }
 
     @RequestMapping(value = "/order", method = RequestMethod.GET)
@@ -41,5 +44,16 @@ public class AdminController {
     public boolean paymentStatus(final @PathVariable("status") String paymentStatus,
                             final @PathVariable("id") int idOrder){
         return orderService.changePaymentStatusById(idOrder,paymentStatus);
+    }
+
+    @RequestMapping(value = "/statistics")
+    public ModelAndView showStatisticsPage() {
+        ModelAndView modelAndView = new ModelAndView("statistics");
+        modelAndView.addObject("topProducts", productService.convertProductsToProductsDto(
+                productService.findTop10Products(true)));
+        modelAndView.addObject("topUsers", userService.findTopNUsers());
+        modelAndView.addObject("incomePerWeek", orderService.findRevenuePerNDay(31));
+        modelAndView.addObject("incomePerMonth", orderService.findRevenuePerNDay(8));
+        return modelAndView;
     }
 }
