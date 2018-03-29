@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:import url="head.jsp"/>
 <script src="/resources/js/formUser.js"></script>
 <script src="/resources/js/account.js"></script>
@@ -28,19 +29,20 @@
             <div class="row ">
                 <div class="col-xs-12"><h2 class="text-center">Profile</h2></div>
                 <div class="col-sm-12">
-                    <form action="/account" method="POST">
+                    <form:form  action="${pageContext.request.contextPath}/account/change" modelAttribute="user" method="POST">
                         <div class="col-sm-6 col-sm-offset-3">
                             <div class="form-group">
                                 <label for="name" class="cols-sm-2 control-label">Your name</label>
                                 <div class="cols-sm-9">
                                     <div class="input-group account">
                                         <span class="input-group-addon"><i class="fa fa-user fa"></i></span>
-                                        <input type="text" class="form-control" id="name" value="${user.nameUser}"
+                                        <input type="text" class="form-control" name="nameUser" id="name" value="${user.nameUser}"
                                                disabled required maxlength="20"/>
                                         <a class="input-group-addon  changeUser">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                     </div>
+                                    <h4><form:errors path="nmeUser" cssClass="error" /></h4>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -48,11 +50,12 @@
                                 <div class="cols-sm-9">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-users fa"></i></span>
-                                        <input type="text" class="form-control" id="lastName"
+                                        <input type="text" class="form-control" id="lastName"  name="lastNameUser"
                                                value="${user.lastNameUser}" disabled maxlength="20"/>
                                         <a class="input-group-addon  changeUser">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
+                                        <h4><form:errors path="lastNameUser" cssClass="error" /></h4>
                                     </div>
                                 </div>
                             </div>
@@ -62,11 +65,12 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-envelope fa"></i></span>
                                         <input type="text" class="form-control" id="email" value="${user.email}"
-                                               disabled required maxlength="45"
+                                               disabled required maxlength="45"   name="email"
                                                pattern="[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}"/>
                                         <a class="input-group-addon  changeUser">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
+                                        <h4><form:errors path="email" cssClass="error" /></h4>
                                     </div>
                                 </div>
                             </div>
@@ -75,12 +79,9 @@
                                 <div class="cols-sm-9">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fas fa-birthday-cake"></i></span>
-                                        <input type="date" class="form-control" id="birthday"
+                                        <input type="date" class="form-control" id="birthday"   name="birthday"
                                                value="${user.birthday}"
                                                disabled/>
-                                        <a class="input-group-addon  changeUser">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -90,11 +91,12 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fas fa-phone"></i></span>
                                         <input type="text" class="form-control" id="phone" value="${user.phone}"
-                                               maxlength="20"
+                                               maxlength="20"   name="phone"
                                                disabled/>
                                         <a class="input-group-addon  changeUser">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
+                                        <h4><form:errors path="lastNameUser" cssClass="error" /></h4>
                                     </div>
                                 </div>
                             </div>
@@ -116,13 +118,11 @@
                             <div class="form-group">
                                 <label class="cols-sm-2 control-label"></label>
                                 <div class="cols-sm-9">
-                                    <button type="submit" class="btn btn-success btn-block">
-                                        Save changes
-                                    </button>
+                                    <button type="submit" class="btn btn-success btn-block" id="saveChange">Save changes</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>

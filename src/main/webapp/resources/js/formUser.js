@@ -5,7 +5,7 @@ $(document).ready(function () {
         });
     $(".required").change(
         function () {
-            if($("#email").val().length >= 3 && $("#password").val().length >= 3
+            if($("#email").val().length >= 3
                 && $("#nameUser").val().length >= 3){
                 $(".login-button").removeAttr('disabled');
             } else{
@@ -14,7 +14,7 @@ $(document).ready(function () {
             validEmail();
             validPhone();
         }
-    )
+    );
     function error(recourse,error){
         if(recourse === false){
             $('.login-button').attr('disabled', 'disabled');
