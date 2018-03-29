@@ -2,6 +2,7 @@ package com.tsystems.javaschoolshop.controller;
 
 import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
+import com.tsystems.javaschoolshop.service.api.OrderService;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -23,16 +24,19 @@ import javax.validation.Valid;
 public class UserController extends GenericController{
 
     private final UserService userService;
+    private final OrderService orderService;
 
     @Autowired
-
-    public UserController(UserDetailsService userDetailsService, UserService userService) {
+    public UserController(UserDetailsService userDetailsService, UserService userService,OrderService orderService) {
         super(userDetailsService);
         this.userService = userService;
+        this.orderService=orderService;
     }
 
     @RequestMapping(value = "", method = {RequestMethod.GET,RequestMethod.POST})
-    public ModelAndView account() {
+    public ModelAndView account(final HttpServletRequest request) {
+
+        request.getSession().setAttribute("nameUser", userService.findUserFromSecurityContextHolder().getNameUser());
         return new ModelAndView("office", "user", userService.findUserFromSecurityContextHolder());
     }
     @RequestMapping(value = "/change", method = RequestMethod.POST)
@@ -59,9 +63,8 @@ public class UserController extends GenericController{
         return new ModelAndView("addressesManager","user", userService.findUserFromSecurityContextHolder());
     }
     @RequestMapping(value = "/addresses/{id}", method = RequestMethod.POST)
-    public ModelAndView deleteAddress(final @PathVariable("id") int id, final HttpServletRequest request) {
+    public ModelAndView deleteAddress(final @PathVariable("id") int id,final HttpServletRequest request) {
         userService.deleteAddress(id);
-        authenticateUserAndSetSession(userService.findUserFromSecurityContextHolder().getEmail(),request);
         return new ModelAndView("addressItem","user",userService.findUserFromSecurityContextHolder());
     }
     @RequestMapping(value = "/addresses", method = RequestMethod.POST)
@@ -70,7 +73,6 @@ public class UserController extends GenericController{
             return "formAddress";
         }
         userService.saveAddress(address);
-        authenticateUserAndSetSession(userService.findUserFromSecurityContextHolder().getEmail(),request);
         return "redirect:/account/addresses";
     }
     @RequestMapping(value = "/formAddress", method = RequestMethod.GET)
@@ -78,4 +80,10 @@ public class UserController extends GenericController{
         request.getSession().setAttribute("nameUser", userService.findUserFromSecurityContextHolder().getNameUser());
         return new ModelAndView("formAddress", "address", new Address());
     }
+
+    @RequestMapping(value = "/order", method = RequestMethod.GET)
+    public ModelAndView orderList() {
+        return new ModelAndView("orderManager", "orders", orderService.findOrderByUser());
+    }
+
 }
