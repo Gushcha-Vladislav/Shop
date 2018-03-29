@@ -9,6 +9,7 @@ import com.tsystems.javaschoolshop.model.enums.PaymentTypeEnum;
 import com.tsystems.javaschoolshop.service.api.BasketProductService;
 import com.tsystems.javaschoolshop.service.api.OrderService;
 import com.tsystems.javaschoolshop.service.api.UserService;
+import com.tsystems.javaschoolshop.util.ComparatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -17,8 +18,10 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -66,8 +69,36 @@ public class OrderServiceImpl implements OrderService {
             OrdersProducts ordersProducts = new OrdersProducts(order, product, bagItem.getAmount());
             order.getProducts().add(ordersProducts);
         }
-        userService.saveNewUser(user);
+        userService.saveUser(user);
         return orderDao.saveOrder(order);
+    }
+
+    @Override
+    public List<Order> findOrderByUser(){
+        User user = userService.findUserFromSecurityContextHolder();
+        return orderDao.findOrderByUser(user)
+                .stream()
+                .sorted(ComparatorUtil.getDescendingIdOrderComparator())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BasketProductDto> repeatOrderById(int idOrder){
+        Order order =orderDao.findOrderById(idOrder);
+        List<BasketProductDto> bag=new ArrayList<>();
+        for(OrdersProducts orderProduct : order.getProducts()){
+            BasketProductDto bagItem =new BasketProductDto(orderProduct.getProduct().getId(),
+                    orderProduct.getProduct().getNameProduct(),orderProduct.getAmount(),orderProduct.getProduct().getPrice(),
+                    orderProduct.getProduct().getImage());
+            basketProductService.addToBasket(bagItem,bag);
+        }
+        return bag;
+
+    }
+
+    @Override
+    public List<Order> findAllOrder(){
+        return orderDao.findAllOrder();
     }
 
     @Override

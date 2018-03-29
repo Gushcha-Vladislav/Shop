@@ -9,5 +9,8 @@ import java.util.List;
 
 public interface OrderService {
     Order saveOrder(int idAddress, String paymentType, List<BasketProductDto> basket);
+    List<Order> findOrderByUser();
+    List<BasketProductDto> repeatOrderById(int idOrder);
+    List<Order> findAllOrder();
     void sendMessage(Order order, User user, List<BasketProductDto> bag, int idAddress);
 }
