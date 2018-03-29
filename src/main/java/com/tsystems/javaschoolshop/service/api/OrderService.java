@@ -12,5 +12,7 @@ public interface OrderService {
     List<Order> findOrderByUser();
     List<BasketProductDto> repeatOrderById(int idOrder);
     List<Order> findAllOrder();
+    boolean changeOrderStatusById(int idOrder,String orderStatus);
+    boolean changePaymentStatusById(int idOrder,String paymentStatus);
     void sendMessage(Order order, User user, List<BasketProductDto> bag, int idAddress);
 }

@@ -102,6 +102,48 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public boolean changeOrderStatusById(int idOrder, String orderStatus) {
+        Order order =orderDao.findOrderById(idOrder);
+        switch(orderStatus){
+            case "AWAITING_PAYMENT":
+                order.setOrderStatus(OrderStatusEnum.AWAITING_PAYMENT.toString());
+                break;
+            case "AWAITING_SHIPMENT":
+                order.setOrderStatus(OrderStatusEnum.AWAITING_SHIPMENT.toString());
+                break;
+            case "SHIPPED":
+                order.setOrderStatus(OrderStatusEnum.SHIPPED.toString());
+                break;
+            case "DELIVERED":
+                order.setOrderStatus(OrderStatusEnum.DELIVERED.toString());
+                break;
+            case "DONE":
+                order.setOrderStatus(OrderStatusEnum.DONE.toString());
+                break;
+            default:
+                break;
+        }
+        orderDao.saveOrder(order);
+        return true;
+    }
+
+    @Override
+    public boolean changePaymentStatusById(int idOrder, String paymentStatus) {
+        Order order =orderDao.findOrderById(idOrder);
+        switch(paymentStatus){
+            case "AWAITING_PAYMENT":
+                order.setPayment(PaymentStatusEnum.AWAITING_PAYMENT.toString());
+                break;
+            case "PAID":
+                order.setPayment(PaymentStatusEnum.PAID.toString());
+                break;
+            default:
+                break;
+        }
+        orderDao.saveOrder(order);
+        return true;
+    }
+    @Override
     public void sendMessage(Order order, User user, List<BasketProductDto> bag, int idAddress) {
         SimpleMailMessage msg = new SimpleMailMessage();
 
