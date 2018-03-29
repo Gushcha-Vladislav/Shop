@@ -8,7 +8,7 @@ import com.tsystems.javaschoolshop.model.User;
 public interface UserService {
 
     User findUserByEmail(String email);
-    void saveNewUser(User user);
+    void createUser(User user);
     User findUserFromSecurityContextHolder();
     boolean isEmailFree(String email);
     boolean isPhoneFree(String phone);
@@ -16,4 +16,5 @@ public interface UserService {
     void saveAddress(Address address);
     void deleteAddress(int idAddress);
     Address findAddressById(int idAddress);
+    void saveUser(User user);
 }

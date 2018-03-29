@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveNewUser(User user) {
+    public void createUser(User user) {
         if(user.getPhone().trim().length() == 0) user.setPhone(null);
         if(user.getLastNameUser().trim().length() == 0) user.setLastNameUser(null);
         user.setRole(UserRoleEnum.ROLE_USER.name());
@@ -83,5 +83,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Address findAddressById(int idAddress) {
         return userDao.findAddressById(idAddress);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        userDao.saveUser(user);
     }
 }
