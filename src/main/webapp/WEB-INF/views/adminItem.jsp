@@ -14,6 +14,6 @@
         <h5 class="col-sm-6 pull-left">Name: ${admin.nameUser}</h5>
         <h5 class="col-sm-6 pull-left">Phone : ${admin.phone}</h5>
         <h5 class="col-sm-12 pull-left">Email: ${admin.email}</h5>
-        <a  id="deleteAdmin" class="btn btn-success">Delete admin</a>
+        <a  class="btn btn-success deleteAdmin">Delete admin</a>
     </div>
 </c:forEach>

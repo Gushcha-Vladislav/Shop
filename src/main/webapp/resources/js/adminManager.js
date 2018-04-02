@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#deleteAdmin').click(function () {
+    $('.deleteAdmin').click(function () {
         var $input = $(this).parent().find('div.param');
         $.ajax({
             url: 'superAdmin/manager/delete/'+$input.html(),
