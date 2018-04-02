@@ -15,6 +15,6 @@ public class ExceptionHandlerController {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         e.printStackTrace(pw);
-        return new ModelAndView("error","exception",sw.toString());
+        return new ModelAndView("error","message","Unknown error, return to the main page or contact the admin");
     }
 }
