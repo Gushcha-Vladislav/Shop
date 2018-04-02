@@ -49,7 +49,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/pay")
-    public String orderPay(@RequestParam(name = "idAddress") int idAddress,
+    public ModelAndView orderPay(@RequestParam(name = "idAddress") int idAddress,
                            @RequestParam(name = "paymentType") String paymentType) {
 
         Order order = orderService.saveOrder(idAddress,paymentType,(basketBean.getBasket()));
@@ -60,7 +60,8 @@ public class OrderController {
         } catch (JmsException e) {
             // otherwise, Ignore sending messages
         }
-        return "redirect:/catalog";
+        return new ModelAndView("error","message","<h4 class='pull-left'>The purchase is successful, continue shopping</h4>" +
+                "                            <a href='catalog' class='pull-left btn btn-success'>Go</a>");
     }
 
     @RequestMapping(value = "/repeat/{id}", method = RequestMethod.GET)

@@ -4,6 +4,7 @@ import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.OrderDao;
 import com.tsystems.javaschoolshop.model.Order;
 import com.tsystems.javaschoolshop.model.User;
+import com.tsystems.javaschoolshop.model.enums.OrderStatusEnum;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.Query;
@@ -42,9 +43,10 @@ public class OrderDaoImpl  extends GenericDao implements OrderDao {
 
     @Override
     public List<Order> findOrderByDate(Date startDate, Date endDate) {
-        Query query = em.createQuery("SELECT e FROM Order e WHERE e.dateOrder BETWEEN :startDate AND :endDate");
+        Query query = em.createQuery("SELECT e FROM Order e WHERE e.dateOrder BETWEEN :startDate AND :endDate AND orderStatus =:orderStatus");
         query.setParameter("startDate", startDate, TemporalType.DATE);
         query.setParameter("endDate", endDate, TemporalType.DATE);
+        query.setParameter("orderStatus", OrderStatusEnum.DONE.toString());
         return (List<Order>) query.getResultList();
     }
 }

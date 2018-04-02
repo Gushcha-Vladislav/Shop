@@ -134,10 +134,10 @@ public class OrderServiceImpl implements OrderService {
         Order order =orderDao.findOrderById(idOrder);
         switch(paymentStatus){
             case "AWAITING_PAYMENT":
-                order.setPayment(PaymentStatusEnum.AWAITING_PAYMENT.toString());
+                order.setDelivery(PaymentStatusEnum.AWAITING_PAYMENT.toString());
                 break;
             case "PAID":
-                order.setPayment(PaymentStatusEnum.PAID.toString());
+                order.setDelivery(PaymentStatusEnum.PAID.toString());
                 break;
             default:
                 break;
