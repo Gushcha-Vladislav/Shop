@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
-                <li><a href="#">Error</a></li>
+                <li><a href="#">Message</a></li>
             </div>
         </div>
 
@@ -25,12 +25,9 @@
             <div class="row">
                 <div class="container-fluid">
                     <div class="row">
-                        <dov class="col-xs-12">
-                            <h1>Ooops... You have error. Write a message admin</h1>
-                        </dov>
-                            <dov class="col-xs-12">
-                                <h6>${exception}</h6>
-                            </dov>
+                        <div class="col-xs-12">
+                            <h1>${message}</h1>
+                        </div>
                     </div>
                 </div>
             </div>
