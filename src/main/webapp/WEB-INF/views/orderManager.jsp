@@ -14,7 +14,6 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
-                <li><a href="/catalog">Home</a></li>
                 <li><a href="/account">${nameUser}</a></li>
                 <li><a href="/account/order">Orders history</a></li>
             </div>
@@ -27,16 +26,21 @@
         <div class="container col-sm-9">
             <div class="row">
                 <div class="col-xs-12">
+                    <h2 class="titleName text-center">Order manager</h2>
+                </div>
+                <div class="col-xs-12">
                     <c:if test="${fn:length(orders) != 0}">
                     <c:import url="orderItem.jsp"/>
                     <a class="param" id="openInfo" data-toggle="modal" type="modal" data-target="#info"></a>
                     </c:if>
                     <sec:authorize access="hasRole('ROLE_USER')">
                         <c:if test="${fn:length(orders) eq 0}">
-                        <div>
-                            <h4 class="pull-left">Your orders history, go shopping</h4>
-                            <a href="/catalog" class="pull-left btn btn-success">Go</a>
+                        <div class="col-xs-8">
+                            <h4 class="pull-left titleLastName">Your orders history is empty, go shopping</h4>
                         </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="/catalog" class="text-center btn btn-success">Go</a>
+                            </div>
                     </c:if>
                     </sec:authorize>
                 </div>
@@ -44,11 +48,13 @@
         </div>
     </div>
 </div>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 <div class="modal fade" id="info">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-head">
                 <button id="closeModal" class="close" type="button" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                <h6 class="titleName text-center">Status</h6>
             </div>
             <div class="modal-body">
                 <div class="info"></div>
@@ -56,4 +62,5 @@
         </div>
     </div>
 </div>
+</sec:authorize>
 <c:import url="footer.jsp"/>

@@ -11,7 +11,7 @@
     <div class="col-xs-6 col-lg-4">
         <div class="thumbnail">
             <div class="caption text-center">
-                <h5><a href="/catalog/${product.id}" >${product.nameProduct}</a></h5>
+                <h5><a href="/catalog/${product.id}" class="titleLastName">${product.nameProduct}</a></h5>
             </div>
             <input class="param" value="${product.id}">
             <img class="img-responsive" src="/resources/${product.image}"  alt="">

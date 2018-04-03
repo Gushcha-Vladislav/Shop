@@ -17,17 +17,34 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="breadcrumb">
-                <li><a href="/account">Super admin</a></li>
+                <li><a href="/account">${nameUser}</a></li>
                 <li id="breadCrumb"><a href="/superAdmin/manager">List admins</a></li>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6" id="adminList">
-            <c:import url="adminItem.jsp"/>
+        <div class="col-xs-12">
+            <h2 class="text-center titleName">
+                Admin management
+            </h2>
         </div>
         <div class="col-lg-6">
-            <form:form  id="signUp" method="POST" action="${pageContext.request.contextPath}/superAdmin/manager" modelAttribute="user">
+            <div class="col-xs-12">
+                <h4 class="text-center titleLastName">
+                    List Admins
+                </h4>
+            </div>
+            <div  id="adminList">
+                <c:import url="adminItem.jsp"/>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="col-xs-12">
+                <h4 class="text-center titleLastName">
+                    Add new admin
+                </h4>
+            </div>
+            <form:form  id="signUp" method="POST" action="/superAdmin/manager" modelAttribute="user">
             <div class="main-center">
                 <c:import url="inputUser.jsp"/>
                 <div class="form-group ">

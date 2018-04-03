@@ -17,19 +17,19 @@
         <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
                 <li><a href="/catalog">Home</a></li>
-                <li><a href="">${product.category.nameCategory}</a></li>
+                <li><a >${product.category.nameCategory}</a></li>
                 <li><a href="/catalog/${product.id}">${product.nameProduct}</a></li>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <%--<c:import url="category.jsp"/>--%>
+            <%--<c:import url="filterCategory.jsp"/>--%>
         </div>
         <div class="container col-sm-9">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <h4 class="nameProduct" id="nameProduct">${product.nameProduct}</h4>
+                    <h4 class="text-center titleName" id="nameProduct">${product.nameProduct}</h4>
                 </div>
                 <div class="col-sm-6">
                     <img src="/resources/${product.image}" alt="" class="img-responsive">
@@ -63,8 +63,11 @@
 <div class="modal fade" id="addToCart">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-header">
                 <button class="close" type="button" data-dismiss="modal" id="closeModal"><i class="fas fa-times"></i></button>
+                <h4 class="text-center titleName">Product purchase</h4>
+            </div>
+            <div class="modal-body">
                 <div class="item-amount row">
                     <div class="col-xs-5 col-sm-12 pay"><h4 class="btn-cart">Choose amount:</h4></div>
                     <div class="col-sm-4 col-xs-5 amount-button  pay">
@@ -75,8 +78,7 @@
                     <div class="col-sm-4 col-xs-5  pay">Цена :
                         <h4 class="btn-cart" id="totalPrice">0</h4></div>
                     <div class="col-sm-4  col-xs-5 pay text-center">
-                        <a class="btn btn-success btn-cart" type="button" id="addToBasket">add to
-                            bag</a>
+                        <a class="btn btn-success btn-cart" type="button" id="addToBasket">Add to bag</a>
                     </div>
                 </div>
             </div>

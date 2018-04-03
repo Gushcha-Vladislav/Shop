@@ -13,14 +13,14 @@
     <div class="modal-content">
         <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal"><i class="fas fa-times"></i></button>
-            <h4 class="modal-title text-center">Basket</h4>
+            <h4 class="modal-title text-center titleName">Basket</h4>
         </div>
         <div class="modal-body">
             <div class="row">
                 <c:forEach var="item" items="${bag}">
                     <div class="col-xs-12 thumbnail">
                         <div class="param idBasket">${item.id}</div>
-                        <div class="col-sm-5 col-xs-10 nameProduct"><a>${item.nameProduct}</a></div>
+                        <div class="col-sm-5 col-xs-10 nameProduct"><a class="titleLastName" href="/account/${item.id}">${item.nameProduct}</a></div>
                         <div class="col-xs-2 visible-xs text-right"><a><i class="fas fa-times"></i></a></div>
                         <div class="col-sm-3 col-xs-6 ">
                             <input type="text" class="basket amount" value="${item.amount}" size="5" disabled/>

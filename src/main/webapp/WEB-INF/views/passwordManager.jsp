@@ -12,19 +12,18 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
-                <li><a href="/catalog">Home</a></li>
-                <li><a href="/account">User Name</a></li>
+                <li><a href="/account">${nameUser}</a></li>
                 <li><a href="/account/password">Change password</a></li>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <%--<c:import url="category.jsp"/>--%>
+            <%--<c:import url="filterCategory.jsp"/>--%>
         </div>
         <div class="container col-sm-9">
             <div class="row">
-                <div class="col-xs-12"><h2 class="text-center">Change password</h2></div>
+                <div class="col-xs-12"><h2 class="text-center titleName">Password manager</h2></div>
                 <form action="/account/password" class="text-center"  method="post" >
                     <div class="col-sm-6  col-sm-offset-3">
                         <div class="form-group">

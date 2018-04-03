@@ -5,7 +5,18 @@
 .menu > div > a {
     line-height: 20px
 }
-
+.logo{
+    font-family: Brush Script MT, Brush Script Std, cursive;
+    font-size: 40px;
+}
+.titleName{
+     font-family: Bradley Hand, cursive;
+     font-size: 40px;
+ }
+.titleLastName{
+    font-family: Bradley Hand, cursive;
+    font-size: 16px;
+}
 .menu > div {
     padding-top: 2px;
     text-align: center;

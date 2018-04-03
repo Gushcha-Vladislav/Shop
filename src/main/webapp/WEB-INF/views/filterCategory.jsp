@@ -15,8 +15,7 @@
                 <h4 class="panel-title">
                     <a class="btn btn-block btn-success" href="#category<c:out value="${category.id}" />"
                        data-parent="#accordion"
-                       data-toggle="collapse">
-                            ${category.nameCategory} <i class="fas fa-caret-down"></i></a>
+                       data-toggle="collapse">${category.nameCategory} <i class="fas fa-caret-down"></i></a>
                 </h4>
             </div>
             <div id="category<c:out value="${category.id}"/>" class="panel-collapse collapse">

@@ -11,13 +11,14 @@
 <script src="/resources/js/orderManager.js"></script>
 <c:forEach var="order" items="${orders}">
 <div  class="col-xs-12 thumbnail">
-    <div class="col-sm-4">
-        <h4 class="pull-left">Order № ${order.id}</h4>
-        <h4 class="pull-left">Date № ${order.dateOrder}</h4>
+    <div class="col-xs-3">
+        <h5 class="pull-left">Order № ${order.id}</h5>
     </div>
-    <div class="col-sm-8 col-xs-12">
-        <h4 class="pull-right">${order.address}</h4>
-        <h4 class="text-right pull-right">Address: </h4>
+    <div class="col-xs-3">
+        <h5 class="pull-left">Date № ${order.dateOrder}</h5>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+        <h5 class="text-right pull-left">Address: ${order.address}</h5>
     </div>
     <sec:authorize access="hasRole('ROLE_USER')">
         <div class="col-sm-6">
@@ -28,8 +29,9 @@
         </div>
     </sec:authorize>
     <sec:authorize access="hasRole('ROLE_ADMIN')">
-        <div class="col-sm-2 col-xs-6 id">Id user : ${order.user.id}</div>
-        <div class="col-sm-5 col-xs-12">
+        <div class="col-sm-2 col-xs-2 id">User id : ${order.user.id}</div>
+        <div class="col-sm-8 col-xs-8">User email : ${order.user.email}</div>
+        <div class="col-sm-6 col-xs-12">
             <div class="param">${order.id}</div>
             <select class="sort  pull-right" id="orderStatus">
                 <option value="AWAITING_PAYMENT"
@@ -52,7 +54,7 @@
             </select>
             <label for="orderStatus" class="pull-right">Order status :</label>
         </div>
-        <div class="col-sm-5 col-xs-12">
+        <div class="col-sm-6 col-xs-12">
             <select class="sort  pull-right" id="paymentStatus">
                 <option value="AWAITING_PAYMENT"
                         <c:if test="${order.delivery eq 'Awaiting payment'}">selected</c:if> >Awaiting
@@ -67,15 +69,15 @@
     <c:forEach var="itemInOrder" items="${order.products}">
         <div class="col-xs-12 col-sm-4">
             <div class="col-xs-12">
-                <a href="/catalog/${itemInOrder.product.id}">${itemInOrder.product.nameProduct}</a>
+                <a href="/catalog/${itemInOrder.product.id}" class="titleLastName">${itemInOrder.product.nameProduct}</a>
             </div>
             <div class="col-xs-12">
                 <img src="/resources/${itemInOrder.product.image}"
                      class="img-responsive img-circle img-thumbnail">
             </div>
             <div class="col-sm-12">
-                <h4 class="pull-right">Amount:&nbsp;&nbsp;</h4>
-                <h4 class="pull-right">${itemInOrder.amount}</h4>
+                <h4 class="pull-left">Amount:&nbsp;&nbsp;</h4>
+                <h4 class="pull-left">${itemInOrder.amount}</h4>
             </div>
         </div>
     </c:forEach>

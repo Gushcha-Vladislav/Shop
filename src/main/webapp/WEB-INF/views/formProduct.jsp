@@ -11,18 +11,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="/resources/css/input.css">
 <c:import url="head.jsp"/>
-<script src="/webjars/jquery-maskedinput/1.4.0/jquery.maskedinput.min.js"></script>
+<script src="/resources/js/formProduct.js"></script>
 <div class="container">
     <div class="row">
-        <div class="col-sm-offset-3 col-sm-9">
+        <div class=" col-sm-12">
             <div class="breadcrumb">
-                <li><a href="/catalog">Product</a></li>
-                <li id="breadCrumb"><a href="/signUp">Add product</a></li>
+                <li><a href="/account">${nameUser}</a></li>
+                <li><a href="">Products</a></li>
+                <li><a href="admin/product">Product</a></li>
             </div>
         </div>
     </div>
-    <div class="row ">
-        <div class="col-sm-12"> <h4 class="text-center">Add new product</h4></div>
+    <div class="row">
+        <div class="col-sm-12"> <h4 class="text-center titleName">Add new product</h4></div>
         <div class="col-sm-12">
             <div class="col-sm-offset-3 col-sm-6 main-center">
                 <form:form  action="/admin/product" method="POST" enctype="multipart/form-data">

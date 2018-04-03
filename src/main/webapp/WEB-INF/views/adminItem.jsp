@@ -12,7 +12,7 @@
     <div class="col-xs-12 thumbnail">
         <div class="param">${admin.id}</div>
         <h5 class="col-sm-6 pull-left">Name: ${admin.nameUser}</h5>
-        <h5 class="col-sm-6 pull-left">Phone : ${admin.phone}</h5>
+        <h5 class="col-sm-6 pull-left">Birthday: ${admin.birthday}</h5>
         <h5 class="col-sm-12 pull-left">Email: ${admin.email}</h5>
         <a  class="btn btn-success deleteAdmin">Delete admin</a>
     </div>

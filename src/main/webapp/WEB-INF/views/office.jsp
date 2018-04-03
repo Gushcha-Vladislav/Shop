@@ -15,21 +15,19 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
-                <li><a href="/catalog">Home</a></li>
-                <li><a href="/account">${user.nameUser}</a></li>
                 <li><a href="/account">Profile</a></li>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <%--<c:import url="category.jsp"/>--%>
+            <%--<c:import url="filterCategory.jsp"/>--%>
         </div>
         <div class="container col-sm-9">
             <div class="row ">
-                <div class="col-xs-12"><h2 class="text-center">Profile</h2></div>
+                <div class="col-xs-12"><h2 class="text-center titleName">Profile</h2></div>
                 <div class="col-sm-12">
-                    <form:form  action="${pageContext.request.contextPath}/account/change" modelAttribute="user" method="POST">
+                    <form:form  action="/account/change" modelAttribute="user" method="POST">
                         <div class="col-sm-6 col-sm-offset-3">
                             <div class="form-group">
                                 <label for="name" class="cols-sm-2 control-label">Your name</label>
@@ -91,11 +89,8 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fas fa-phone"></i></span>
                                         <input type="text" class="form-control" id="phone" value="${user.phone}"
-                                               maxlength="20"   name="phone"
-                                               disabled/>
-                                        <a class="input-group-addon  changeUser">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
+                                               maxlength="20"   name="phone" disabled/>
+                                        <a class="input-group-addon  changeUser"><i class="fas fa-pencil-alt"></i></a>
                                         <h4><form:errors path="lastNameUser" cssClass="error" /></h4>
                                     </div>
                                 </div>
@@ -107,8 +102,9 @@
                                         <span class="input-group-addon"><i class="fas fa-list"></i></span>
                                         <select class="form-control" id="addresses">
                                             <c:forEach var="address" items="${user.addresses}">
-                                                <option value="${address.id}">${address.city}&nbsp;${address.street}&nbsp;${address.house}</option>
+                                                <option value="${address.id}">${address.country},&nbsp;${address.city},&&nbsp;${address.street},&nbsp;${address.house}</option>
                                             </c:forEach>
+                                            <option value="newAddress">Add new Address</option>
                                         </select>
                                         <a class="input-group-addon" href="/account/addresses"><i
                                                 class="fas fa-pencil-alt"></i></a>

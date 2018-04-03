@@ -9,15 +9,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<script src="/resources/js/imputProduct.js"></script>
 <div class="form-group">
-    <div class="image-slider">
-        <img id="upload-image param" src="/resources/images/item2.jpg" alt="Item">
+    <div class="image-slider ">
+        <img id="upload-image" class="param" src="" alt="Item">
     </div>
     <label for="image" class="cols-sm-2 control-label">Image *</label>
     <div class="cols-sm-10">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-bed"></i></span>
+            <span class="input-group-addon"><i class="fas fa-camera"></i></span>
             <input type="file" class="form-control" accept="image/jpeg, image/png, image/gif" name="image" id="image"
                    placeholder="Enter image"/>
         </div>
@@ -28,9 +27,9 @@
     <label for="nameProduct" class="cols-sm-2 control-label">Name product *</label>
     <div class="cols-sm-10">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-globe"></i></span>
+            <span class="input-group-addon"><i class="fas fa-cart-plus"></i></span>
             <input type="text" class="form-control required" name="nameProduct" id="nameProduct"
-                   placeholder="Enter name product" maxlength="45"/>
+                   placeholder="Enter name product" maxlength="25" minlength="3"/>
             <h4><form:errors path="nameProduct" cssClass="error" /></h4>
         </div>
     </div>
@@ -39,7 +38,7 @@
     <label for="category" class="cols-sm-2 control-label">Category *</label>
     <div class="cols-sm-10">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-university"></i></span>
+            <span class="input-group-addon"><i class="fas fa-list-ul"></i></span>
             <select class="sort pull-right" id="category" name="idCategory">
                 <c:forEach var="category" items="${categories}">
                     <option value="${category.id}">${category.nameCategory}</option>
@@ -53,9 +52,9 @@
     <label for="price" class="cols-sm-2 control-label">Price *</label>
     <div class="cols-sm-10">
         <div class="input-group">
-            <span class="input-group-addon"><i class="far fa-envelope"></i></span>
-            <input type="number" class="form-control" name="price" id="price"
-                   placeholder="Enter price" minlength="6"  maxlength="10"/>
+            <span class="input-group-addon"><i class="fas fa-ruble-sign"></i></span>
+            <input type="number" class="form-control required" name="price" id="price"
+                   placeholder="Enter price" min="1"/>
         </div>
         <h4><form:errors path="price" cssClass="error" /></h4>
     </div>
@@ -64,9 +63,9 @@
     <label for="brand" class="cols-sm-2 control-label">Brand</label>
     <div class="cols-sm-10">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-road"></i></span>
-            <input type="text" class="form-control required" name="brand" id="brand" placeholder="Enter brand"
-                   maxlength="45" minlength="5"/>
+            <span class="input-group-addon"><i class="fas fa-sign"></i></span>
+            <input type="text" class="form-control" name="brand" id="brand" placeholder="Enter brand"
+                   maxlength="40"/>
         </div>
         <h4><form:errors path="brand" cssClass="error" /></h4>
     </div>
@@ -75,7 +74,7 @@
     <label for="property" class="cols-sm-2 control-label">Property *</label>
     <div class="cols-sm-10">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-home"></i></span>
+            <span class="input-group-addon"><i class="fas fa-weight"></i></span>
             <input type="text" class="form-control required" name="property" id="property" placeholder="Enter property"
                    maxlength="10" minlength="3" />
         </div>
@@ -86,8 +85,8 @@
     <label for="description" class="cols-sm-2 control-label">Description *</label>
     <div class="cols-sm-10">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-bed"></i></span>
-            <textarea type="text" class="form-control" name="description" id="description"
+            <span class="input-group-addon"><i class="fas fa-weight"></i></span>
+            <textarea type="text" class="form-control required" name="description" id="description"
                       placeholder="Enter description"></textarea>
         </div>
         <h4><form:errors path="description" cssClass="error" /></h4>
@@ -97,9 +96,9 @@
     <label for="quantityInStock" class="cols-sm-2 control-label">Quantity in stock *</label>
     <div class="cols-sm-10">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-bed"></i></span>
-            <input type="number" class="form-control" name="quantityInStock" id="quantityInStock"
-                      placeholder="Enter description"/>
+            <span class="input-group-addon"><i class="fab fa-stack-overflow"></i></span>
+            <input type="number" class="form-control required" name="quantityInStock" id="quantityInStock"
+                      placeholder="Enter description" min="0"/>
         </div>
         <h4><form:errors path="quantityInStock" cssClass="error" /></h4>
     </div>

@@ -18,12 +18,11 @@
         <div class="col-sm-offset-3 col-sm-6">
             <div class="breadcrumb">
                 <li><a href="/catalog">Home</a></li>
-                <li id="breadCrumb"><a href="/catalog">All categories</a></li>
             </div>
         </div>
-        <div class="col-sm-3 pull-right">
-            <label clss="sort pull-right" for="sortSelect">Order by : </label>
-            <select class="sort pull-right" id="sortSelect">
+        <div class="col-sm-3 pull-left">
+            <label clss="sort pull-left" for="sortSelect">Order by : </label>
+            <select class="sort pull-left" id="sortSelect">
                 <option value="SortByPriceAscending">Price up</option>
                 <option value="SortByPriceDescending">Price down</option>
                 <option value="SortByNameAscending">Name up</option>
@@ -33,7 +32,7 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-           <c:import url="category.jsp"/>
+           <c:import url="filterCategory.jsp"/>
         </div>
         <div class="container col-sm-9">
             <div class="row">
@@ -50,8 +49,11 @@
     <div class="modal fade" id="addToCart">
         <div class="modal-dialog">
             <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" id="closeModal"><i class="fas fa-times"></i></button>
+                    <h4 class="text-center titleName">Product purchase</h4>
+                </div>
                 <div class="modal-body">
-                    <button id="closeModal" class="close" type="button" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     <div class="item-amount row">
                         <div class="col-xs-5 col-sm-12 pay">
 

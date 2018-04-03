@@ -28,7 +28,7 @@
         <div class="container col-sm-9">
             <div class="row ">
                 <div class="col-sm-12">
-                    <form:form  id="signUp" method="POST" action="${pageContext.request.contextPath}/signUp" modelAttribute="user">
+                    <form:form  id="signUp" method="POST" action="/signUp" modelAttribute="user">
                         <div class="col-sm-offset-3 col-sm-6 main-center">
                             <c:import url="inputUser.jsp"/>
                             <div class="form-group ">

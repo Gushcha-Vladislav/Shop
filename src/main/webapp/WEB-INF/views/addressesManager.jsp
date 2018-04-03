@@ -14,22 +14,21 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
-                <li><a href="/catalog">Home</a></li>
-                <li><a href="/account">User Name</a></li>
+                <li><a href="/account">${nameUser}</a></li>
                 <li><a href="/account/addresses">Address manager</a></li>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <%--<c:import url="category.jsp"/>--%>
+            <%--<c:import url="filterCategory.jsp"/>--%>
         </div>
         <div class="container col-sm-9">
             <div class="row">
                 <div class="container-fluid">
                     <div class="row ">
                         <div class="col-xs-12">
-                            <h2 class="text-center">
+                            <h2 class="text-center titleName">
                                 Address manager
                             </h2>
                         </div>

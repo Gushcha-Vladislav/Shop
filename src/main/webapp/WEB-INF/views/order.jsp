@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <%--<c:import url="category.jsp"/>--%>
+            <%--<c:import url="filterCategory.jsp"/>--%>
         </div>
         <div class="container col-sm-9">
             <c:forEach var="item" items="${basket}">
@@ -61,7 +61,7 @@
                             <div class="col-sm-6">
                                 <select id="selectForAddress" class="sort">
                                     <c:forEach var="item" items="${user.addresses}">
-                                        <option value="${item.id}">${item.city}&nbsp;${item.street}&nbsp;${item.house}</option>
+                                        <option value="${item.id}">${item.country},&nbsp;${item.city},&&nbsp;${item.street},&nbsp;${item.house}</option>
                                     </c:forEach>
                                     <option value="newAddress">Add new address</option>
                                 </select>
