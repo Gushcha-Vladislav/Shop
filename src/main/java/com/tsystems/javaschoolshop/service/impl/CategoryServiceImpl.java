@@ -27,4 +27,9 @@ public class CategoryServiceImpl implements CategoryService {
     public  Category findCategoryById(int id){
         return categoryDao.findCategoryById(id);
     }
+
+    @Override
+    public List<Category> findCategoryByHierarchyNumber(int hierarchyNumber) {
+        return categoryDao.findCategoryByHierarchyNumber(hierarchyNumber);
+    }
 }

@@ -23,4 +23,11 @@ public class CategoryDaoImpl extends GenericDao implements CategoryDao {
         query.setParameter("id", id);
         return (Category) query.getSingleResult();
     }
+
+    @Override
+    public List<Category> findCategoryByHierarchyNumber(int hierarchyNumber) {
+        Query query = em.createQuery("SELECT p FROM Category p WHERE hierarchyNumber = :hierarchyNumber");
+        query.setParameter("hierarchyNumber", hierarchyNumber);
+        return (List<Category>) query.getResultList();
+    }
 }

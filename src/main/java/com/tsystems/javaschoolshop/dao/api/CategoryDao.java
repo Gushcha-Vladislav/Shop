@@ -8,4 +8,5 @@ public interface CategoryDao {
 
     List<Category> findRootCategories();
     Category findCategoryById(int id);
+    List<Category> findCategoryByHierarchyNumber(int hierarchyNumber);;
 }
