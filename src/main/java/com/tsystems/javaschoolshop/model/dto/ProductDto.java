@@ -1,36 +1,55 @@
 package com.tsystems.javaschoolshop.model.dto;
 
+
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class ProductDto implements Serializable {
 
-    private Integer id;
-
+    @NotNull
+    @Size(min = 3, max = 45)
+    @Column(name = "name_product")
     private String nameProduct;
 
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    private Integer idCategory;
+
+    @NotNull
+    @Min(1)
+    @Column(name = "price")
     private Integer price;
 
-    private String image;
+    @Size(max = 40)
+    @Column(name = "brand")
+    private String brand;
 
-    private Integer numberOfSales;
+    @NotNull
+    @Size(min=3,max = 10)
+    @Column(name = "property")
+    private String property;
+
+    @NotNull
+    @Column(name = "image")
+    private MultipartFile image;
+
+    @NotNull
+    @Column(name = "description")
+    private String description;
+
+    @NotNull
+    @Min(0)
+    @Column(name = "quantity_in_stock")
+    private Integer quantityInStock;
 
     public ProductDto() {
-    }
-
-    public ProductDto(Integer id, String nameProduct, Integer price, String image, Integer numberOfSales) {
-        this.id = id;
-        this.nameProduct = nameProduct;
-        this.price = price;
-        this.image = image;
-        this.numberOfSales = numberOfSales;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNameProduct() {
@@ -41,6 +60,14 @@ public class ProductDto implements Serializable {
         this.nameProduct = nameProduct;
     }
 
+    public Integer getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(Integer idCategory) {
+        this.idCategory = idCategory;
+    }
+
     public Integer getPrice() {
         return price;
     }
@@ -49,30 +76,56 @@ public class ProductDto implements Serializable {
         this.price = price;
     }
 
-    public String getImage() {
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getProperty() {
+        return property;
+    }
+
+    public void setProperty(String property) {
+        this.property = property;
+    }
+
+    public MultipartFile getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(MultipartFile image) {
         this.image = image;
     }
 
-    public Integer getNumberOfSales() {
-        return numberOfSales;
+    public String getDescription() {
+        return description;
     }
 
-    public void setNumberOfSales(Integer numberOfSales) {
-        this.numberOfSales = numberOfSales;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getQuantityInStock() {
+        return quantityInStock;
+    }
+
+    public void setQuantityInStock(Integer quantityInStock) {
+        this.quantityInStock = quantityInStock;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ProductDto{");
-        if (id != null) sb.append("id=").append(id);
-        if (nameProduct != null) sb.append(", nameProduct='").append(nameProduct).append('\'');
-        if (price != null) sb.append(", price=").append(price);
-        if (image != null) sb.append(", image='").append(image).append('\'');
-        if (numberOfSales != null) sb.append(", numberOfSales=").append(numberOfSales);
+        if(nameProduct!=null) sb.append("nameProduct='").append(nameProduct).append('\'');
+        if(idCategory!=null) sb.append(", idCategory=").append(idCategory);
+        if(price!=null) sb.append(", price=").append(price);
+        if(brand!=null) sb.append(", brand='").append(brand).append('\'');
+        if(property!=null) sb.append(", property='").append(property).append('\'');
+        if(description!=null) sb.append(", description='").append(description).append('\'');
+        if(quantityInStock!=null) sb.append(", quantityInStock=").append(quantityInStock);
         sb.append('}');
         return sb.toString();
     }
