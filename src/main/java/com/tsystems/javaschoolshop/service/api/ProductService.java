@@ -2,9 +2,9 @@ package com.tsystems.javaschoolshop.service.api;
 
 import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.model.dto.ProductDto;
+import com.tsystems.javaschoolshop.model.dto.ProductSendDto;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ProductService {
 
@@ -15,6 +15,7 @@ public interface ProductService {
     List<Product> findTop10Products(boolean adminMode);
     int findNumberOfSalesById(int id);
     void sendMessage();
-    List<ProductDto> convertProductsToProductsDto (List<Product> products);
+    List<ProductSendDto> convertProductsToProductsDto (List<Product> products);
     List<Product> findProductByCategory(int id);
+    Product createProduct(ProductDto productDto);
 }

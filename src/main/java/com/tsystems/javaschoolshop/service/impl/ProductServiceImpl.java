@@ -1,9 +1,9 @@
 package com.tsystems.javaschoolshop.service.impl;
 
-import com.tsystems.javaschoolshop.dao.api.CategoryDao;
 import com.tsystems.javaschoolshop.dao.api.ProductDao;
 import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.model.dto.ProductDto;
+import com.tsystems.javaschoolshop.model.dto.ProductSendDto;
 import com.tsystems.javaschoolshop.service.api.CategoryService;
 import com.tsystems.javaschoolshop.service.api.ProductService;
 import com.tsystems.javaschoolshop.util.ComparatorUtil;
@@ -13,7 +13,6 @@ import org.springframework.jms.core.JmsTemplate;
 import javax.jms.TextMessage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,12 +66,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> convertProductsToProductsDto(List<Product> products) {
-        List<ProductDto> result = new ArrayList<>();
+    public List<ProductSendDto> convertProductsToProductsDto(List<Product> products) {
+        List<ProductSendDto> result = new ArrayList<>();
         if (products == null) return result;
         for (Product product : products) {
-            result.add(new ProductDto(product.getId(),product.getNameProduct(),product.getPrice(),
-                    product.getImage(),findNumberOfSalesById(product.getId())));
+            result.add(new ProductSendDto(product.getId(),product.getNameProduct(),product.getPrice(),
+                    findNumberOfSalesById(product.getId()), product.getImage()));
         }
         return result;
     }
@@ -90,4 +89,20 @@ public class ProductServiceImpl implements ProductService {
         return categoryService.findCategoryById(id).getProducts();
     }
 
+    @Override
+    public Product createProduct(ProductDto productDto) {
+        Product product= new Product();
+        product.setNameProduct(productDto.getNameProduct());
+        product.setCategory(categoryService.findCategoryById(productDto.getIdCategory()));
+        product.setPrice(productDto.getPrice());
+        product.setBrand(productDto.getBrand());
+        product.setProperty(productDto.getProperty());
+        product.setDescription(productDto.getDescription());
+        product.setQuantityInStock(productDto.getQuantityInStock());
+        product.setImage("image");
+        product = saveProduct(product);
+        product.setImage("image/food/item"+product.getId()+".jpeg");
+        product = saveProduct(product);
+        return product;
+    }
 }
