@@ -9,32 +9,22 @@ import javax.validation.constraints.Size;
 @Table(name = "products", schema = "webshopdb")
 public class Product extends Generic {
 
-    @NotNull
-    @Size(min = 3, max = 45)
     @Column(name = "name_product")
     private String nameProduct;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;
 
-    @NotNull
-    @OrderBy()
     @Column(name = "price")
     private Integer price;
 
-    @Size(min = 3, max = 40)
     @Column(name = "brand")
     private String brand;
 
-    @NotNull
-    @Size(max = 10)
     @Column(name = "property")
     private String property;
 
-    @NotNull
-    @Size(max = 100)
     @Column(name = "image")
     private String image;
 
@@ -42,8 +32,6 @@ public class Product extends Generic {
     @Column(name = "description")
     private String description;
 
-    @NotNull
-    @Min(0)
     @Column(name = "quantity_in_stock")
     private Integer quantityInStock;
 
