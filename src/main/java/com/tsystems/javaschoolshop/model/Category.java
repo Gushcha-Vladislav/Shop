@@ -12,7 +12,7 @@ public class Category extends Generic {
 
     @NotNull
     @Column(name = "hierarchy_number")
-    private String hierarchyNumber;
+    private Integer hierarchyNumber;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_parent")
@@ -35,18 +35,18 @@ public class Category extends Generic {
     public Category() {
     }
 
-    public Category(String hierarchyNumber, Category parent, String nameCategory, boolean status) {
+    public Category(int hierarchyNumber, Category parent, String nameCategory, boolean status) {
         this.hierarchyNumber = hierarchyNumber;
         this.parent = parent;
         this.nameCategory = nameCategory;
         this.status = status;
     }
 
-    public String getHierarchyNumber() {
+    public Integer getHierarchyNumber() {
         return hierarchyNumber;
     }
 
-    public void setHierarchyNumber(String hierarchyNumber) {
+    public void setHierarchyNumber(Integer hierarchyNumber) {
         this.hierarchyNumber = hierarchyNumber;
     }
 
