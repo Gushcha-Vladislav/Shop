@@ -41,7 +41,7 @@ public class ProductController {
             modelAndView = new ModelAndView("product");
             modelAndView.addObject("product", product);
         }else{
-            modelAndView = new ModelAndView("error");
+            modelAndView = new ModelAndView("error","message","There is no such product");
         }
         return modelAndView;
     }
