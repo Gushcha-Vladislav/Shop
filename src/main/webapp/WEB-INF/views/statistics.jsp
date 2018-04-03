@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 cost-info">
-                                <i class="far fa-money-bill-alt"></i>${product.price}
+                                <i class="fas fa-ruble-sign"></i>&nbsp;&nbsp;${product.price}
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="account-footer col-lg-12">
                         <div class="total-cash col-lg-7">
-                            Total cash: <i class="far fa-money-bill-alt"></i>${user.statisticTopUser.price}
+                            Total cash: <i class="fas fa-ruble-sign"></i>&nbsp;&nbsp;${user.statisticTopUser.price}
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                         For the last week:
                     </div>
                     <div class="amount col-lg-4">
-                        <i class="far fa-money-bill-alt"></i>${incomePerWeek}
+                        <i class="fas fa-ruble-sign"></i>&nbsp;&nbsp;${incomePerWeek}
                     </div>
                 </div>
                 <div class="income income-for-month col-lg-12">
@@ -91,7 +91,7 @@
                         For the last month:
                     </div>
                     <div class="amount col-lg-4">
-                        <i class="far fa-money-bill-alt"></i>${incomePerMonth}
+                        <i class="fas fa-ruble-sign"></i>&nbsp;&nbsp;${incomePerMonth}
                     </div>
                 </div>
             </div>
