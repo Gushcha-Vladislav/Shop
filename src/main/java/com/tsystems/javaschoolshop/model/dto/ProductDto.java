@@ -1,11 +1,5 @@
 package com.tsystems.javaschoolshop.model.dto;
 
-
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,38 +9,27 @@ public class ProductDto implements Serializable {
 
     @NotNull
     @Size(min = 3, max = 45)
-    @Column(name = "name_product")
     private String nameProduct;
 
-    @ManyToOne
-    @JoinColumn(name = "id_category")
+    @NotNull
     private Integer idCategory;
 
     @NotNull
     @Min(1)
-    @Column(name = "price")
     private Integer price;
 
     @Size(max = 40)
-    @Column(name = "brand")
     private String brand;
 
     @NotNull
     @Size(min=3,max = 10)
-    @Column(name = "property")
     private String property;
 
     @NotNull
-    @Column(name = "image")
-    private MultipartFile image;
-
-    @NotNull
-    @Column(name = "description")
     private String description;
 
     @NotNull
     @Min(0)
-    @Column(name = "quantity_in_stock")
     private Integer quantityInStock;
 
     public ProductDto() {
@@ -90,14 +73,6 @@ public class ProductDto implements Serializable {
 
     public void setProperty(String property) {
         this.property = property;
-    }
-
-    public MultipartFile getImage() {
-        return image;
-    }
-
-    public void setImage(MultipartFile image) {
-        this.image = image;
     }
 
     public String getDescription() {
