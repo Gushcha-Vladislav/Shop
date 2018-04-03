@@ -1,7 +1,7 @@
 package com.tsystems.javaschoolshop.controller;
 
 
-import com.tsystems.javaschoolshop.model.dto.ProductDto;
+import com.tsystems.javaschoolshop.model.dto.ProductSendDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,8 +27,8 @@ public class StandRestController {
 
     @RequestMapping(value = "/stand")
     @ResponseBody
-    public List<ProductDto> getStandInformation() {
-        List<ProductDto> result = productService.convertProductsToProductsDto(
+    public List<ProductSendDto> getStandInformation() {
+        List<ProductSendDto> result = productService.convertProductsToProductsDto(
                 productService.findTop10Products(false));
         new Timer(true).schedule(new TimerTask() {
             @Override
