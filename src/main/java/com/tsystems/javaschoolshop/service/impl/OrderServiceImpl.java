@@ -154,7 +154,7 @@ public class OrderServiceImpl implements OrderService {
         for (BasketProductDto productDto : bag) {
             products.append(++counter).append(") ")
                     .append(productDto.getNameProduct()).append(" - ")
-                    .append(productDto.getAmount()).append(" items.").append(" Price - $")
+                    .append(productDto.getAmount()).append(" items.").append(" Price - \\u20BD")
                     .append(productDto.getPrice() * productDto.getAmount()).append(".").append(System.lineSeparator());
         }
 
