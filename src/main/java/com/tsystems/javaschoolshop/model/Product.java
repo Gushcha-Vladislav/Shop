@@ -150,18 +150,25 @@ public class Product extends Generic {
         sb.append('}');
         return sb.toString();
     }
-
     @Override
-    public int hashCode() {
-        return this.getId() / 100;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (!nameProduct.equals(product.nameProduct)) return false;
+        if (!price.equals(product.price)) return false;
+        if (!image.equals(product.image)) return false;
+        return quantityInStock.equals(product.quantityInStock);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (!(obj instanceof Product)) return false;
-
-        Product tmp = (Product) obj;
-        return tmp.getId() == this.getId();
+    public int hashCode() {
+        int result = nameProduct.hashCode();
+        result = 31 * result + price.hashCode();
+        result = 31 * result + image.hashCode();
+        result = 31 * result + quantityInStock.hashCode();
+        return result;
     }
 }
