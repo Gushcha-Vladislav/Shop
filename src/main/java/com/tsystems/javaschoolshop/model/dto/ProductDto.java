@@ -7,8 +7,10 @@ import java.io.Serializable;
 
 public class ProductDto implements Serializable {
 
+    private int id;
+
     @NotNull
-    @Size(min = 3, max = 45)
+    @Size(min = 3, max = 25)
     private String nameProduct;
 
     @NotNull
@@ -33,6 +35,14 @@ public class ProductDto implements Serializable {
     private Integer quantityInStock;
 
     public ProductDto() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNameProduct() {
