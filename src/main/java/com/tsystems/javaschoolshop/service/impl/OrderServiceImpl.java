@@ -154,7 +154,7 @@ public class OrderServiceImpl implements OrderService {
         for (BasketProductDto productDto : bag) {
             products.append(++counter).append(") ")
                     .append(productDto.getNameProduct()).append(" - ")
-                    .append(productDto.getAmount()).append(" items.").append(" Price - \\u20BD")
+                    .append(productDto.getAmount()).append(" items.").append(" Price - \u20BD ")
                     .append(productDto.getPrice() * productDto.getAmount()).append(".").append(System.lineSeparator());
         }
 
@@ -167,7 +167,7 @@ public class OrderServiceImpl implements OrderService {
 
         msg.setFrom(environment.getRequiredProperty("mail.username"));
         msg.setTo(user.getEmail());
-        msg.setSubject("JavaShop");
+        msg.setSubject(environment.getRequiredProperty("shop.name"));
         msg.setText(message);
         mailSender.send(msg);
     }
