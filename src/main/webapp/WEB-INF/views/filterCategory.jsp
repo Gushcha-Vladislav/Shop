@@ -7,9 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <link rel="stylesheet" href="/resources/css/category.css">
 <div id="accordion" class="panel-group category">
     <c:forEach var="category" items="${categories}">
+        <c:if test="${category.status eq true}">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -21,8 +23,9 @@
             <div id="category<c:out value="${category.id}"/>" class="panel-collapse collapse">
                 <div class="category">
                     <c:forEach var="item" items="${category.children}">
-                        <c:if test="${item.status eq true}">
-                            <a class="btn btn-success btn-block" onclick="">${item.nameCategory}
+                            <c:if test="${item.status eq true}">
+                                <div class="id param">${item.id}</div>
+                            <a class="btn btn-success btn-block filter" >${item.nameCategory}
                                 <i class="fas fa-caret-right"></i>
                             </a>
                         </c:if>
@@ -30,5 +33,6 @@
                 </div>
             </div>
         </div>
+        </c:if>
     </c:forEach>
 </div>
