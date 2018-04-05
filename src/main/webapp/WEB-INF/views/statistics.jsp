@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="breadcrumb">
-                <li><a href="/account">Admin</a></li>
+                <li><a href="/account">${nameUser}</a></li>
                 <li><a href="/catalog">Statistics</a></li>
             </div>
         </div>
@@ -45,8 +45,6 @@
                 </div>
             </c:forEach>
         </div>
-
-
         <div class="col-lg-4 block">
             <div class="title">Top 10 Users</div>
             <c:forEach var="user" items="${topUsers}" varStatus="status">
@@ -95,6 +93,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="pdf">
+            <a href="/admin/statistics/download/pdf" target="_blank" class="btn btn-success">Download PDF</a>
         </div>
     </div>
 </div>
