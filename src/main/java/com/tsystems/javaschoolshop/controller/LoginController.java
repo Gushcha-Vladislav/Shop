@@ -6,6 +6,7 @@ import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -62,5 +63,10 @@ public class LoginController extends GenericController{
             authenticateUserAndSetSession(user.getEmail(), request);
         }
         return "redirect:/account/formAddress";
+    }
+
+    @RequestMapping(value = "/javascript/disabled")
+    public String showDisabledJavascriptPage() {
+        return "jsDisabled";
     }
 }
