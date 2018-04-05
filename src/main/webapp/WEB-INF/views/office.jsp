@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:import url="head.jsp"/>
 <script src="/resources/js/formUser.js"></script>
 <script src="/resources/js/account.js"></script>
@@ -62,13 +63,7 @@
                                 <div class="cols-sm-9">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-envelope fa"></i></span>
-                                        <input type="text" class="form-control" id="email" value="${user.email}"
-                                               disabled required maxlength="45"   name="email"
-                                               pattern="[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}"/>
-                                        <a class="input-group-addon  changeUser">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <h4><form:errors path="email" cssClass="error" /></h4>
+                                        <input type="text" class="form-control" id="email" value="${user.email}" disabled/>
                                     </div>
                                 </div>
                             </div>
@@ -77,9 +72,7 @@
                                 <div class="cols-sm-9">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fas fa-birthday-cake"></i></span>
-                                        <input type="date" class="form-control" id="birthday"   name="birthday"
-                                               value="${user.birthday}"
-                                               disabled/>
+                                        <input type="date" class="form-control" id="birthday" value="${user.birthday}" disabled/>
                                     </div>
                                 </div>
                             </div>
@@ -95,6 +88,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <sec:authorize access="hasRole('ROLE_USER')">
                             <div class="form-group">
                                 <label for="birthday" class="cols-sm-2 control-label">Your addresses</label>
                                 <div class="cols-sm-9">
@@ -111,6 +105,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </sec:authorize>
                             <div class="form-group">
                                 <label class="cols-sm-2 control-label"></label>
                                 <div class="cols-sm-9">
