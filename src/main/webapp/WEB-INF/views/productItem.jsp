@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:forEach var="product" items="${products}">
     <div class="col-xs-6 col-lg-4">
@@ -17,10 +18,16 @@
             <img class="img-responsive" src="/resources/${product.image}"  alt="">
             <div class="caption">
                 <p>Price : ${product.price}</p>
+
+                <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ANONYMOUS')">
                 <c:if test="${product.quantityInStock > 0}">
                 <a  class="btn btn-success payCatalog" data-toggle="modal" type="modal" data-target="#addToCart"
                         onclick="loadInModal('${product.id}','${product.nameProduct}','${product.price}','${product.image}','${product.quantityInStock}')">Add a item</a>
                 </c:if>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <a href="/admin/catalog/${product.id}" class="btn btn-success">Change product</a>
+                </sec:authorize>
             </div>
         </div>
     </div>

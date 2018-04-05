@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/resources/css/product.css" >
 <script src="/resources/js/catalog.js"></script>
 <script src="/resources/js/productPage.js"></script>
+<script src="/resources/js/filter.js"></script>
 <div class="container">
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
@@ -20,19 +21,20 @@
                 <li><a href="/catalog">Home</a></li>
             </div>
         </div>
-        <div class="col-sm-3 pull-left">
+        <div class="col-sm-3">
             <label clss="sort pull-left" for="sortSelect">Order by : </label>
             <select class="sort pull-left" id="sortSelect">
-                <option value="SortByPriceAscending">Price up</option>
-                <option value="SortByPriceDescending">Price down</option>
-                <option value="SortByNameAscending">Name up</option>
-                <option value="SortByNameDescending">Name down</option>
+                <option value="0">Price up</option>
+                <option value="1">Price down</option>
+                <option value="2">Name up</option>
+                <option value="3">Name down</option>
             </select>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
            <c:import url="filterCategory.jsp"/>
+            <a class="btn btn-success">Reset</a>
         </div>
         <div class="container col-sm-9">
             <div class="row">
