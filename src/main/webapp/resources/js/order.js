@@ -21,9 +21,9 @@ $(document).ready(function(){
     $('.payCard').click(function () {
         window.location='/order/pay?idAddress='+$('#selectForAddress').val()+'&paymentType='+$('#selectPaymentType').val();
     });
-    $('#selectPaymentType').change(function() {
+    $('#selectForAddress').change(function() {
         if($('#selectForAddress').val() === "newAddress"){
-            window.location="account/formAddress"
+            window.location="/account/formAddress"
         }
     });
 });
