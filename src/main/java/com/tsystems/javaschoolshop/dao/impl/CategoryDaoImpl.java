@@ -4,6 +4,7 @@ import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.CategoryDao;
 import com.tsystems.javaschoolshop.model.Category;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -29,5 +30,12 @@ public class CategoryDaoImpl extends GenericDao implements CategoryDao {
         Query query = em.createQuery("SELECT p FROM Category p WHERE hierarchyNumber = :hierarchyNumber");
         query.setParameter("hierarchyNumber", hierarchyNumber);
         return (List<Category>) query.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void saveCategory(Category category) {
+        em.merge(category);
+        em.flush();
     }
 }
