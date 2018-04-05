@@ -1,12 +1,15 @@
 package com.tsystems.javaschoolshop.controller;
 
+import com.tsystems.javaschoolshop.dao.api.CategoryDao;
 import com.tsystems.javaschoolshop.model.Product;
+import com.tsystems.javaschoolshop.model.dto.CategoryDto;
 import com.tsystems.javaschoolshop.model.dto.ProductDto;
 import com.tsystems.javaschoolshop.service.api.CategoryService;
 import com.tsystems.javaschoolshop.service.api.OrderService;
 import com.tsystems.javaschoolshop.service.api.ProductService;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import com.tsystems.javaschoolshop.util.ImageUtil;
+import com.tsystems.javaschoolshop.util.pdf.ByteArrayConverterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -14,8 +17,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @Secured({"ROLE_ADMIN"})
@@ -80,5 +87,70 @@ public class AdminController {
         Product product = productService.createProduct(productDto);
         ImageUtil.uploadImage(String.valueOf(product.getId()),image);
         return "redirect:/account";
+    }
+
+    @RequestMapping(value = "/categories", method = RequestMethod.POST)
+    public ModelAndView addOrChangeCategories(@Valid CategoryDto categoryDto, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories());
+        }
+        categoryService.changeCategory(categoryDto);
+        return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories());
+    }
+
+    @RequestMapping(value = "/categories", method = RequestMethod.GET)
+    public ModelAndView showCategories() {
+        return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories());
+    }
+    @RequestMapping(value = "/categories/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public boolean ChangeHierarchy(@PathVariable("id") int idCategory) {
+        if(idCategory == 0) return true;
+        return categoryService.findCategoryById(idCategory).getHierarchyNumber()==2;
+    }
+    @RequestMapping(value = "/categories/status/{id}", method = RequestMethod.GET)
+    public ModelAndView ChangeStatusCategory(@PathVariable("id") int idCategory) {
+        categoryService.changeStatus(idCategory);
+        return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories());
+
+    }
+    @RequestMapping(value = "/statistics/download/pdf")
+    public ModelAndView showOrDownloadStatisticsPdf() throws IOException {
+        ModelAndView modelAndView = new ModelAndView("pdfView");
+        modelAndView.addObject("topProducts", productService.convertProductsToProductsDto(
+                productService.findTop10Products(true)));
+        modelAndView.addObject("topUsers", userService.findTopNUsers());
+        modelAndView.addObject("incomePerWeek", orderService.findRevenuePerNDay(31));
+        modelAndView.addObject("incomePerMonth", orderService.findRevenuePerNDay(8));
+        Map<Integer, Byte[]> imageMap = new HashMap<>();
+        for (Product product : productService.findTop10Products(true)) {
+            File serverFile = new File(ImageUtil.getAbsoluteRootPath()+product.getImage());
+            imageMap.put(product.getId(), ByteArrayConverterUtil.convertBytes(Files.readAllBytes(serverFile.toPath())));
+        }
+        modelAndView.addObject("imagesMap", imageMap);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/catalog", method = RequestMethod.GET)
+    public ModelAndView showProductsList() {
+        ModelAndView modelAndView=new ModelAndView("productList");
+        modelAndView.addObject("products",productService.findAllProducts(true));
+        modelAndView.addObject("categories",categoryService.findRootCategories());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/catalog/{id}", method = RequestMethod.GET)
+    public ModelAndView showProductPage(final @PathVariable("id") int id) {
+        ModelAndView modelAndView = new ModelAndView("product", "product", productService.findProductById(id, true));
+        modelAndView.addObject("categories", categoryService.findCategoryByHierarchyNumber(2));
+        return modelAndView;
+    }
+    @RequestMapping(value = "/catalog/change", method = RequestMethod.POST)
+    public String changeProduct(@Valid ProductDto productDto, BindingResult result) {
+        if (result.hasErrors()) {
+            return "redirect:/admin/catalog/"+productDto.getId();
+        }
+        productService.changeProduct(productDto);
+        return "redirect:/admin/catalog/"+productDto.getId();
     }
 }
