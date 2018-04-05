@@ -34,7 +34,7 @@
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <a class="text-left" href="/admin/order">
-                        <i class="fas fa-parachute-box fa-lg menu-icon fa-fw"></i>Orders</a>
+                        <i class="fas fa-people-carry fa-lg menu-icon fa-fw"></i>Orders</a>
                 </sec:authorize>
             </div>
             <div class="col-xs-3 dropdown text-center">
@@ -61,9 +61,10 @@
                     </ul>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="menu-icon fas fa-user fa-lg"></i>${nameUser}<b
-                            class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="menu-icon fas fa-user fa-lg"></i>${nameUser}
+                        <b class="caret"></b>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="/account">Profile</a></li>
                         <li class="divider"></li>
@@ -93,20 +94,15 @@
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <div class="col-xs-2 dropdown text-center">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fas fa-truck-loading fa-lg menu-icon fa-fw"></i>
+                        <i class="fas fa-archive fa-lg menu-icon fa-fw"></i>
                         Product<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/admin/product">Add product</a></li>
-                        <li><a href="/account/addresses">Change products</a></li>
+                        <li><a href="/admin/catalog">Change products</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-2 dropdown text-center">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fas fa-list  fa-lg menu-icon fa-fw" ></i>Category<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/account/addresses"></a></li>
-                        <li><a href="/account/order">change category</a></li>
-                    </ul>
+                    <a href="/admin/categories" ><i class="fas fa-list  fa-lg menu-icon fa-fw" ></i>Category</a>
                 </div>
                 <div class="col-xs-2 dropdown text-center">
                     <a href="/admin/statistics">
