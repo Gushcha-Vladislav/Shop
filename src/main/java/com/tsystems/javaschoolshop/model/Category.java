@@ -24,7 +24,7 @@ public class Category extends Generic {
     private String nameCategory;
 
     @Column(name = "status", nullable = false)
-    private boolean status = true;
+    private boolean status = false;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Category> children = new ArrayList<>();
