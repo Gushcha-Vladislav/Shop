@@ -18,4 +18,6 @@ public interface ProductService {
     List<ProductSendDto> convertProductsToProductsDto (List<Product> products);
     List<Product> findProductByCategory(int id);
     Product createProduct(ProductDto productDto);
+    void changeProduct(ProductDto productDto);
+    List<Product> filter(int idCategory,int typeSort, boolean adminMode);
 }
