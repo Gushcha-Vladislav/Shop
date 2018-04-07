@@ -16,12 +16,21 @@ public class ImageUtil {
     /**
      * path to the folder where image will be saved
      */
-    private static final String IMAGES = "webapps\\ROOT\\resources\\image\\food";
+    private static final String IMAGES = "image\\food\\item";
+    /**
+     * Path to the root folder
+     */
+    private static final String ROOT_PATH = "webapps\\ROOT\\resources";
+
+    /**
+     * Absolute path to the  root folder
+     */
+    private static final String ABSOLUTE_ROOT_PATH = System.getProperty("catalina.home") + File.separator  + ROOT_PATH+ File.separator;
 
     /**
      * Path to the images folder inside the tomcat root catalog
      */
-    private static final String IMAGES_PATH = System.getProperty("catalina.home") + File.separator + IMAGES;
+    private static final String IMAGES_PATH = ABSOLUTE_ROOT_PATH +IMAGES;
 
     /**
      * Field which stores Java API of images folder
@@ -31,7 +40,7 @@ public class ImageUtil {
     /**
      * Absolute path to the images folder inside the tomcat root catalog
      */
-    private static final String IMAGES_DIR_ABSOLUTE_PATH = IMAGES_DIR.getAbsolutePath() + File.separator;
+    private static final String IMAGES_DIR_ABSOLUTE_PATH = IMAGES_DIR.getAbsolutePath();
 
     /**
      * Empty constructor
@@ -47,7 +56,7 @@ public class ImageUtil {
      * @param file - Directly, the file itself
      */
     public static void uploadImage(String name, MultipartFile file) {
-        File image = new File(IMAGES_DIR_ABSOLUTE_PATH + "item" + name + ".jpeg");
+        File image = new File(IMAGES_DIR_ABSOLUTE_PATH  + name + ".jpeg");
         try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(image))) {
             stream.write(file.getBytes());
             stream.close();
@@ -62,5 +71,9 @@ public class ImageUtil {
         if (!IMAGES_DIR.exists()) {
             IMAGES_DIR.mkdirs();
         }
+    }
+
+    public static String getAbsoluteRootPath() {
+        return ABSOLUTE_ROOT_PATH;
     }
 }
