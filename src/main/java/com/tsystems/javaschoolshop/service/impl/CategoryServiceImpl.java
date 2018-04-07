@@ -15,7 +15,15 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
+    /**
+     * Injected by spring categoryDao bean
+     */
     private final CategoryDao categoryDao;
+
+    /**
+     * Injecting constructor
+     * @param categoryDao - that must be injected.
+     */
     @Autowired
     public CategoryServiceImpl(CategoryDao categoryDao) {
         this.categoryDao = categoryDao;
