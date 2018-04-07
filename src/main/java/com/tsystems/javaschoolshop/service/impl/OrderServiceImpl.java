@@ -25,17 +25,43 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+/**
+ * Order service. It is used to order manipulations.
+ */
 @Service
 @PropertySource(value = { "classpath:mail.properties" })
 public class OrderServiceImpl implements OrderService {
 
+    /**
+     * Injected by spring orderDao bean.
+     */
     private final OrderDao orderDao;
+
+    /**
+     * Injected by spring mailSender bean.
+     */
     private final MailSender mailSender;
+
+    /**
+     * Injected by spring user service bean.
+     */
     private final UserService userService;
+
+    /**
+     * Injected by spring basket product service bean.
+     */
     private final BasketProductService basketProductService;
+
     private final Environment environment;
 
+    /**
+     * Injecting constructor.
+     * @param orderDao that must be injected.
+     * @param mailSender that must be injected.
+     * @param userService that must be injected.
+     * @param basketProductService that must be injected.
+     * @param environment that must be injected.
+     */
     @Autowired
     public OrderServiceImpl(OrderDao orderDao, MailSender mailSender, UserService userService,
                             BasketProductService basketProductService, Environment environment) {
@@ -46,6 +72,13 @@ public class OrderServiceImpl implements OrderService {
         this.environment = environment;
     }
 
+    /**
+     * Method saves new orders with necessary parameters.
+     * @param  idAddress - shipping address id.
+     * @param paymentType - tells is card payment type.
+     * @param basket - list with bag products.
+     * @return reference to a saved object.
+     */
     @Override
     @Transactional
     public Order saveOrder(int idAddress, String paymentType, List<BasketProductDto> basket) {
@@ -75,6 +108,10 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.saveOrder(order);
     }
 
+    /**
+     * Method finds orders by user.
+     * @return list of found orders.
+     */
     @Override
     public List<Order> findOrderByUser(){
         User user = userService.findUserFromSecurityContextHolder();
@@ -84,6 +121,11 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Method repeat order by id.
+     * @param idOrder - id of the order.
+     * @return list of found orders.
+     */
     @Override
     public List<BasketProductDto> repeatOrderById(int idOrder){
         Order order =orderDao.findOrderById(idOrder);
@@ -98,11 +140,20 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+    /**
+     * Method finds all orders in database.
+     * @return list of found orders.
+     */
     @Override
     public List<Order> findAllOrder(){
         return orderDao.findAllOrder();
     }
 
+    /**
+     * Method of  change the order of an status in database.
+     * @param idOrder - id of the order.
+     * @param orderStatus - new status.
+     */
     @Override
     public boolean changeOrderStatusById(int idOrder, String orderStatus) {
         Order order =orderDao.findOrderById(idOrder);
@@ -129,6 +180,11 @@ public class OrderServiceImpl implements OrderService {
         return true;
     }
 
+    /**
+     * Method of  change the payment of an status in database.
+     * @param idOrder - id of the order.
+     * @param paymentStatus - new status.
+     */
     @Override
     public boolean changePaymentStatusById(int idOrder, String paymentStatus) {
         Order order =orderDao.findOrderById(idOrder);
@@ -145,6 +201,10 @@ public class OrderServiceImpl implements OrderService {
         orderDao.saveOrder(order);
         return true;
     }
+
+    /**
+     * This method sends message to the customer email.
+     */
     @Override
     public void sendMessage(Order order, User user, List<BasketProductDto> bag, int idAddress) {
         SimpleMailMessage msg = new SimpleMailMessage();
@@ -172,6 +232,11 @@ public class OrderServiceImpl implements OrderService {
         mailSender.send(msg);
     }
 
+    /**
+     * Method finds revenue for the last N days.
+     * @param dayAgo days.
+     * @return revenue.
+     */
     @Override
     public int findRevenuePerNDay(int dayAgo) {
         int amount = 0;
