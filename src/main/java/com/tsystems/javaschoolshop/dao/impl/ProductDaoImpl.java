@@ -12,15 +12,28 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class which implements all necessary methods which allow us
+ * to work with database and categories.
+ */
 @Repository
 public class ProductDaoImpl extends GenericDao implements ProductDao {
 
+    /**
+     * See {@link ProductDao}
+     * @return list of found products.
+     */
     @Override
     public List<Product> findAllProducts() {
         Query query = em.createQuery("SELECT c FROM Product c");
         return (List<Product>) query.getResultList();
     }
 
+    /**
+     * See {@link ProductDao}
+     * @param id of the product.
+     * @return reference to a found Product object
+     */
     @Override
     public Product findProductById(final int id) {
         Query query = em.createQuery("SELECT p FROM Product p WHERE id = :id");
@@ -28,6 +41,11 @@ public class ProductDaoImpl extends GenericDao implements ProductDao {
         return (Product) query.getSingleResult();
     }
 
+    /**
+     * See {@link ProductDao}
+     * @param product reference to a product object.
+     * @return reference to a saved Product object.
+     */
     @Override
     @Transactional
     public Product saveProduct(Product product) {
@@ -36,6 +54,11 @@ public class ProductDaoImpl extends GenericDao implements ProductDao {
         return saved;
     }
 
+    /**
+     * See {@link ProductDao}
+     * @param adminMode - parameter which signalize is this top needed for admin or user.
+     * @return list of found products.
+     */
     @Override
     public List<Product> findTop10Products(boolean adminMode) {
         String temp ="SELECT c.product FROM StatisticTopProduct c ";
@@ -45,6 +68,11 @@ public class ProductDaoImpl extends GenericDao implements ProductDao {
         return topListQuery.setMaxResults(10).getResultList();
     }
 
+    /**
+     * See {@link ProductDao}
+     * @param id of the product.
+     * @return number of sales of the product by his ID.
+     */
     @Override
     public int findNumberOfSalesById(int id) {
         Query query= em.createQuery("SELECT c.amount FROM StatisticTopProduct c WHERE c.product.id = :id");
