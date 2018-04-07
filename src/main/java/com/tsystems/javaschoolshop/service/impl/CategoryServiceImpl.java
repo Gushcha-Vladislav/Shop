@@ -21,21 +21,42 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryDao = categoryDao;
     }
 
+    /**
+     * Find root categories.
+     *
+     * @return list with root categories
+     */
     @Override
     public List<Category> findRootCategories() {
         return categoryDao.findRootCategories();
     }
 
+    /**
+     * Find category by ID.
+     * @param id of category that must be found.
+     * @return found category object or null.
+     */
     @Override
     public  Category findCategoryById(int id){
         return categoryDao.findCategoryById(id);
     }
 
+    /**
+     * Method finds categories by certain hierarchy number.
+     *
+     * @param hierarchyNumber - products with this hierarchy number must be found.
+     * @return list of found categories.
+     */
     @Override
     public List<Category> findCategoryByHierarchyNumber(int hierarchyNumber) {
         return categoryDao.findCategoryByHierarchyNumber(hierarchyNumber);
     }
 
+    /**
+     * Method change property categories.
+     *
+     * @param categoryDto contains variable data.
+     */
     @Override
     public void changeCategory(CategoryDto categoryDto) {
         Category category;
@@ -73,6 +94,11 @@ public class CategoryServiceImpl implements CategoryService {
         categoryDao.saveCategory(category);
     }
 
+    /**
+     * Hide or show category all objects inside.
+     *
+     * @param idCategory id category that must be hidden or activity
+     */
     @Override
     @Transactional
     public boolean changeStatus(int idCategory) {
