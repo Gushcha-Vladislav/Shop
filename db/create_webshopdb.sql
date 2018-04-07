@@ -23,7 +23,6 @@ CREATE TABLE IF NOT EXISTS webshopdb.addresses (
   street VARCHAR(45) NOT NULL,
   house VARCHAR(5) NOT NULL,
   apartment VARCHAR(5),
-  is_default  BOOLEAN NOT NULL DEFAULT TRUE,
   FOREIGN KEY (id_user) REFERENCES webshopdb.users (id)
 );
 
