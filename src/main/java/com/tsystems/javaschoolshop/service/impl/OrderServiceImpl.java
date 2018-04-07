@@ -6,6 +6,7 @@ import com.tsystems.javaschoolshop.model.dto.BasketProductDto;
 import com.tsystems.javaschoolshop.model.enums.OrderStatusEnum;
 import com.tsystems.javaschoolshop.model.enums.PaymentStatusEnum;
 import com.tsystems.javaschoolshop.model.enums.PaymentTypeEnum;
+import com.tsystems.javaschoolshop.service.api.AddressService;
 import com.tsystems.javaschoolshop.service.api.BasketProductService;
 import com.tsystems.javaschoolshop.service.api.OrderService;
 import com.tsystems.javaschoolshop.service.api.UserService;
@@ -52,6 +53,11 @@ public class OrderServiceImpl implements OrderService {
      */
     private final BasketProductService basketProductService;
 
+    /**
+     * Injected by spring basket address service bean.
+     */
+    private final AddressService addressService;
+
     private final Environment environment;
 
     /**
@@ -64,11 +70,13 @@ public class OrderServiceImpl implements OrderService {
      */
     @Autowired
     public OrderServiceImpl(OrderDao orderDao, MailSender mailSender, UserService userService,
-                            BasketProductService basketProductService, Environment environment) {
+                            BasketProductService basketProductService, Environment environment,
+                            AddressService addressService) {
         this.orderDao = orderDao;
         this.mailSender = mailSender;
         this.userService = userService;
         this.basketProductService = basketProductService;
+        this.addressService = addressService;
         this.environment = environment;
     }
 
@@ -83,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public Order saveOrder(int idAddress, String paymentType, List<BasketProductDto> basket) {
         User user = userService.findUserFromSecurityContextHolder();
-        Address address = userService.findAddressById(idAddress);
+        Address address = addressService.findAddressById(idAddress);
         Order order = new Order();
         order.setUser(address.getUser());
         order.setAddress(address.toStringForEmail());
@@ -222,7 +230,7 @@ public class OrderServiceImpl implements OrderService {
                 + "Your order[ID=" + order.getId() + "] is confirmed." + System.lineSeparator()
                 + "List of products: " + System.lineSeparator()
                 + products.toString() + System.lineSeparator()
-                + "Delivery address: " + userService.findAddressById(idAddress).toStringForEmail() + System.lineSeparator() + System.lineSeparator()
+                + "Delivery address: " + addressService.findAddressById(idAddress).toStringForEmail() + System.lineSeparator() + System.lineSeparator()
                 + "Thank you for choosing us!";
 
         msg.setFrom(environment.getRequiredProperty("mail.username"));
