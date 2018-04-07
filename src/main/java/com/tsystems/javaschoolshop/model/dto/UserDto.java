@@ -24,6 +24,7 @@ public class UserDto {
     private String phone;
 
     public UserDto() {
+        //Empty constructor
     }
 
     public String getNameUser() {

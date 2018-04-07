@@ -102,6 +102,7 @@ public class Order extends Generic {
      * Empty constructor for Hibernate
      */
     public Order() {
+        //Empty constructor for hibernate.
     }
 
     /**

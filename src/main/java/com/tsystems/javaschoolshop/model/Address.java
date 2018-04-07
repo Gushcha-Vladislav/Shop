@@ -84,6 +84,7 @@ public class Address extends Generic {
     private String apartment;
 
     public Address() {
+        //Empty constructor for hibernate.
     }
 
     /**

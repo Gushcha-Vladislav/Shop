@@ -31,6 +31,7 @@ public class ProductDto implements Serializable {
     private Integer quantityInStock;
 
     public ProductDto() {
+        //Empty constructor
     }
 
     public int getId() {

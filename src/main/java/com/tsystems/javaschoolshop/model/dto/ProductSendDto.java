@@ -15,6 +15,7 @@ public class ProductSendDto implements Serializable {
     private String image;
 
     public ProductSendDto() {
+        //Empty constructor
     }
 
     public ProductSendDto(Integer id, String nameProduct, Integer price,Integer numberOfSales, String image) {

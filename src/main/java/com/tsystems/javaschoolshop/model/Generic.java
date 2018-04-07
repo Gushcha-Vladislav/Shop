@@ -26,7 +26,7 @@ public abstract class Generic implements Serializable {
      * Empty constructor for Hibernate.
      */
     public Generic(){
-
+        //Empty constructor for hibernate.
     }
     /**
      * Simple getter

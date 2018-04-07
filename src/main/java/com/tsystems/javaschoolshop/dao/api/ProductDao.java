@@ -2,7 +2,6 @@ package com.tsystems.javaschoolshop.dao.api;
 
 import com.tsystems.javaschoolshop.model.Product;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This interface provide us API through which we will communicate with database.

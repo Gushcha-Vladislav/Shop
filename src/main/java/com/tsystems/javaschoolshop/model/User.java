@@ -101,6 +101,7 @@ public class User extends Generic {
      * Empty constructor for Hibernate.
      */
     public User() {
+        //Empty constructor for hibernate.
     }
 
     public User change(UserDto user) {

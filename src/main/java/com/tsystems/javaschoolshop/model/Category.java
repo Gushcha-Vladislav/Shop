@@ -64,6 +64,7 @@ public class Category extends Generic {
      * Empty constructor for hibernate.
      */
     public Category() {
+        //Empty constructor for hibernate.
     }
 
     /**
@@ -72,7 +73,7 @@ public class Category extends Generic {
      * @param parent object to set
      * @param nameCategory value to set
      */
-    public Category(int hierarchyNumber, Category parent, String nameCategory) {
+    public Category(int hierarchyNumber, Category parent, String nameCategory, boolean status) {
         this.hierarchyNumber = hierarchyNumber;
         this.parent = parent;
         this.nameCategory = nameCategory;

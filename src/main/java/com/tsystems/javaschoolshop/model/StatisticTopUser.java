@@ -35,6 +35,7 @@ public class StatisticTopUser extends Statistics {
      * Empty constructor for Hibernate.
      */
     public StatisticTopUser() {
+        //Empty constructor for hibernate.
     }
 
     /**

@@ -1,9 +1,7 @@
 package com.tsystems.javaschoolshop.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.HashMap;
 
 /**
@@ -90,6 +88,7 @@ public class Product extends Generic {
      * Empty constructor for Hibernate.
      */
     public Product() {
+        //Empty constructor for hibernate.
     }
 
     /**

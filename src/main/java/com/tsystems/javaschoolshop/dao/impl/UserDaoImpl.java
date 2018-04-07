@@ -2,12 +2,10 @@ package com.tsystems.javaschoolshop.dao.impl;
 
 import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.UserDao;
-import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
 import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.Query;
 import java.util.List;
 

@@ -53,6 +53,7 @@ public class OrdersProducts extends Generic {
      * Empty constructor for Hibernate
      */
     public OrdersProducts() {
+        //Empty constructor for hibernate.
     }
 
     /**

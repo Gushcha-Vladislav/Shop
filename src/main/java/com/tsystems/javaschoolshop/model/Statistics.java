@@ -26,6 +26,7 @@ public abstract class Statistics implements Serializable {
      * Empty constructor for Hibernate.
      */
     public Statistics() {
+        //Empty constructor for hibernate.
     }
 
     /**

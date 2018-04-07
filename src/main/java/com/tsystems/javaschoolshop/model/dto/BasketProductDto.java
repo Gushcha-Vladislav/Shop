@@ -37,6 +37,7 @@ public class BasketProductDto implements Serializable {
      * Empty constructor
      */
     public BasketProductDto() {
+        //Empty constructor
     }
 
     /**

@@ -33,7 +33,7 @@ public class StatisticTopProduct extends Statistics {
      * Empty constructor for Hibernate.
      */
     public StatisticTopProduct() {
-
+        //Empty constructor for hibernate.
     }
 
     /**

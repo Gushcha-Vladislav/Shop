@@ -1,7 +1,6 @@
 package com.tsystems.javaschoolshop.service.impl;
 
 import com.tsystems.javaschoolshop.dao.api.UserDao;
-import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
 import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 import com.tsystems.javaschoolshop.service.api.UserService;

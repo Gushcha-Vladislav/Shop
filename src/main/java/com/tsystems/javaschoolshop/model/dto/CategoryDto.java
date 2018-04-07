@@ -13,6 +13,7 @@ public class CategoryDto {
     private String nameCategory;
 
     public CategoryDto() {
+        //Empty constructor
     }
 
     public int getId() {
