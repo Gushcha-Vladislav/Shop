@@ -24,10 +24,6 @@ public class ProductDto implements Serializable {
     private String brand;
 
     @NotNull
-    @Size(min=3,max = 10)
-    private String property;
-
-    @NotNull
     private String description;
 
     @NotNull
@@ -77,14 +73,6 @@ public class ProductDto implements Serializable {
         this.brand = brand;
     }
 
-    public String getProperty() {
-        return property;
-    }
-
-    public void setProperty(String property) {
-        this.property = property;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -108,7 +96,6 @@ public class ProductDto implements Serializable {
         if(idCategory!=null) sb.append(", idCategory=").append(idCategory);
         if(price!=null) sb.append(", price=").append(price);
         if(brand!=null) sb.append(", brand='").append(brand).append('\'');
-        if(property!=null) sb.append(", property='").append(property).append('\'');
         if(description!=null) sb.append(", description='").append(description).append('\'');
         if(quantityInStock!=null) sb.append(", quantityInStock=").append(quantityInStock);
         sb.append('}');
