@@ -11,8 +11,22 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
+/**
+ * Application initializer which registers dispatcher servlet
+ * and some other important settings.
+ * It also registers our custom configs for this web application.
+ * For example, WebConfig {@link WebConfig}
+ *              SecurityConfig {@link SecurityConfig}
+ *              JmsConfig {@link JmsConfig}
+ */
 public class AppInitializer implements WebApplicationInitializer {
 
+    /**
+     * Method we had to implement for correct working of out application.
+     * In Method we set all settings. See description of the class above.
+     * @param container - context of the application
+     * @throws ServletException in some cases when our settings isn't correct
+     */
     @Override
     public void onStartup(ServletContext container) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();

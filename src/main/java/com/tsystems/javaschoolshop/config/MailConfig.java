@@ -1,6 +1,5 @@
 package com.tsystems.javaschoolshop.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,14 +7,15 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-
+import javax.annotation.Resource;
 import java.util.Properties;
+
 
 @Configuration
 @PropertySource(value = { "classpath:mail.properties" })
 public class MailConfig {
 
-    @Autowired
+    @Resource
     private Environment environment;
 
     @Value("${email.subject}")

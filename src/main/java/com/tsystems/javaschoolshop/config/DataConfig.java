@@ -1,7 +1,6 @@
 package com.tsystems.javaschoolshop.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,18 +11,29 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * As we see from class name, it set some database configs
+ */
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({ "com.tsystems.javaschoolshop" })
 @PropertySource(value = { "classpath:application.properties" })
 public class DataConfig {
-    @Autowired
+
+    @Resource
     private Environment environment;
 
+    /**
+     * Method register entityMangerFactory bean for us in spring context.
+     * It provides us entity manager which uses in all dao classes to work with
+     * our database
+     * @return
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -34,6 +44,11 @@ public class DataConfig {
         return em;
     }
 
+    /**
+     * Method register dataSource bean in spring context. Data source provide us a possibility
+     * to connect with database using our settings. In particular, settings stores in resource folder.
+     * @return data source (our database)
+     */
     @Bean
     public DataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
@@ -54,6 +69,12 @@ public class DataConfig {
         return dataSource;
     }
 
+    /**
+     * Method register transactionManager bean in spring context.
+     * It is obvious that the bean is used for transaction support
+     * @return some transaction manager which includes exemplar of
+     * our entityManagerFactory bean
+     */
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
         JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -61,6 +82,9 @@ public class DataConfig {
         return transactionManager;
     }
 
+    /**
+     * Method create hibernate properties
+     */
     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
