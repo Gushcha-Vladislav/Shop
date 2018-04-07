@@ -37,6 +37,11 @@ public interface CategoryService {
     void changeCategory(CategoryDto categoryDto);
 
     /**
+     * Method add new category.
+     * @param categoryDto contains variable data.
+     */
+    void saveCategory(CategoryDto categoryDto);
+    /**
      * Hide or show category all objects inside.
      * @param idCategory id category that must be hidden or activity
      */

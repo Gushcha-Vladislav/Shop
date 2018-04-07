@@ -5,7 +5,6 @@ import com.tsystems.javaschoolshop.model.Category;
 import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.model.dto.CategoryDto;
 import com.tsystems.javaschoolshop.service.api.CategoryService;
-import com.tsystems.javaschoolshop.service.api.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,38 +69,39 @@ public class CategoryServiceImpl implements CategoryService {
      */
     @Override
     public void changeCategory(CategoryDto categoryDto) {
-        Category category;
-        if(categoryDto.getId() ==0) {
-            category=new Category();
-            categoryDto.setNameCategory(categoryDto.getNameCategory());
-            if(categoryDto.getIdParent() == 0){
+        Category category = findCategoryById(categoryDto.getId());
+        if(!category.getNameCategory().equals(categoryDto.getNameCategory()))
+            category.setNameCategory(categoryDto.getNameCategory());
+        if(category.getChildren().isEmpty() && categoryDto.getIdParent()!=0){
+            Category parent = findCategoryById(categoryDto.getIdParent());
+            category.setParent(parent);
+            category.setHierarchyNumber(2);
+        }else{
+            if(category.getChildren().isEmpty()){
                 category.setParent(null);
                 category.setHierarchyNumber(1);
             }
-            else{
-                category.setParent(findCategoryById(categoryDto.getIdParent()));
-                category.setHierarchyNumber(2);
-            }
-        }
-        else {
-            category = findCategoryById(categoryDto.getId());
-            if(!category.getNameCategory().equals(categoryDto.getNameCategory()))
-                category.setNameCategory(categoryDto.getNameCategory());
-            if(category.getChildren().isEmpty() && categoryDto.getIdParent()!=0){
-                Category parent = findCategoryById(categoryDto.getIdParent());
-                if(!category.getParent().equals(parent)) {
-                    category.setParent(parent);
-                    category.setHierarchyNumber(2);
-                }
-            }else{
-                if(category.getChildren().isEmpty()){
-                    category.setParent(null);
-                    category.setHierarchyNumber(1);
-                }
-            }
-
         }
         category.setNameCategory(categoryDto.getNameCategory());
+        categoryDao.saveCategory(category);
+    }
+
+    /**
+     * Method add new category.
+     * @param categoryDto contains variable data.
+     */
+    @Override
+    public void saveCategory(CategoryDto categoryDto){
+        Category category=new Category();
+        categoryDto.setNameCategory(categoryDto.getNameCategory());
+        if(categoryDto.getIdParent() == 0){
+            category.setParent(null);
+            category.setHierarchyNumber(1);
+        }
+        else{
+            category.setParent(findCategoryById(categoryDto.getIdParent()));
+            category.setHierarchyNumber(2);
+        }
         categoryDao.saveCategory(category);
     }
 
