@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Category service. It is used to category manipulations.
+ */
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
