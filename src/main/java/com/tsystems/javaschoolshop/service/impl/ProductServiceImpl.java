@@ -97,7 +97,6 @@ public class ProductServiceImpl implements ProductService {
         product.setCategory(categoryService.findCategoryById(productDto.getIdCategory()));
         product.setPrice(productDto.getPrice());
         product.setBrand(productDto.getBrand());
-        product.setProperty(productDto.getProperty());
         product.setDescription(productDto.getDescription());
         product.setQuantityInStock(productDto.getQuantityInStock());
         product.setImage("image");
@@ -113,7 +112,8 @@ public class ProductServiceImpl implements ProductService {
         product.setNameProduct(productDto.getNameProduct());
         if (productDto.getBrand().equals("")) product.setBrand(null);
         else product.setBrand(productDto.getBrand());
-        product.setProperty(productDto.getProperty());
+        if(!productDto.getIdCategory().equals(product.getCategory().getId()))
+            product.setCategory(categoryService.findCategoryById(product.getCategory().getId()));
         product.setDescription(productDto.getDescription());
         product.setQuantityInStock(productDto.getQuantityInStock());
         product.setPrice(productDto.getPrice());
@@ -131,11 +131,11 @@ public class ProductServiceImpl implements ProductService {
             case 3:
                     return products.stream().sorted(ComparatorUtil.getDescendingNameProductComparator()).collect(Collectors.toList());
             case 1:
-                    return products.stream().sorted(ComparatorUtil.getAscendingPriceProductComparator()).collect(Collectors.toList());
-            case 0:
                     return products.stream().sorted(ComparatorUtil.getDescendingPriceProductComparator()).collect(Collectors.toList());
+            case 0:
+                    return products.stream().sorted(ComparatorUtil.getAscendingPriceProductComparator()).collect(Collectors.toList());
             default:
-                return products.stream().sorted(ComparatorUtil.getDescendingPriceProductComparator()).collect(Collectors.toList());
+                    return products.stream().sorted(ComparatorUtil.getAscendingPriceProductComparator()).collect(Collectors.toList());
         }
     }
 }
