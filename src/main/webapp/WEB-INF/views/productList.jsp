@@ -16,25 +16,17 @@
 <script src="/resources/js/filter.js"></script>
 <div class="container">
     <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
+        <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
                 <li><a href="/catalog">Home</a></li>
             </div>
-        </div>
-        <div class="col-sm-3">
-            <label clss="sort pull-left" for="sortSelect">Order by : </label>
-            <select class="sort pull-left" id="sortSelect">
-                <option value="0">Price up</option>
-                <option value="1">Price down</option>
-                <option value="2">Name up</option>
-                <option value="3">Name down</option>
-            </select>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
            <c:import url="filterCategory.jsp"/>
-            <a class="btn btn-success">Reset</a>
+            <div class="col-xs-12">
+                <a class="btn btn-success" href="">Reset</a></div>
         </div>
         <div class="container col-sm-9">
             <div class="row">
