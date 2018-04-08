@@ -54,7 +54,7 @@ public class SessionListener implements ServletContextListener, HttpSessionListe
         for (BasketProductDto productDto : basketBean.getBasket()) {
             Product product = productService.findProductById(productDto.getId(), true);
             product.setQuantityInStock(product.getQuantityInStock()+productDto.getAmount());
-            product.setStatisticTopProduct(new StatisticTopProduct(product,product.getStatisticTopProduct().getAmount() - productDto.getAmount()));
+            product.setStatisticTopProduct(new StatisticTopProduct(product,product.getStatisticTopProduct().getSales() - productDto.getAmount()));
             productService.saveProduct(product);
         }
         basketBean.getBasket().clear();

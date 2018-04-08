@@ -26,8 +26,8 @@ public class StatisticTopProduct extends Statistics {
      * This filed connects with amount column in statistics table.
      * Cannot be nullable.
      */
-    @Column(name = "amount")
-    private Integer amount;
+    @Column(name = "sales")
+    private Integer sales;
 
     /**
      * Empty constructor for Hibernate.
@@ -39,11 +39,11 @@ public class StatisticTopProduct extends Statistics {
     /**
      * Custom constructor with all necessary fields to initialize.
      * @param product - delivery address.
-     * @param amount - directly, order status, it's obvious.
+     * @param totalCash - directly, order status, it's obvious.
      */
-    public StatisticTopProduct(Product product, Integer amount) {
+    public StatisticTopProduct(Product product, Integer sales) {
         this.product = product;
-        this.amount = amount;
+        this.sales = sales;
     }
 
     /**
@@ -64,18 +64,18 @@ public class StatisticTopProduct extends Statistics {
 
     /**
      * Simple getter
-     * @return amount object
+     * @return sales object
      */
-    public Integer getAmount() {
-        return amount;
+    public Integer getSales() {
+        return sales;
     }
 
     /**
      * Simple setter
-     * @param amount is object to set
+     * @param sales is object to set
      */
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setSales(Integer sales) {
+        this.sales = sales;
     }
 
     /**
@@ -105,7 +105,7 @@ public class StatisticTopProduct extends Statistics {
         final StringBuilder sb = new StringBuilder("StatisticTopProduct{");
         if(getId()!=null) sb.append("id=").append(getId()).append('\'');
         if(product!=null) sb.append("product=").append(product.toString()).append('\'');
-        if(amount!=null) sb.append(", amount=").append(amount);
+        if(sales!=null) sb.append(", amount=").append(sales);
         sb.append('}');
         return sb.toString();
     }
