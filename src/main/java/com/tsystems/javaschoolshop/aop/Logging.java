@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class Logging {
+
     private Logger logger = Logger.getLogger(Logging.class);
 
     @Pointcut("within(com.tsystems.javaschoolshop.service..*) ||" +
@@ -20,16 +21,16 @@ public class Logging {
 
     @Before(value = "witch()")
     public void logBefore(JoinPoint joinPoint) {
-        logger.info("###### Requested class : {" + joinPoint.getTarget().getClass().getName() + "} ; Method : {" + joinPoint.getSignature().getName() + "} ");
+        logger.debug("###### Requested class : {" + joinPoint.getTarget().getClass().getName() + "} ; Method : {" + joinPoint.getSignature().getName() + "} ");
         Object[] signatureArgs = joinPoint.getArgs();
         for (Object signatureArg : signatureArgs) {
-            logger.info("###### Arguments: {" + signatureArg.toString() + "} ");
+            logger.debug("###### Arguments: {" + signatureArg.toString() + "} ");
         }
     }
 
     @AfterReturning(pointcut = "witch()")
     public void logAfter(JoinPoint joinPoint) {
-        logger.info("###### Success return for method :{"+ joinPoint.getSignature().getName()+"}");
+        logger.debug("###### Success return for method :{"+ joinPoint.getSignature().getName()+"}");
         return;
     }
 
@@ -49,5 +50,9 @@ public class Logging {
         logger.error("Error send message: \n", ex);
     }
 
-
+    @AfterReturning(pointcut = "within(com.tsystems.javaschoolshop.controller..*) ")
+    public void logSuccessController(JoinPoint joinPoint) {
+        logger.info("###### Success return for method :{"+ joinPoint.getSignature().getName()+"}");
+        return;
+    }
 }
