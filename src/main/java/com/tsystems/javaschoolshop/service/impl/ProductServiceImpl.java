@@ -64,11 +64,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findAllProducts(final boolean adminMode) {
         if (adminMode) return productDao.findAllProducts()
-                .stream().sorted(ComparatorUtil.getAscendingNameProductComparator()).collect(Collectors.toList());
+                .stream()
+                .sorted(ComparatorUtil.getAscendingPriceProductComparator())
+                .collect(Collectors.toList());
         else return productDao.findAllProducts()
                 .stream()
                 .filter(Product::isStatus)
-                .sorted(ComparatorUtil.getAscendingNameProductComparator())
+                .sorted(ComparatorUtil.getAscendingPriceProductComparator())
                 .collect(Collectors.toList());
     }
 
@@ -204,7 +206,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public void changeProduct(ProductDto productDto) {
-        Product product = findProductById(productDto.getId(),false);
+        Product product = findProductById(productDto.getId(),true);
         product.setNameProduct(productDto.getNameProduct());
         if (productDto.getBrand().equals("")) product.setBrand(null);
         else product.setBrand(productDto.getBrand());

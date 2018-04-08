@@ -42,7 +42,7 @@ public class BasketProductServiceImpl implements BasketProductService {
     @Transactional
     public boolean addToBasket(BasketProductDto basketProductDto, List<BasketProductDto> basket) {
         Product product = productDao.findProductById(basketProductDto.getId());
-        boolean isFoundInbasket = false;
+        boolean isFoundInBasket = false;
         for (BasketProductDto basketProduct : basket) {
             if (basketProduct.getId() == basketProductDto.getId()) {
                 if (product.getQuantityInStock() <= basketProductDto.getAmount() - basketProduct.getAmount())
@@ -50,18 +50,18 @@ public class BasketProductServiceImpl implements BasketProductService {
                 basketProduct.setAmount(basketProductDto.getAmount());
                 basketProduct.setPrice(basketProductDto.getPrice());
                 product.setQuantityInStock(product.getQuantityInStock() - basketProductDto.getAmount() + basketProduct.getAmount());
-                product.getStatisticTopProduct().setAmount(product.getStatisticTopProduct().getAmount()+ basketProductDto.getAmount() - basketProduct.getAmount());
-                isFoundInbasket = true;
+                product.getStatisticTopProduct().setSales(product.getStatisticTopProduct().getSales()+ basketProductDto.getAmount() - basketProduct.getAmount());
+                isFoundInBasket = true;
                 break;
             }
         }
 
-        if (!isFoundInbasket)
+        if (!isFoundInBasket)
             if(product.getQuantityInStock() >= basketProductDto.getAmount()) {
                 basket.add(basketProductDto);
                 if(product.getStatisticTopProduct()==null) product.setStatisticTopProduct(new StatisticTopProduct(product,0));
                 product.setQuantityInStock(product.getQuantityInStock() - basketProductDto.getAmount());
-                product.getStatisticTopProduct().setAmount(product.getStatisticTopProduct().getAmount()+ basketProductDto.getAmount());
+                product.getStatisticTopProduct().setSales(product.getStatisticTopProduct().getSales()+ basketProductDto.getAmount());
             }else return false;
         productDao.saveProduct(product);
         return true;
@@ -81,7 +81,7 @@ public class BasketProductServiceImpl implements BasketProductService {
             if (product.getId() == id) {
                 Product originalProduct = productDao.findProductById(id);
                 originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
-                originalProduct.getStatisticTopProduct().setAmount(originalProduct.getStatisticTopProduct().getAmount() - product.getAmount());
+                originalProduct.getStatisticTopProduct().setSales(originalProduct.getStatisticTopProduct().getSales() - product.getAmount());
                 productDao.saveProduct(originalProduct);
                 basket.remove(product);
                 break;
@@ -148,7 +148,7 @@ public class BasketProductServiceImpl implements BasketProductService {
         for (BasketProductDto product : basket) {
             Product originalProduct = productDao.findProductById(product.getId());
             originalProduct.setQuantityInStock(originalProduct.getQuantityInStock() + product.getAmount());
-            originalProduct.getStatisticTopProduct().setAmount(originalProduct.getStatisticTopProduct().getAmount() - product.getAmount());
+            originalProduct.getStatisticTopProduct().setSales(originalProduct.getStatisticTopProduct().getSales() - product.getAmount());
             productDao.saveProduct(originalProduct);
         }
 

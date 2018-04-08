@@ -224,12 +224,12 @@ public class OrderServiceImpl implements OrderService {
         for (BasketProductDto productDto : bag) {
             products.append(++counter).append(") ")
                     .append(productDto.getNameProduct()).append(" - ")
-                    .append(productDto.getAmount()).append(" items.").append(" Price - \u20BD ")
-                    .append(productDto.getPrice() * productDto.getAmount()).append(".").append(System.lineSeparator());
+                    .append(productDto.getAmount()).append(" items.").append(" Price - ")
+                    .append(productDto.getPrice() * productDto.getAmount()).append(" RUB.").append(System.lineSeparator());
         }
 
         String message = "Hi, " + user.getNameUser() + "!" + System.lineSeparator()
-                + "Your order[ID=" + order.getId() + "] is confirmed." + System.lineSeparator()
+                + "Your order [ID=" + order.getId() + "] is confirmed." + System.lineSeparator()
                 + "List of products: " + System.lineSeparator()
                 + products.toString() + System.lineSeparator()
                 + "Delivery address: " + addressService.findAddressById(idAddress).toStringForEmail() + System.lineSeparator() + System.lineSeparator()
