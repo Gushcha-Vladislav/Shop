@@ -59,7 +59,6 @@ public class ImageUtil {
         File image = new File(IMAGES_DIR_ABSOLUTE_PATH  + name + ".jpeg");
         try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(image))) {
             stream.write(file.getBytes());
-            stream.close();
         } catch (Exception e) {
         }
     }
