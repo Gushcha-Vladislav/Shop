@@ -29,11 +29,12 @@
         </div>
     </sec:authorize>
     <sec:authorize access="hasRole('ROLE_ADMIN')">
-        <div class="col-sm-2 col-xs-2 id">User id : ${order.user.id}</div>
+        <div class="col-sm-3 col-xs-3 id">User id : ${order.user.id}</div>
         <div class="col-sm-8 col-xs-8">User email : ${order.user.email}</div>
+        <div class="param">${order.id}</div>
         <div class="col-sm-6 col-xs-12">
-            <div class="param">${order.id}</div>
-            <select class="sort  pull-right" id="orderStatus">
+            <label for="orderStatus" class="pull-left">Order status :</label>
+            <select class="sort  pull-left orderStatus" id="orderStatus">
                 <option value="AWAITING_PAYMENT"
                         <c:if test="${order.orderStatus eq 'Awaiting payment'}">selected</c:if> >Awaiting
                     payment
@@ -52,10 +53,10 @@
                         <c:if test="${order.orderStatus eq 'Done'}">selected</c:if>>Done
                 </option>
             </select>
-            <label for="orderStatus" class="pull-right">Order status :</label>
         </div>
         <div class="col-sm-6 col-xs-12">
-            <select class="sort  pull-right" id="paymentStatus">
+            <label for="paymentStatus" class="pull-left">Payment status: </label>
+            <select class="sort  pull-left paymentStatus" id="paymentStatus">
                 <option value="AWAITING_PAYMENT"
                         <c:if test="${order.delivery eq 'Awaiting payment'}">selected</c:if> >Awaiting
                     payment
@@ -63,13 +64,12 @@
                 <option value="PAID" <c:if test="${order.delivery eq 'Paid'}">selected</c:if>>Paid
                 </option>
             </select>
-            <label for="paymentStatus" class="pull-right">Payment status: </label>
         </div>
     </sec:authorize>
     <c:forEach var="itemInOrder" items="${order.products}">
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-4 thumbnail">
             <div class="col-xs-12">
-                <a href="/catalog/${itemInOrder.product.id}" class="titleLastName">${itemInOrder.product.nameProduct}</a>
+                <a href="/catalog/${itemInOrder.product.id}" class="titleLastName text-center">${itemInOrder.product.nameProduct}</a>
             </div>
             <div class="col-xs-12">
                 <img src="/resources/${itemInOrder.product.image}"
