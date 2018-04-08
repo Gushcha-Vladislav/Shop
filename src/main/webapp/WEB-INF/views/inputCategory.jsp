@@ -9,7 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="form-group">
-    <label for="nameCategory" class="cols-sm-2 control-label">nameCategory *</label>
+    <label for="nameCategory" class="cols-sm-2 control-label">Category Name *</label>
     <div class="cols-sm-10">
         <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-camera"></i></span>
