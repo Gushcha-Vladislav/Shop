@@ -85,7 +85,7 @@
                 <div class="col-xs-2 text-center">
                     <a href="/order"><i class="fab fa-amazon-pay fa-lg menu-icon fa-fw"></i>Order</a></div>
                 <div class="col-xs-2 text-center">
-                    <a href=""><i class="fas fa-map-signs  fa-lg menu-icon fa-fw"></i>Stand</a>
+                    <a href="http://localhost:8080/StandForShop-1.0/"><i class="fas fa-map-signs  fa-lg menu-icon fa-fw"></i>Stand</a>
                 </div>
                 <div class="col-xs-3 text-center">
                     <a id ="buttonBasketProducts" data-toggle="modal" type="modal" data-target="#basketProducts">

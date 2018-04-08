@@ -29,7 +29,7 @@
                             <img src="/resources/${product.image}" alt="item">
                         </div>
                         <div class="col-lg-10 product-info">
-                            <div class="col-lg-8 main-info">
+                            <div class="col-lg-7 main-info">
                                 <div class="name">
                                     <a href="/catalog/${product.id}">${product.nameProduct}</a>
                                 </div>
@@ -37,7 +37,7 @@
                                     Sales: ${product.numberOfSales}
                                 </div>
                             </div>
-                            <div class="col-lg-4 cost-info">
+                            <div class="col-lg-5 cost-info">
                                 <i class="fas fa-ruble-sign"></i>&nbsp;&nbsp;${product.price}
                             </div>
                         </div>

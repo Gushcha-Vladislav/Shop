@@ -7,6 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:forEach var="product" items="${products}">
     <div class="col-xs-6 col-lg-4">
@@ -32,3 +33,4 @@
         </div>
     </div>
 </c:forEach>
+<c:if test="${fn:length(products) eq 0}"><h5>Reset the filter, there are no products.</h5></c:if>

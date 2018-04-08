@@ -29,7 +29,7 @@
                 <form:form  action="/admin/product" method="POST" enctype="multipart/form-data">
                 <c:import url="inputProduct.jsp"/>
                 <div class="form-group ">
-                    <input type="submit" id="register" value="AddNewProduct"
+                    <input type="submit" id="register" value="Add new product"
                            class="btn btn-primary btn-lg btn-block login-button">
                 </div>
                 </form:form>
