@@ -43,7 +43,6 @@ public class BasketProductServiceMockTest {
         productP1.setCategory(null);
         productP1.setQuantityInStock(250);
         productP1.setDescription("description");
-        productP1.setProperty("property");
         productP1.setStatisticTopProduct(new StatisticTopProduct(productP1,15));
 
         productP2.setId(2);
@@ -55,7 +54,6 @@ public class BasketProductServiceMockTest {
         productP2.setCategory(null);
         productP2.setQuantityInStock(250);
         productP2.setDescription("description");
-        productP2.setProperty("property");
         productP2.setStatisticTopProduct(new StatisticTopProduct(productP2,15));
 
         product1.setId(1);
@@ -115,7 +113,7 @@ public class BasketProductServiceMockTest {
     @Test
     public void createBagProductFromProductMockTest1() {
         //do
-        BasketProductDto result = basketProductService.createBagProductFromProduct(productP1);
+        BasketProductDto result = basketProductService.createBasketProductFromProduct(productP1);
         //check
         Assert.assertNotNull(result);
         Assert.assertEquals(new Long(productP1.getId()), new Long(result.getId()));
@@ -127,7 +125,7 @@ public class BasketProductServiceMockTest {
     @Test(expected = NullPointerException.class)
     public void createBagProductFromProductMockTest2() {
         //do
-        basketProductService.createBagProductFromProduct(null);
+        basketProductService.createBasketProductFromProduct(null);
     }
 
     @Test
@@ -196,7 +194,7 @@ public class BasketProductServiceMockTest {
         basketProductService.deleteFromBasket(null);
     }
 
-    @Test()
+    @Test
     public void deleteFromBasketMockTest2() {
         List<BasketProductDto> basket = new ArrayList<>(Arrays.asList(product1, product2));
         Mockito.when(productDao.findProductById(productP1.getId())).thenReturn(productP1);
@@ -212,4 +210,56 @@ public class BasketProductServiceMockTest {
         Assert.assertTrue( bagSizeAfter == 0);
     }
 
+    @Test
+    public void countProductInBasketByIdTest1() {
+        List<BasketProductDto> basket = new ArrayList<>(Arrays.asList(product1, product2));
+        //do
+        int result = basketProductService.countProductsInBasketById(1,basket);
+        //check
+        Assert.assertEquals(product1.getAmount(), result);
+    }
+
+    @Test
+    public void countProductInBasketByIdTest2() {
+        List<BasketProductDto> basket = new ArrayList<>(Arrays.asList(product1, product2));
+        //do
+        int result = basketProductService.countProductsInBasketById(4,basket);
+        //check
+        Assert.assertEquals(0, result);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void countProductInBasketByIdTest3() {
+        int result = basketProductService.countProductsInBasketById(4,null);
+    }
+
+    @Test
+    public void countProductInBasketByIdTest4() {
+        //do
+        int result = basketProductService.countProductsInBasketById(4, new ArrayList<>());
+        //check
+        Assert.assertEquals(0, result);
+    }
+    @Test
+    public void countProductInBasketTest1() {
+        List<BasketProductDto> basket = new ArrayList<>(Arrays.asList(product1, product2));
+        //do
+        int result = basketProductService.countProductsInBasket(basket);
+        //check
+        Assert.assertEquals(4, result);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void countProductInBasketTest2() {
+        int result = basketProductService.countProductsInBasket(null);
+    }
+
+    @Test
+    public void countProductInBasketTest3() {
+        List<BasketProductDto> basket = new ArrayList<>(Arrays.asList(product1, product2));
+        //do
+        int result = basketProductService.countProductsInBasket( new ArrayList<>());
+        //check
+        Assert.assertEquals(0, result);
+    }
 }
