@@ -16,8 +16,7 @@ $(document).ready(function () {
     $(".required").change(
         function () {
             if($("#nameProduct").val().length >= 3 && $("#nameProduct").val().length <=25 &&
-                $("#price").val() >= 1 && $("#property").val().length >= 3 &&
-                $("#property").val().length <= 10 && $("#description").val().length >= 3){
+                $("#price").val() >= 1 &&  $("#description").val().length >= 3){
                 $(".login-button").removeAttr('disabled');
             } else{
                 $('.login-button').attr('disabled', 'disabled');

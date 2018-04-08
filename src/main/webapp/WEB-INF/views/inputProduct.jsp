@@ -24,7 +24,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="nameProduct" class="cols-sm-2 control-label">Name product *</label>
+    <label for="nameProduct" class="cols-sm-2 control-label">Product Name*</label>
     <div class="cols-sm-10">
         <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-cart-plus"></i></span>
@@ -68,17 +68,6 @@
                    maxlength="40"/>
         </div>
         <h4><form:errors path="brand" cssClass="error" /></h4>
-    </div>
-</div>
-<div class="form-group">
-    <label for="property" class="cols-sm-2 control-label">Property *</label>
-    <div class="cols-sm-10">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-weight"></i></span>
-            <input type="text" class="form-control required" name="property" id="property" placeholder="Enter property"
-                   maxlength="10" minlength="3" />
-        </div>
-        <h4><form:errors path="property" cssClass="error" /></h4>
     </div>
 </div>
 <div class="form-group">
