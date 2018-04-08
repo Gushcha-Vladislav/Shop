@@ -6,6 +6,10 @@ $(document).ready(function () {
         $("#id").val($input.html());
         $("#idParent").val($parent.val());
     });
+    $(".new").click(function () {
+        var $input = $(this).parent().find('div.id.param');
+        $("#id").val($input.html());
+    });
     $("#idParent").change(function() {
         var $input = $(this).parent().find('div.id.param');
         $.ajax({
