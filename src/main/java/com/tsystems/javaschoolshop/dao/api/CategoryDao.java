@@ -13,7 +13,7 @@ public interface CategoryDao {
      * Method should find only root categories. In our case, we have 2 root categories(Men's and women's clothes).
      * @return list of found root categories.
      */
-    List<Category> findRootCategories();
+    List<Category> findRootCategories(boolean adminMode);
 
     /**
      * Method should find certain category by his ID.

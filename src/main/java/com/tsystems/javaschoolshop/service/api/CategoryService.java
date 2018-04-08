@@ -14,7 +14,7 @@ public interface CategoryService {
      * Find root categories.
      * @return list with root categories
      */
-    List<Category> findRootCategories();
+    List<Category> findRootCategories(boolean adminMode);
 
     /**
      * Find category by ID.
@@ -41,9 +41,10 @@ public interface CategoryService {
      * @param categoryDto contains variable data.
      */
     void saveCategory(CategoryDto categoryDto);
+
     /**
      * Hide or show category all objects inside.
      * @param idCategory id category that must be hidden or activity
      */
-    boolean changeStatus(int idCategory);
+    void changeStatus(int idCategory);
 }

@@ -16,6 +16,11 @@ public class CategoryDto {
         //Empty constructor
     }
 
+    public CategoryDto( int idParent, String nameCategory) {
+        this.idParent = idParent;
+        this.nameCategory = nameCategory;
+    }
+
     public int getId() {
         return id;
     }

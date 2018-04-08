@@ -37,8 +37,8 @@ public class CategoryServiceImpl implements CategoryService {
      * @return list with root categories
      */
     @Override
-    public List<Category> findRootCategories() {
-        return categoryDao.findRootCategories();
+    public List<Category> findRootCategories(boolean adminMode) {
+        return categoryDao.findRootCategories(adminMode);
     }
 
     /**
@@ -93,7 +93,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void saveCategory(CategoryDto categoryDto){
         Category category=new Category();
-        categoryDto.setNameCategory(categoryDto.getNameCategory());
+        category.setNameCategory(categoryDto.getNameCategory());
         if(categoryDto.getIdParent() == 0){
             category.setParent(null);
             category.setHierarchyNumber(1);
@@ -112,7 +112,7 @@ public class CategoryServiceImpl implements CategoryService {
      */
     @Override
     @Transactional
-    public boolean changeStatus(int idCategory) {
+    public void changeStatus(int idCategory) {
         Category category = findCategoryById(idCategory);
         boolean status =!category.isStatus();
         category.setStatus(status);
@@ -126,6 +126,7 @@ public class CategoryServiceImpl implements CategoryService {
             }
         }
         categoryDao.saveCategory(category);
-        return category.isStatus();
     }
+
+
 }
