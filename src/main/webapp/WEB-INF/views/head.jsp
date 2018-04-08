@@ -30,7 +30,7 @@
         <div class="row menu">
             <div class="col-xs-2">
                 <sec:authorize access="hasRole('ROLE_ANONYMOUS') or hasRole('ROLE_USER')">
-                    <a class="text-left logo" href="/catalog">SchoolShop</a>
+                    <a class="text-left logo hidden-xs" href="/catalog">SchoolShop</a>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <a class="text-left" href="/admin/order">
@@ -82,8 +82,11 @@
                 </sec:authorize>
             </div>
             <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ANONYMOUS')">
-                <div class="col-xs-3 text-center">
+                <div class="col-xs-2 text-center">
                     <a href="/order"><i class="fab fa-amazon-pay fa-lg menu-icon fa-fw"></i>Order</a></div>
+                <div class="col-xs-2 text-center">
+                    <a href=""><i class="fas fa-map-signs  fa-lg menu-icon fa-fw"></i>Stand</a>
+                </div>
                 <div class="col-xs-3 text-center">
                     <a id ="buttonBasketProducts" data-toggle="modal" type="modal" data-target="#basketProducts">
                         <i class="fas fa-shopping-basket fa-lg menu-icon fa-fw"></i>Basket
