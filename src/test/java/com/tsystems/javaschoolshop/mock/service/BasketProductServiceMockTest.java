@@ -256,10 +256,30 @@ public class BasketProductServiceMockTest {
 
     @Test
     public void countProductInBasketTest3() {
-        List<BasketProductDto> basket = new ArrayList<>(Arrays.asList(product1, product2));
-        //do
+
         int result = basketProductService.countProductsInBasket( new ArrayList<>());
         //check
         Assert.assertEquals(0, result);
+    }
+
+    @Test
+    public void addToBasketMockTest1() {
+
+        Mockito.when(productDao.findProductById(productP1.getId())).thenReturn(productP1);
+        //do
+        basketProductService.addToBasket(product1, new ArrayList<>());
+        //check
+        Mockito.verify(productDao).findProductById(productP1.getId());
+    }
+
+    @Test
+    public void addToBasketMockTest2() {
+
+        Mockito.when(productDao.findProductById(productP1.getId())).thenReturn(productP1);
+        List<BasketProductDto> basket = new ArrayList<>(Arrays.asList(product1, product2));
+        //do
+        basketProductService.addToBasket(product1,basket);
+        //check
+        Mockito.verify(productDao).findProductById(productP1.getId());
     }
 }

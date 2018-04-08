@@ -1,9 +1,7 @@
 package com.tsystems.javaschoolshop.mock.service;
 
 import com.tsystems.javaschoolshop.dao.impl.CategoryDaoImpl;
-import com.tsystems.javaschoolshop.dao.impl.ProductDaoImpl;
 import com.tsystems.javaschoolshop.model.Category;
-import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.model.dto.CategoryDto;
 import com.tsystems.javaschoolshop.service.impl.CategoryServiceImpl;
 import org.junit.Assert;
@@ -24,7 +22,6 @@ public class CategoryServiceMockTest {
 
     private Category category = new Category();
     private List<Category> categories = new ArrayList<>();
-    private List<Product> products = new ArrayList<>();
 
     @Mock
     CategoryDaoImpl categoryDao;
@@ -36,7 +33,6 @@ public class CategoryServiceMockTest {
     public void init() {
         category.setStatus(true);
         category.setId(0);
-        category.setParent(null);
         category.setNameCategory("Name");
         category.setHierarchyNumber(1);
 
@@ -46,6 +42,12 @@ public class CategoryServiceMockTest {
         category1.setParent(null);
         category1.setNameCategory("Category1");
         category1.setHierarchyNumber(2);
+        category1.setProducts(new ArrayList<>());
+        List<Category> child = new ArrayList<>();
+        child.add(category);
+        category1.setChildren(child);
+        category.setParent(category1);
+
 
         Category category2 = new Category();
         category2.setStatus(false);
@@ -53,6 +55,7 @@ public class CategoryServiceMockTest {
         category2.setParent(null);
         category2.setNameCategory("Category2");
         category2.setHierarchyNumber(2);
+        category2.setChildren(new ArrayList<>());
 
         Category category3 = new Category();
         category3.setStatus(true);
@@ -131,18 +134,33 @@ public class CategoryServiceMockTest {
 
     @Test
     public void changeCategoryMockTest1() {
+        Mockito.when(categoryDao.findCategoryById(categories.get(1).getId())).thenReturn(categories.get(1));
+
+        CategoryDto categoryDto =new CategoryDto(1,"Name");
+        categoryDto.setId(2);
+        //do
+        categoryService.changeCategory(categoryDto);
+
+        //check
+        Category category = categories.get(1);
+        category.setNameCategory("Name");
+        Mockito.verify(categoryDao).saveCategory(category);
+    }
+
+    @Test
+    public void changeCategoryMockTest2() {
         Mockito.when(categoryDao.findCategoryById(categories.get(0).getId())).thenReturn(categories.get(0));
 
-        CategoryDto categoryDto =new CategoryDto(0,"Name");
+        CategoryDto categoryDto =new CategoryDto(3,"Hello");
         categoryDto.setId(1);
         Category category = categories.get(0);
-        category.setNameCategory("Name");
+        category.setNameCategory("Hello");
+        category.setParent(categories.get(2));
         //do
         categoryService.changeCategory(categoryDto);
         //check
         Mockito.verify(categoryDao).saveCategory(category);
     }
-
     @Test
     public void changeStatusCategoryMockTest1() {
         Mockito.when(categoryDao.findCategoryById(categories.get(0).getId())).thenReturn(categories.get(0));

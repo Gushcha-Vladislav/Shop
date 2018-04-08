@@ -4,6 +4,7 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 import com.tsystems.javaschoolshop.dao.impl.UserDaoImpl;
 import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
+import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 import com.tsystems.javaschoolshop.service.impl.UserServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +29,9 @@ public class UserServiceMockTest {
 
     @Mock
     UserDaoImpl userDao;
+
+    @Mock
+    PasswordEncoder passwordEncoder;
 
     @InjectMocks
     UserServiceImpl userService;
@@ -184,6 +190,22 @@ public class UserServiceMockTest {
         userService.findTopNUsers();
         //check
         verify(userDao).findTopNUsers(5);
+    }
+
+    @Test
+    public void  changeUserMockTest1() {
+        User user = new User();
+        user.setNameUser("dgdh");
+        user.setLastNameUser("gdfhdfhd");
+        user.setPassword("rgdrhd");
+        user.setBirthday(new Date());
+        user.setPhone("");
+        user.setEmail("dgsdg");
+        when(passwordEncoder.encode("rgdrhd")).thenReturn("rgdrhd");
+        //do
+        userService.createUser(user, UserRoleEnum.ROLE_USER.toString());
+        //check
+        verify(userDao).saveUser(user);
     }
 
 }
