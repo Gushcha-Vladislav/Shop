@@ -1,12 +1,10 @@
 package com.tsystems.javaschoolshop.controller;
 
-import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
 import com.tsystems.javaschoolshop.model.enums.UserRoleEnum;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

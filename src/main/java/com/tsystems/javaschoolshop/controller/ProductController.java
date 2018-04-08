@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Map;
-
 
 @Controller
 @RequestMapping(value = "/")
@@ -34,7 +32,8 @@ public class ProductController {
     public ModelAndView showProductsList() {
         ModelAndView modelAndView=new ModelAndView("productList");
         modelAndView.addObject("products",productService.findAllProducts(false));
-        modelAndView.addObject("categories",categoryService.findRootCategories());
+        modelAndView.addObject("categories",categoryService.findRootCategories(false));
+        modelAndView.addObject("mode",false);
         return modelAndView;
     }
 
@@ -52,6 +51,7 @@ public class ProductController {
         if(product != null) {
             modelAndView = new ModelAndView("product");
             modelAndView.addObject("product", product);
+            modelAndView.addObject("mode", false);
         }else{
             modelAndView = new ModelAndView("error","message","There is no such product");
         }

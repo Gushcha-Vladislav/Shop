@@ -3,6 +3,7 @@ package com.tsystems.javaschoolshop.controller;
 import com.tsystems.javaschoolshop.model.Address;
 import com.tsystems.javaschoolshop.model.User;
 import com.tsystems.javaschoolshop.model.dto.UserDto;
+import com.tsystems.javaschoolshop.service.api.AddressService;
 import com.tsystems.javaschoolshop.service.api.OrderService;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,15 @@ public class UserController extends GenericController{
 
     private final UserService userService;
     private final OrderService orderService;
+    private final AddressService addressService;
 
     @Autowired
-    public UserController(UserDetailsService userDetailsService, UserService userService,OrderService orderService) {
+    public UserController(UserDetailsService userDetailsService, UserService userService,
+                          OrderService orderService, AddressService addressService) {
         super(userDetailsService);
         this.userService = userService;
         this.orderService=orderService;
+        this.addressService = addressService;
     }
 
     @RequestMapping(value = "", method = {RequestMethod.GET,RequestMethod.POST})
@@ -65,23 +69,30 @@ public class UserController extends GenericController{
         return "redirect:/account";
     }
 
+    @Secured({"ROLE_USER"})
     @RequestMapping(value = "/addresses", method = RequestMethod.GET)
     public ModelAndView addressManager() {
         return new ModelAndView("addressesManager","user", userService.findUserFromSecurityContextHolder());
     }
+
+    @Secured({"ROLE_USER"})
     @RequestMapping(value = "/addresses/{id}", method = RequestMethod.POST)
     public ModelAndView deleteAddress(final @PathVariable("id") int id,final HttpServletRequest request) {
-        userService.deleteAddress(id);
+        addressService.deleteAddress(id);
         return new ModelAndView("addressItem","user",userService.findUserFromSecurityContextHolder());
     }
+
+    @Secured({"ROLE_USER"})
     @RequestMapping(value = "/addresses", method = RequestMethod.POST)
     public String saveAddress(@Valid Address address, BindingResult result, final HttpServletRequest request) {
         if (result.hasErrors()) {
             return "formAddress";
         }
-        userService.saveAddress(address);
+        addressService.saveAddress(address);
         return "redirect:/account/addresses";
     }
+
+    @Secured({"ROLE_USER"})
     @RequestMapping(value = "/formAddress", method = RequestMethod.GET)
     public ModelAndView formAddress(final HttpServletRequest request) {
         request.getSession().setAttribute("nameUser", userService.findUserFromSecurityContextHolder().getNameUser());

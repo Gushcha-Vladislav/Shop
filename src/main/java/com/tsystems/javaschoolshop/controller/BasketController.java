@@ -53,12 +53,12 @@ public class BasketController {
     @RequestMapping(value = "/count/{id}", method = RequestMethod.GET)
     @ResponseBody
     public String countProductsInBagById(final @PathVariable("id") int id) {
-        return basketProductService.countProductsInBagById(id, basketBean.getBasket()).toString();
+        return basketProductService.countProductsInBasketById(id, basketBean.getBasket()).toString();
     }
 
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     @ResponseBody
     public String countProductsInBag() {
-        return basketProductService.countProductsInBag(basketBean.getBasket()).toString();
+        return basketProductService.countProductsInBasket(basketBean.getBasket()).toString();
     }
 }

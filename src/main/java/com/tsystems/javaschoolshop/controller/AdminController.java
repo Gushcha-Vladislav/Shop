@@ -1,6 +1,5 @@
 package com.tsystems.javaschoolshop.controller;
 
-import com.tsystems.javaschoolshop.dao.api.CategoryDao;
 import com.tsystems.javaschoolshop.model.Product;
 import com.tsystems.javaschoolshop.model.dto.CategoryDto;
 import com.tsystems.javaschoolshop.model.dto.ProductDto;
@@ -33,6 +32,7 @@ public class AdminController {
     private final OrderService orderService;
     private final ProductService productService;
     private final CategoryService categoryService;
+
     @Autowired
     public AdminController(final UserService userService, final OrderService orderService,
                            ProductService productService, CategoryService categoryService) {
@@ -92,26 +92,27 @@ public class AdminController {
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
     public ModelAndView addOrChangeCategories(@Valid CategoryDto categoryDto, BindingResult result) {
         if (result.hasErrors()) {
-            return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories());
+            return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories(true));
         }
-        categoryService.changeCategory(categoryDto);
-        return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories());
+        if(categoryDto.getId() == 0) categoryService.saveCategory(categoryDto);
+        else categoryService.changeCategory(categoryDto);
+        return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories(true));
     }
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public ModelAndView showCategories() {
-        return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories());
+        return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories(true));
     }
     @RequestMapping(value = "/categories/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public boolean ChangeHierarchy(@PathVariable("id") int idCategory) {
+    public boolean changeHierarchy(@PathVariable("id") int idCategory) {
         if(idCategory == 0) return true;
         return categoryService.findCategoryById(idCategory).getHierarchyNumber()==2;
     }
     @RequestMapping(value = "/categories/status/{id}", method = RequestMethod.GET)
-    public ModelAndView ChangeStatusCategory(@PathVariable("id") int idCategory) {
+    public ModelAndView changeStatusCategory(@PathVariable("id") int idCategory) {
         categoryService.changeStatus(idCategory);
-        return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories());
+        return new ModelAndView("categoryManager", "categories", categoryService.findRootCategories(true));
 
     }
     @RequestMapping(value = "/statistics/download/pdf")
@@ -135,7 +136,8 @@ public class AdminController {
     public ModelAndView showProductsList() {
         ModelAndView modelAndView=new ModelAndView("productList");
         modelAndView.addObject("products",productService.findAllProducts(true));
-        modelAndView.addObject("categories",categoryService.findRootCategories());
+        modelAndView.addObject("categories",categoryService.findRootCategories(true));
+        modelAndView.addObject("mode",productService.findAllProducts(false));
         return modelAndView;
     }
 
@@ -143,6 +145,7 @@ public class AdminController {
     public ModelAndView showProductPage(final @PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView("product", "product", productService.findProductById(id, true));
         modelAndView.addObject("categories", categoryService.findCategoryByHierarchyNumber(2));
+        modelAndView.addObject("mode", true);
         return modelAndView;
     }
     @RequestMapping(value = "/catalog/change", method = RequestMethod.POST)
@@ -151,6 +154,6 @@ public class AdminController {
             return "redirect:/admin/catalog/"+productDto.getId();
         }
         productService.changeProduct(productDto);
-        return "redirect:/admin/catalog/"+productDto.getId();
+        return "redirect:/catalog/"+productDto.getId();
     }
 }
