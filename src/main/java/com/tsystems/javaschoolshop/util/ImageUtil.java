@@ -60,6 +60,7 @@ public class ImageUtil {
         try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(image))) {
             stream.write(file.getBytes());
         } catch (Exception e) {
+            //not do anything
         }
     }
 

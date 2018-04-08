@@ -49,8 +49,8 @@ public class ComparatorUtil {
      */
     private static Comparator<Product> ascendingNameProductComparator = (p1, p2) -> {
         int result =p1.getNameProduct().compareTo(p2.getNameProduct());
-        if (result<0) return -1;
-        if (result>0) return 1;
+        if (result>0) return -1;
+        if (result<0) return 1;
         return 0;
     };
 
@@ -59,8 +59,8 @@ public class ComparatorUtil {
      */
     private static Comparator<Product> descendingNameProductComparator = (p1, p2) -> {
         int result =p1.getNameProduct().compareTo(p2.getNameProduct());
-        if (result>0) return -1;
-        if (result<0) return 1;
+        if (result<0) return -1;
+        if (result>0) return 1;
         return 0;
     };
     /**

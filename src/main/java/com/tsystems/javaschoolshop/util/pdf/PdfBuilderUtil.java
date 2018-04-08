@@ -19,6 +19,7 @@ import java.util.Map;
  */
 public class PdfBuilderUtil extends PdfAbstractView {
 
+    private static final String NAME_PAGE ="Shop Statistics";
     /**
      * path to the folder where image will be saved
      */
@@ -50,19 +51,19 @@ public class PdfBuilderUtil extends PdfAbstractView {
 
         // define font for table header row
         Font font = FontFactory.getFont(IMAGES_PATH, "cp1251", true);
-        doc.addTitle("Shop Statistics");
-        doc.addHeader("Header", "Shop Statistics");
-        doc.addAuthor("SchoolShop (c)");
+        doc.addTitle(NAME_PAGE);
+        doc.addHeader("Header", NAME_PAGE);
+        doc.addAuthor(NAME_PAGE+" (c)");
         doc.addCreationDate();
         ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_CENTER,
-                new Phrase("Shop Statistics", font),
+                new Phrase(NAME_PAGE, font),
                 (doc.right() - doc.left()) / 2 + doc.leftMargin(),
                 doc.top() + 10, 0);
 
-        doc.add(new Paragraph(new Phrase("Income for the last week: \u20BD " + incomePerWeek + ".",font)));
-        doc.add(new Paragraph(new Phrase("Income for the last month: \u20BD " + incomePerMonth + ".",font)));
+        doc.add(new Paragraph(new Phrase("Income for the last week:  " + incomePerWeek + "RUB.",font)));
+        doc.add(new Paragraph(new Phrase("Income for the last month:  " + incomePerMonth + "RUB.",font)));
 
-        doc.add(new Paragraph(new Phrase("Top 10 User for the last time:",font)));
+        doc.add(new Paragraph(new Phrase("Top 5 User for the last time:",font)));
 
         PdfPTable tableTopUsers = new PdfPTable(5);
         tableTopUsers.setWidthPercentage(100.0f);
@@ -129,8 +130,8 @@ public class PdfBuilderUtil extends PdfAbstractView {
         for (ProductSendDto product : productDtoList) {
             tableTopProducts.addCell(new Phrase(product.getNameProduct(), font));
             tableTopProducts.addCell(Image.getInstance(ByteArrayConverterUtil.convertBytes(images.get(product.getId()))));
-            tableTopProducts.addCell(new Phrase(String.valueOf(product.getPrice()), font));
-            tableTopProducts.addCell(new Phrase(String.valueOf(product.getNumberOfSales()),font));
+            tableTopProducts.addCell(new Phrase(String.valueOf(product.getPrice()+" RUB"), font));
+            tableTopProducts.addCell(new Phrase(String.valueOf(product.getNumberOfSales()+" items"),font));
         }
         doc.add(tableTopProducts);
     }
