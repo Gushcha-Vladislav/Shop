@@ -6,7 +6,12 @@ import com.tsystems.javaschoolshop.model.User;
 import com.tsystems.javaschoolshop.service.api.AddressService;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+/**
+ * Address service. It is used to bag manipulations.
+ */
+@Service
 public class AddressServiceImpl implements AddressService {
 
     /**

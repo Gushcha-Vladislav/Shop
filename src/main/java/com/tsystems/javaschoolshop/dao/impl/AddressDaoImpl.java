@@ -3,12 +3,15 @@ package com.tsystems.javaschoolshop.dao.impl;
 import com.tsystems.javaschoolshop.dao.GenericDao;
 import com.tsystems.javaschoolshop.dao.api.AddressDao;
 import com.tsystems.javaschoolshop.model.Address;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.Query;
 
 /**
  * Class which implements all necessary methods which allow us
  * to work with database and users.
  */
+@Repository
 public class AddressDaoImpl extends GenericDao implements AddressDao {
 
 
