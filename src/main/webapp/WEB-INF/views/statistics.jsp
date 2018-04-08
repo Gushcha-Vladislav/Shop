@@ -46,7 +46,7 @@
             </c:forEach>
         </div>
         <div class="col-lg-4 block">
-            <div class="title">Top 10 Users</div>
+            <div class="title">Top 5 Users</div>
             <c:forEach var="user" items="${topUsers}" varStatus="status">
                 <div class="statistic-item col-lg-12">
                     <div class="top-number">#${status.index + 1}</div>
