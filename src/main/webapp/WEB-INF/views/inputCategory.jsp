@@ -1,5 +1,4 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: gusch
@@ -7,6 +6,8 @@
   Time: 14:41
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="form-group">
     <label for="nameCategory" class="cols-sm-2 control-label">Category Name *</label>
@@ -24,7 +25,7 @@
     <div class="cols-sm-10">
         <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-list-ul"></i></span>
-            <select class="sort pull-right" id="idParent" name="idParent">
+            <select class="sort pull-right form-control" id="idParent" name="idParent">
                 <option value="0">${category.nameCategory}</option>
                 <c:forEach var="category" items="${categories}">
                     <option value="${category.id}">${category.nameCategory}</option>

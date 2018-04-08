@@ -91,7 +91,7 @@
                             <div class="cols-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fas fa-list-ul"></i></span>
-                                    <select class="sort pull-right" id="category" name="idCategory">
+                                    <select class="sort pull-right form-control" id="category" name="idCategory">
                                         <c:forEach var="category" items="${categories}">
                                             <option value="${category.id}"
                                                     <c:if test="${product.category.nameCategory eq category.nameCategory}">
