@@ -33,7 +33,7 @@
                         <div class="col-sm-offset-3 col-sm-6 main-center">
                             <c:import url="inputAddress.jsp"/>
                             <div class="form-group ">
-                                <input type="submit" id="register" value="AddNewAddress"
+                                <input type="submit" id="register" value="Add address"
                                        class="btn btn-primary btn-lg btn-block login-button">
                             </div>
                         </div>
