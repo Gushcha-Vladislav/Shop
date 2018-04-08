@@ -17,15 +17,20 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-9">
             <div class="breadcrumb">
-                <li><a href="/catalog">Home</a></li>
+                <c:if test="${mode eq true}">
+                <li><a href="/account">${nameUser}</a></li>
+                </c:if>
+                <c:if test="${mode eq false}">
+                    <li><a href="/catalog">Home</a></li>
+                </c:if>
                 <li><a >${product.category.nameCategory}</a></li>
-                <li><a href="/catalog/${product.id}">${product.nameProduct}</a></li>
+                <li><a href="<c:if test="${mode eq true}">/admin</c:if>/catalog/${product.id}">${product.nameProduct}</a></li>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <%--<c:import url="filterCategory.jsp"/>--%>
+
         </div>
         <div class="container col-sm-9">
             <div class="row">
@@ -36,11 +41,11 @@
                     <img src="/resources/${product.image}" alt="" class="img-responsive">
                 </div>
                 <div class="col-sm-6 row">
-                    <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ANONYMOUS')">
+                    <c:if test="${mode eq false}">
                     <div class="param" id="id">${product.id}</div>
                     <div class="param" id="image">${product.image}</div>
                     <div class="col-xs-12">Brand : ${product.brand}</div>
-                    <div class="col-xs-12">Property : ${product.property}</div>
+                    <div class="col-xs-12">Category : ${product.category.nameCategory}</div>
                     <div class="col-xs-12 pull-left">Price: <div id="priceProduct">${product.price}</div></div>
                     <div class="col-xs-12 pull-left">Quantity in stock: <div id="quantity">${product.quantityInStock}</div> </div>
                     <div class="col-xs-12">Ingredients : ${product.description}</div>
@@ -54,8 +59,8 @@
                     <a class="btn" id="mailRu"><i class="fas fa-at fa-3x"></i></a>
                     <a class="btn" id="ok"><i class="fab fa-odnoklassniki-square fa-3x"></i></a>
                     <a class="btn" id="twitter"><i class="fab fa-twitter-square fa-3x"></i></a>
-                    </sec:authorize>
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    </c:if>
+                    <c:if test="${mode eq true}">
                         <form:form  action="/admin/catalog/change" method="POST" modelAttribute="productDto">
                          <input class="param" name="id" value="${product.id}"/>
                          <div class="form-group">
@@ -110,17 +115,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="property" class="cols-sm-2 control-label">Property *</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fas fa-weight"></i></span>
-                                    <input type="text" class="form-control required" name="property" id="property" placeholder="Enter property"
-                                           maxlength="10" minlength="3"  value="${product.property}"/>
-                                </div>
-                                <h4><form:errors path="property" cssClass="error" /></h4>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="description" class="cols-sm-2 control-label">Description *</label>
                             <div class="cols-sm-10">
                                 <div class="input-group">
@@ -147,7 +141,7 @@
                                    class="btn btn-primary btn-lg btn-block login-button">
                         </div>
                         </form:form>
-                    </sec:authorize>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -169,7 +163,7 @@
                         <input type="number" id="amount-number" name="amount" class="amount-number" value="0" disabled>
                         <button type="button" class="button-more" id="button-more"><i class="fa fa-plus"></i></button>
                     </div>
-                    <div class="col-sm-4 col-xs-5  pay">Цена :
+                    <div class="col-sm-4 col-xs-5  pay">Price:
                         <h4 class="btn-cart" id="totalPrice">0</h4></div>
                     <div class="col-sm-4  col-xs-5 pay text-center">
                         <a class="btn btn-success btn-cart" type="button" id="addToBasket">Add to bag</a>
