@@ -27,7 +27,7 @@
         </div>
         <div class="container col-sm-9">
             <div class="row ">
-                <div class="col-sm-12 titleName"><h4>Registration</h4></div>
+                <div class="col-sm-12 titleName text-center"><h4>Registration</h4></div>
                 <div class="col-sm-12">
                     <form:form  id="signUp" method="POST" action="/signUp" modelAttribute="userDto">
                         <div class="col-sm-offset-3 col-sm-6 main-center">

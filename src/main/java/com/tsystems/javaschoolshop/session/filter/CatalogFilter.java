@@ -14,6 +14,11 @@ public class CatalogFilter {
     public CatalogFilter() {
     }
 
+    public CatalogFilter(int idCategory, int typeCort) {
+        this.idCategory = idCategory;
+        this.typeCort = typeCort;
+    }
+
     public int getIdCategory() {
         return idCategory;
     }
