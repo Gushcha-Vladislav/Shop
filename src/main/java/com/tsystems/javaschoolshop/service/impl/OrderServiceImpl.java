@@ -11,6 +11,7 @@ import com.tsystems.javaschoolshop.service.api.BasketProductService;
 import com.tsystems.javaschoolshop.service.api.OrderService;
 import com.tsystems.javaschoolshop.service.api.UserService;
 import com.tsystems.javaschoolshop.util.ComparatorUtil;
+import jdk.nashorn.internal.runtime.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -213,6 +214,7 @@ public class OrderServiceImpl implements OrderService {
     /**
      * This method sends message to the customer email.
      */
+    @Logger
     @Override
     public void sendMessage(Order order, User user, List<BasketProductDto> bag, int idAddress) {
         SimpleMailMessage msg = new SimpleMailMessage();

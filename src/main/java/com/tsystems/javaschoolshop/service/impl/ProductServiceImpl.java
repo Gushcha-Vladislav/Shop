@@ -7,6 +7,7 @@ import com.tsystems.javaschoolshop.model.dto.ProductSendDto;
 import com.tsystems.javaschoolshop.service.api.CategoryService;
 import com.tsystems.javaschoolshop.service.api.ProductService;
 import com.tsystems.javaschoolshop.util.ComparatorUtil;
+import jdk.nashorn.internal.runtime.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.jms.core.JmsTemplate;
@@ -153,6 +154,7 @@ public class ProductServiceImpl implements ProductService {
      * If advertising stand application is available it will receive this message
      * and will make an attempt to update top products list.
      */
+    @Logger
     @Override
     public void sendMessage() {
         jmsTemplate.send("advertising.stand", session -> {
