@@ -19,6 +19,7 @@
             <div class="breadcrumb">
                 <c:if test="${mode eq true}">
                 <li><a href="/account">${nameUser}</a></li>
+                 <li><a href="/admin/catalog">Products</a></li>
                 </c:if>
                 <c:if test="${mode eq false}">
                     <li><a href="/catalog">Home</a></li>
