@@ -34,6 +34,17 @@ public class ProductDto implements Serializable {
         //Empty constructor
     }
 
+    public ProductDto(int id, String nameProduct, Integer idCategory,
+                      Integer price, String brand, String description, Integer quantityInStock) {
+        this.id = id;
+        this.nameProduct = nameProduct;
+        this.idCategory = idCategory;
+        this.price = price;
+        this.brand = brand;
+        this.description = description;
+        this.quantityInStock = quantityInStock;
+    }
+
     public int getId() {
         return id;
     }
