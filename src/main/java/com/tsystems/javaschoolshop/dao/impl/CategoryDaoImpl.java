@@ -21,8 +21,13 @@ public class CategoryDaoImpl extends GenericDao implements CategoryDao {
      * @return list of found categories.
      */
     @Override
-    public List<Category> findRootCategories() {
-        Query query = em.createQuery("SELECT c FROM Category c WHERE parent = null");
+    public List<Category> findRootCategories(boolean adminMode) {
+        String startQuery ="SELECT c FROM Category c WHERE parent = null";
+        Query query;
+        if(!adminMode) {
+            query = em.createQuery(startQuery + " and status = :status");
+            query.setParameter("status", true);
+        }else query = em.createQuery(startQuery);
         return (List<Category>) query.getResultList();
     }
 
