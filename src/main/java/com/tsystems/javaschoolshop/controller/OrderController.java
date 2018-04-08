@@ -61,7 +61,7 @@ public class OrderController {
             // otherwise, Ignore sending messages
         }
         return new ModelAndView("error","message","<h4 class='pull-left'>The purchase is successful, continue shopping</h4>" +
-                "                            <a href='catalog' class='pull-left btn btn-success'>Go</a>");
+                "                            <a href='/catalog' class='pull-left btn btn-success'>Go</a>");
     }
 
     @RequestMapping(value = "/repeat/{id}", method = RequestMethod.GET)

@@ -18,6 +18,7 @@ import javax.validation.Valid;
 public class LoginController extends GenericController{
 
     private final UserService userService;
+    private static final String PAGE_REGISTRATION = "formUser";
 
     @Autowired
     public LoginController(UserService userService,UserDetailsService userDetailsService) {
@@ -32,7 +33,7 @@ public class LoginController extends GenericController{
 
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public ModelAndView signUp() {
-        return new ModelAndView("formUser","user",new User());
+        return new ModelAndView(PAGE_REGISTRATION,"user",new User());
     }
 
 
@@ -54,9 +55,9 @@ public class LoginController extends GenericController{
     public String signUp(@Valid User user, BindingResult result,
                          final HttpServletRequest request) {
         if (result.hasErrors()) {
-            return "formUser";
+            return PAGE_REGISTRATION;
         }else{
-            if (!userService.isEmailFree(user.getEmail())) return "formUser";
+            if (!userService.isEmailFree(user.getEmail())) return PAGE_REGISTRATION;
             userService.createUser(user, UserRoleEnum.ROLE_USER.name());
             authenticateUserAndSetSession(user.getEmail(), request);
         }

@@ -30,6 +30,8 @@ public class ProductController {
     @Secured({"ROLE_USER","ROLE_ANONYMOUS"})
     @RequestMapping(value = {"/","/catalog"}, method = RequestMethod.GET)
     public ModelAndView showProductsList() {
+        catalogFilter.setIdCategory(0);
+        catalogFilter.setTypeCort(0);
         ModelAndView modelAndView=new ModelAndView("productList");
         modelAndView.addObject("products",productService.findAllProducts(false));
         modelAndView.addObject("categories",categoryService.findRootCategories(false));

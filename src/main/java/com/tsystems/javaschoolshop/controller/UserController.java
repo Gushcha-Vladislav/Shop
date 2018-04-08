@@ -25,6 +25,7 @@ import javax.validation.Valid;
 @RequestMapping(value = "/account")
 public class UserController extends GenericController{
 
+    private static final String PAGE_ACCOUNT = "redirect:/account";
     private final UserService userService;
     private final OrderService orderService;
     private final AddressService addressService;
@@ -47,12 +48,12 @@ public class UserController extends GenericController{
     @RequestMapping(value = "/change", method = RequestMethod.POST)
     public String accountChange(@Valid UserDto userDto, BindingResult result, final HttpServletRequest request) {
         if (result.hasErrors()) {
-            return "redirect:/account";
+            return PAGE_ACCOUNT;
         }
         User user =userService.findUserFromSecurityContextHolder().change(userDto);
         userService.saveUser(user);
         authenticateUserAndSetSession(user.getEmail(),request);
-        return "redirect:/account";
+        return PAGE_ACCOUNT;
         }
 
     @RequestMapping(value = "/password", method = RequestMethod.GET)
@@ -66,7 +67,7 @@ public class UserController extends GenericController{
                                     final HttpServletRequest request) {
         userService.changePassword(oldPassword, newPassword);
         authenticateUserAndSetSession(userService.findUserFromSecurityContextHolder().getEmail(),request);
-        return "redirect:/account";
+        return PAGE_ACCOUNT;
     }
 
     @Secured({"ROLE_USER"})
