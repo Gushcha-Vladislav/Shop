@@ -39,4 +39,15 @@ public class Logging {
         return;
     }
 
+    @AfterReturning(pointcut = "@annotation(jdk.nashorn.internal.runtime.logging.Logger)")
+    public void sendMessage() {
+        logger.info("###### Message sent");
+    }
+
+    @AfterThrowing(pointcut = "@annotation(jdk.nashorn.internal.runtime.logging.Logger)", throwing = "ex")
+    public void sendMessageException(Throwable ex) {
+        logger.error("Error send message: \n", ex);
+    }
+
+
 }
