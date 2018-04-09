@@ -74,8 +74,8 @@ public class AdminController {
         modelAndView.addObject("topProducts", productService.convertProductsToProductsDto(
                 productService.findTop10Products(true)));
         modelAndView.addObject("topUsers", userService.findTopNUsers());
-        modelAndView.addObject("incomePerWeek", orderService.findRevenuePerNDay(31));
-        modelAndView.addObject("incomePerMonth", orderService.findRevenuePerNDay(8));
+        modelAndView.addObject("incomePerWeek", orderService.findRevenuePerNDay(8));
+        modelAndView.addObject("incomePerMonth", orderService.findRevenuePerNDay(31));
         return modelAndView;
     }
 
@@ -131,8 +131,8 @@ public class AdminController {
         modelAndView.addObject("topProducts", productService.convertProductsToProductsDto(
                 productService.findTop10Products(true)));
         modelAndView.addObject("topUsers", userService.findTopNUsers());
-        modelAndView.addObject("incomePerWeek", orderService.findRevenuePerNDay(31));
-        modelAndView.addObject("incomePerMonth", orderService.findRevenuePerNDay(8));
+        modelAndView.addObject("incomePerWeek", orderService.findRevenuePerNDay(8));
+        modelAndView.addObject("incomePerMonth", orderService.findRevenuePerNDay(31));
         Map<Integer, Byte[]> imageMap = new HashMap<>();
         for (Product product : productService.findTop10Products(true)) {
             File serverFile = new File(ImageUtil.getAbsoluteRootPath() + product.getImage());

@@ -60,8 +60,8 @@ public class ProductDaoImpl extends GenericDao implements ProductDao {
     public List<Product> findTop10Products(boolean adminMode) {
         String temp ="SELECT c.product FROM StatisticTopProduct c ";
         Query topListQuery;
-        if(!adminMode) topListQuery= em.createQuery(temp+"WHERE c.product.status = TRUE ORDER BY c.amount DESC", Product.class);
-        else topListQuery= em.createQuery(temp+" ORDER BY c.amount DESC", Product.class);
+        if(!adminMode) topListQuery= em.createQuery(temp+"WHERE c.product.status = TRUE ORDER BY c.sales DESC", Product.class);
+        else topListQuery= em.createQuery(temp+" ORDER BY c.sales DESC", Product.class);
         return topListQuery.setMaxResults(10).getResultList();
     }
 
@@ -72,7 +72,7 @@ public class ProductDaoImpl extends GenericDao implements ProductDao {
      */
     @Override
     public int findNumberOfSalesById(int id) {
-        Query query= em.createQuery("SELECT c.amount FROM StatisticTopProduct c WHERE c.product.id = :id");
+        Query query= em.createQuery("SELECT c.sales FROM StatisticTopProduct c WHERE c.product.id = :id");
         query.setParameter("id", id);
         try {
             return (int) query.getSingleResult();

@@ -39,7 +39,7 @@ public class StatisticTopProduct extends Statistics {
     /**
      * Custom constructor with all necessary fields to initialize.
      * @param product - delivery address.
-     * @param totalCash - directly, order status, it's obvious.
+     * @param sales - directly, order status, it's obvious.
      */
     public StatisticTopProduct(Product product, Integer sales) {
         this.product = product;
