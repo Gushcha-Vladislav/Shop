@@ -5,9 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tsystems.javaschoolshop</groupId>
     <artifactId>JavaSchoolShop</artifactId>
-    <packaging>war</packaging>
     <version>1.0.0</version>
-    <name>JavaSchoolShop</name>
+    <packaging>war</packaging>
 
     <properties>
         <spring.version>4.2.3.RELEASE</spring.version>
@@ -321,21 +320,6 @@
         </dependency>
     </dependencies>
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>${maven-war-plugin.version}</version>
-                    <configuration>
-                        <warSourceDirectory>src/main/webapp</warSourceDirectory>
-                        <warName>JavaSchoolShop</warName>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
-
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -343,6 +327,28 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8081/manager/text</url>
+                    <server>tomcatServer</server>
+                    <username>admin1</username>
+                    <password>admin1</password>
+                    <update>true</update>
+                    <path>/</path>
                 </configuration>
             </plugin>
             <plugin>
