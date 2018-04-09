@@ -31,13 +31,11 @@ public class Logging {
     @AfterReturning(pointcut = "witch()")
     public void logAfter(JoinPoint joinPoint) {
         logger.debug("###### Success return for method :{"+ joinPoint.getSignature().getName()+"}");
-        return;
     }
 
     @AfterThrowing(pointcut = "witch()", throwing = "ex")
     public void exceptionError(Throwable ex) {
         logger.error("Fatal Error:", ex);
-        return;
     }
 
     @AfterReturning(pointcut = "@annotation(jdk.nashorn.internal.runtime.logging.Logger)")
@@ -53,6 +51,5 @@ public class Logging {
     @AfterReturning(pointcut = "within(com.tsystems.javaschoolshop.controller..*) ")
     public void logSuccessController(JoinPoint joinPoint) {
         logger.info("###### Success return for method :{"+ joinPoint.getSignature().getName()+"}");
-        return;
     }
 }
