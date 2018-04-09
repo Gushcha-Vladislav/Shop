@@ -13,7 +13,7 @@ public class CategoryDto {
     private String nameCategory;
 
     public CategoryDto() {
-        //Empty constructor
+        this.nameCategory = "";
     }
 
     public CategoryDto( int idParent, String nameCategory) {
